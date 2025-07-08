@@ -55,7 +55,7 @@ while True :
             sleep(3)
             system("cls")
             continue 
-        elif menu not in [ "1" , "A" , "2" , "Sh" , "3" , "R" , "4" , "E" , "5" , "S" , "6" , "Re" , "7" , "Q" ] :
+        elif menu not in ( "1" , "A" , "2" , "Sh" , "3" , "R" , "4" , "E" , "5" , "S" , "6" , "Re" , "7" , "Q" ) :
             print("Wrong ! Try again...")
             sleep(3)
             system("cls")
@@ -221,7 +221,7 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    if class_ not in [ "A" , "B" , "C" ] :
+                    if class_ not in ( "A" , "B" , "C" ) :
                         print("Wrong input ! Please choose class between A or B or C...")
                         sleep(3)
                         system("cls")
@@ -322,7 +322,7 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    if status not in [ "Active" , "Deactive" ] :
+                    if status not in ( "Active" , "Deactive" ) :
                         print("Wrong input ! Status must be active or deactive...")
                         sleep(3)
                         system("cls")
@@ -380,7 +380,7 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    if show not in [ "1" , "2"] :
+                    if show not in ( "1" , "2" ) :
                         print("Wrong choose ! Please choose one of options...")
                         sleep(3)
                         system("cls")
@@ -390,8 +390,8 @@ while True :
 
                 # region all information
                 if show == "1" :
-                    informations = ["Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status"]
-                    indexes =[ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10]
+                    informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
+                    indexes =( 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10 )
                 # endregion
 
                 # region select information
@@ -418,7 +418,7 @@ while True :
                                 sleep(3)
                                 system("cls")
                                 continue
-                            elif choose not in ["1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "0"] :
+                            elif choose not in ("1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "0") :
                                 print("Wrong input ! Please choose an option between 0 and 10...")
                                 sleep(3)
                                 system("cls")
@@ -537,8 +537,8 @@ while True :
                 # region choose information
                 while True :
                     # region show student
-                    informations = ["Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status"]
-                    indexes =[ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10]
+                    informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
+                    indexes = ( 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10 )
                     print("=" *170)
                     print("Row" , end = "\t")
                     for information in informations :
@@ -577,7 +577,7 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    if choose not in [ "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "11"] :
+                    if choose not in ("1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "11") :
                         print("Wrong input ! Please choose an option between 1 and 11...")
                         sleep(3)
                         system("cls")
@@ -588,8 +588,8 @@ while True :
                 # region match information with students
 
                 # region show student
-                informations = ["Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status"]
-                indexes =[ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10]
+                informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
+                indexes = (0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10)
                 print("=" *170)
                 print("Row" , end = "\t")
                 for information in informations :
@@ -723,8 +723,8 @@ while True :
                 # region choose information
                 while True :
                     # region show student
-                    informations = ["Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status"]
-                    indexes =[ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10]
+                    informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
+                    indexes = ( 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10 )
                     print("=" *170)
                     print("Row" , end = "\t")
                     for information in informations :
@@ -761,7 +761,7 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    if choose not in [ "1" , "2" , "3"] :
+                    if choose not in  ("1" , "2" , "3") :
                         print("Wrong input ! Please choose an option between 1 and 3...")
                         sleep(3)
                         system("cls")
@@ -772,8 +772,8 @@ while True :
                 # region match student with information
 
                 # region show student 
-                informations = ["Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status"]
-                indexes =[ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10]
+                informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
+                indexes = (0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10)
                 print("=" *170)
                 print("Row" , end = "\t")
                 for information in informations :
@@ -842,7 +842,7 @@ while True :
                                     sleep(3)
                                     system("cls")
                                     continue
-                                elif edit_item not in [ "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "0" ] :
+                                elif edit_item not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "0" ) :
                                     print("Wrong input ! Please choose a number between 0 and 10...")
                                     sleep(3)
                                     system("cls")
@@ -972,7 +972,7 @@ while True :
                                             sleep(3)
                                             system("cls")
                                             continue
-                                        if new_information not in [ "A" , "B" , "C" ] :
+                                        if new_information not in ( "A" , "B" , "C" ) :
                                             print("Wrong input ! Please choose a class between A or B or C...")
                                             sleep(3)
                                             system("cls")
@@ -1043,7 +1043,7 @@ while True :
                                             sleep(3)
                                             system("cls")
                                             continue
-                                        if new_information not in [ "Active" , "Deactive" ] :
+                                        if new_information not in ( "Active" , "Deactive" ) :
                                             print("Wrong input ! Status must be active or deactive...")
                                             sleep(3)
                                             system("cls")
@@ -1113,8 +1113,8 @@ while True :
                     sleep(3)
                     system("cls")
                 else :
-                    informations = ["Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status"]
-                    indexes =[ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10]
+                    informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
+                    indexes = (0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10)
                     print("Search result : (The searched item is marked with stars)")
                     print("=" *170)
                     print("Row" , end = "\t")
@@ -1174,7 +1174,7 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    elif report_choose not in [ "1" , "2" ] :
+                    elif report_choose not in ( "1" , "2" ) :
                         print("Wrong input ! Please choose option 1 or 2 ...")
                         sleep(3)
                         system("cls")
@@ -1193,7 +1193,7 @@ while True :
                             sleep(3)
                             system("cls")
                             continue
-                        elif report_class not in [ "A" , "B" , "C" ] :
+                        elif report_class not in ( "A" , "B" , "C" ) :
                             print("Wrong input ! Please choose a class between A or B or C...")
                             sleep(3)
                             system("cls")
@@ -1290,7 +1290,7 @@ while True :
                             sleep(3)
                             system("cls")
                             continue
-                        elif report_lesson not in [ "1" , "2" , "3" , "4"] :
+                        elif report_lesson not in ( "1" , "2" , "3" , "4" ) :
                             print("Wrong input ! Please choose an option between 1 and 4...")
                             sleep(3)
                             system("cls")
