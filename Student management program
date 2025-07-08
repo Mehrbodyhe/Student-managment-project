@@ -1,0 +1,1477 @@
+from os import system
+from random import randint
+from time import sleep
+
+# region student_list 
+student_list = [
+    [ "1" , "ali" , "musavi" , "17" , "2223334455" , "4021315000" , "A" , "80" , "60" , "Not registered" , "Active" ] , 
+    [ "2" , "Mehrbod" , "Yahyaie" , "19" , "2221117733" , "4021315001" , "A" , "70" , "90" , "70" , "Active"] ,  
+    [ "3" , "Mohammad" , "Abbasi" , "15" , "2451118733" , "4021315002" , "C" , "50" , "40" , "15" , "Deactive"] ,
+    [ "4" , "Farhad" , "Amin" , "21" , "5221217793" , "4021315003" , "B" , "100" , "90" , "60" , "Active" ] ,
+    [ "5" , "Parsa" , "Beyhaghi" , "22" , "2020117039" , "4021315004" , "C" , "70" , "65" , "20" , "Active"] ,
+    [ "6" , "Parham" , "Seyf" , "20" , "3216385027" , "4021315005" , "B" , "75" , "75" , "70" , "Active"] , 
+    [ "7" , "Ramtin" , "Moratahan" , "19" , "1234543219" , "4021315006" , "A" , "90" , "90" , "70" , "Active"] , 
+    [ "8" , "Mahmood" , "Rezai" , "25" , "7263947189" , "4021315007" , "A" , "60" , "40" , "45" , "Deactive"] , 
+    [ "9" , "Amirhossein" , "Rezvani" , "19" , "8194025368" , "4021315008" , "A" , "50" , "50" , "30" , "Active" ] ,
+    [ "10" , "Mehran" , "Kordrostami" , "21" , "8631924539" , "4021315009" , "C" , "70" , "75" , "Not registered" , "Active" ] ,
+    [ "11" , "Mohammad" , "Maghsoudloo" , "21" , "7382195666" , "4021315010" , "A" , "40" , "50" , "Not registered" , "Deactive"] ,
+    [ "12" , "Amin" , "Khoshkar" , "17" , "2811117458" , "4021315011" , "A" , "Not registered" , "60" , "75" , "Deactive"] , 
+    [ "13" , "Amir" , "Kolahi" , "23" , "2134569860" , "4021315012" , "C" , "50" , "40" , "85" , "Active"] , 
+    [ "14" , "Ahamd" , "Bahrami" , "25" , "2231546890" , "4021315013" , "A" , "45" , "35" , "50" , "Active" ] , 
+    [ "15" , "Fardin" , "Yaghoobi" , "16" , "2563748950" , "4021315014" , "C" , "50" , "25" , "60" , "Active" ] ,
+    [ "16" , "Amirreza" , "Mohammadi" , "24" , "2314897302" , "4021315015" , "A" , "20" ,"Not registered","Not registered", "Active" ] ,
+    [ "17" , "Amirali" , "Abbasian" , "23" , "3748596071" , "4021315016" , "A" , "35" , "45" , "40" , "Active" ] , 
+    [ "18" , "Saied" , "Moradi" , "19" , "8374659102" , "4021315017" , "A" , "40" , "10" , "55" , "Deactive" ] , 
+    [ "19" , "Hamid" , "Rahimi" , "18" , "1231428904" , "4021315018" , "C" , "50" , "20" , "85" , "Active" ] , 
+    [ "20" , "Mohammad" , "Jafari" , "24" , "3748592017" , "40213150019" , "A" , "65" , "0" , "45" , "Deactive"]
+]
+# endregion
+
+# region welcome
+system("cls")
+print("*** Welcome to student management program ***")
+sleep(3)
+system("cls")
+# endregion
+
+# region program
+while True :
+    # region input menu
+    while True : 
+        print("Menu : ")
+        print("1.[A]dd a student")
+        print("2.[Sh]ow students ")
+        print("3.[R]emove student ")
+        print("4.[E]dit student's informations") 
+        print("5.[S]earch student")
+        print("6.[Re]port ")
+        print("7.[Q]uit")
+        print("-" * 100)
+
+        menu = input("Please enter your choose : ").capitalize()
+        system("cls")
+        if not menu :
+            print("Empty input ! Please choose an option...")
+            sleep(3)
+            system("cls")
+            continue 
+        elif menu not in [ "1" , "A" , "2" , "Sh" , "3" , "R" , "4" , "E" , "5" , "S" , "6" , "Re" , "7" , "Q" ] :
+            print("Wrong ! Try again...")
+            sleep(3)
+            system("cls")
+            continue
+        else:
+            break
+    # endregion
+
+    # region match menu 
+    match menu : 
+        case "1" | "A" :
+            # region add student
+            counter = 0 
+            while True :
+                # region confirmation
+                if not counter :
+                    confirmation = input("Do you want to add a student(yse - etc) ? ").lower()
+                    counter += 1
+                else : 
+                    confirmation = input("Do you want to add a student again(yse - etc) ? ").lower()
+                system("cls")
+                if confirmation != "yes" :
+                    break
+                new_student = []
+                # endregion
+
+                # region get code 
+                while True :
+                    code = randint(1,len(student_list) + 1)
+                    if str(code) not in [student[0] for student in student_list] :
+                        break
+                new_student.append(str(code))
+                # endregion
+
+                # region get name 
+                while True : 
+                    print("Please complete the information :")
+                    print("Code :" , code )
+                    name = input("Name : ").capitalize()
+                    system("cls")
+                    if not name :
+                        print("Empty input ! Please enter a name...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    new_student.append(name)
+                    break
+                # endregion
+
+                # region get last name 
+                while True :
+                    print("Please complete the information :")
+                    print("Code :" , code )
+                    print("Name :" , name)
+                    last_name = input("Last name : ").capitalize()
+                    system("cls")
+                    if not last_name :
+                        print("Empty input ! Please enter a last name...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    new_student.append(last_name)
+                    break
+                # endregion
+
+                # region get age
+                while True :
+                    print("Please complete the information :")
+                    print("Code :" , code )
+                    print("Name :" , name)
+                    print("Last name :" , last_name)
+                    age = input("Age : ")
+                    system("cls")
+                    if not age :
+                        print("Empty input ! Please enter an age...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    if int(age) not in range(1,101) :
+                        print("Wrong input ! The age entered must be between 1 and 100...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    new_student.append(str(age))
+                    break
+                # endregion
+
+                # region get national code 
+                while True :
+                    print("Please complete the information :")
+                    print("Code :" , code )
+                    print("Name :" , name)
+                    print("Last name :" , last_name)
+                    print("Age :" , age)
+                    national_code = input("National code : ")
+                    system("cls")
+                    if not national_code :
+                        print("Empty input ! Please enter a national code...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    if int(national_code) not in range (1000000000,10000000000) :
+                        print("Wrong input ! National code must be 10 digits...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    found = False
+                    for student in student_list : 
+                        if str(national_code) == student[4] :
+                            found = True
+                            break
+                    if found :
+                        print("National code already exists ! ... ")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    new_student.append(str(national_code))
+                    break
+                # endregion
+
+                # region get student code
+                while True :
+                    print("Please complete the information :")
+                    print("Code :" , code )
+                    print("Name :" , name)
+                    print("Last name :" , last_name)
+                    print("Age :" , age)
+                    print("National code :" , national_code)
+                    student_code = input("Student code : ")
+                    system("cls")
+                    if not student_code :
+                        print("Empty input ! please enter a student code...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    found = False 
+                    for student in student_list : 
+                        if student_code == student[5] :
+                            found = True
+                            break
+                    if found :
+                        print("Student code already exists ! ...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    new_student.append(student_code)
+                    break
+                # endregion
+
+                # region get class
+                while True :
+                    print("Please complete the information :")
+                    print("Code :" , code )
+                    print("Name :" , name)
+                    print("Last name :" , last_name)
+                    print("Age :" , age)
+                    print("National code :" , national_code)
+                    print("Student code :" , student_code)
+                    class_ = input("Class(A or B or C) : ").upper()
+                    system("cls")
+                    if not class_ :
+                        print("Empty input ! Please enter a class...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    if class_ not in [ "A" , "B" , "C" ] :
+                        print("Wrong input ! Please choose class between A or B or C...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    new_student.append(class_)
+                    break
+                # endregion
+
+                # region get php score 
+                while True :
+                    print("Please complete the information :")
+                    print("Code :" , code )
+                    print("Name :" , name)
+                    print("Last name :" , last_name)
+                    print("Age :" , age)
+                    print("National code :" , national_code)
+                    print("Student code :" , student_code)
+                    print("Class :" , class_)
+                    php_score = input("Php score : ")
+                    system ("cls")
+                    if not php_score :
+                        php_score = "Not registered"
+                    elif int(php_score) not in range (0,101) : 
+                        print("Wrong input ! score must be between 0 and 100...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    new_student.append(str(php_score))
+                    break
+                # endregion
+
+                # region get python score 
+                while True :
+                    print("Please complete the information :")
+                    print("Code :" , code )
+                    print("Name :" , name)
+                    print("Last name :" , last_name)
+                    print("Age :" , age)
+                    print("National code :" , national_code)
+                    print("Student code :" , student_code)
+                    print("Class :" , class_)
+                    print("Php score :" , php_score)
+                    python_score = input("Python score : ")
+                    system("cls")
+                    if not python_score :
+                        python_score = "Not registered"
+                    elif int(python_score) not in range(0 ,101) : 
+                        print("Wrong input ! score must be between 0 and 100...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    new_student.append(str(python_score))
+                    break
+                # endregion
+
+                # region get js score 
+                while True :
+                    print("Please complete the information :")
+                    print("Code :" , code )
+                    print("Name :" , name)
+                    print("Last name :" , last_name)
+                    print("Age :" , age)
+                    print("National code :" , national_code)
+                    print("Student code :" , student_code)
+                    print("Class :" , class_)
+                    print("Php score :" , php_score)
+                    print("Python score :" , python_score)
+                    js_score = input("JS score : ")
+                    system("cls")
+                    if not js_score : 
+                        js_score = "Not registered"
+                    elif int(js_score) not in range(0 , 101) : 
+                        print("Wrong input ! score must be between 0 and 100...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    new_student.append(js_score)
+                    break
+                # endregion
+
+                # region get status 
+                while True :
+                    print("Please complete the information :")
+                    print("Code :" , code )
+                    print("Name :" , name)
+                    print("Last name :" , last_name)
+                    print("Age :" , age)
+                    print("National code :" , national_code)
+                    print("Student code :" , student_code)
+                    print("Class :" , class_)
+                    print("Php score :" , php_score)
+                    print("Python score :" , python_score)
+                    print("JS score :" , js_score)
+                    status = input("Status(active or deactive) : ").capitalize()
+                    system("cls")
+                    if not status : 
+                        print("Empty input ! Please enter status...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    if status not in [ "Active" , "Deactive" ] :
+                        print("Wrong input ! Status must be active or deactive...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    new_student.append(status)
+                    break
+                # endregion
+
+                # region show informatin and confirmation 
+                print("New student information :")
+                print("Code :" , new_student[0])
+                print("Name :" , new_student[1])
+                print("Last name :" , new_student[2])
+                print("Age :" , new_student[3])
+                print("National code :" , new_student[4])
+                print("Student code :" , new_student[5])
+                print("Class :" , new_student[6])
+                print("Php score :" , new_student[7])
+                print("Python score :" , new_student[8])
+                print("JS score :" , new_student[9])
+                print("Status :" , new_student[10])
+                print("-" * 100)
+                confirm = input("Do you want to add this student(yes-etc) ? ").lower()
+                system("cls")
+                if confirm == "yes" :
+                    student_list.append(new_student)
+                    print("New student added successfully...")
+                    sleep(5)
+                    system("cls")
+                else :
+                    new_student.clear()
+                    print("New student addition canceled...")
+                    sleep(5)
+                    system("cls")
+                # endregion
+        
+            # endregion
+        
+        case "2" | "Sh" :
+            # region show students
+            while True :
+                # region confirmation 
+                confirmation = input("Do you want to see students information(yes-etc) ? ").lower()
+                system("cls")
+                if confirmation != "yes" :
+                    break
+                # endregion
+
+                # region choose all or selescted information
+                while True :
+                    show = input("Do you want to see 1.all information or 2.selected information ? ")
+                    system("cls")
+                    if not show : 
+                        print("Empty choose ! Please choose an option...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    if show not in [ "1" , "2"] :
+                        print("Wrong choose ! Please choose one of options...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    break
+                # endregion
+
+                # region all information
+                if show == "1" :
+                    informations = ["Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status"]
+                    indexes =[ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10]
+                # endregion
+
+                # region select information
+                else:
+                    informations = []
+                    indexes = []
+                    while True :
+                        while True :
+                            print("Information :")
+                            print("1.Name               2.Last name")
+                            print("3.Age                4.National code")
+                            print("5.Student code       6.Class")
+                            print("7.Php score          8.Python score")
+                            print("9.JS score           10.Status")
+                            print("0.Quit")
+                            if informations :
+                                print()
+                                print("selected : {" , *informations , "}" , sep="-")
+                            print("-" * 100)
+                            choose = input("Select informations you want to see : ")
+                            system("cls")
+                            if not choose :
+                                print("Empty input ! Please choose an option...")
+                                sleep(3)
+                                system("cls")
+                                continue
+                            elif choose not in ["1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "0"] :
+                                print("Wrong input ! Please choose an option between 0 and 10...")
+                                sleep(3)
+                                system("cls")
+                                continue
+                            break
+                # endregion
+
+                # region match selected information
+                        match choose : 
+                            case "1" :
+                                if "Name" not in informations :
+                                    informations.append("Name")
+                                if 1 not in indexes :
+                                    indexes.append(1) 
+                            case "2" :
+                                if "Last name" not in informations :
+                                    informations.append("Last name")
+                                if 2 not in indexes :
+                                    indexes.append(2)
+                            case "3" :
+                                if "Age" not in informations :
+                                    informations.append("Age")
+                                if 3 not in indexes :
+                                    indexes.append(3)
+                            case "4" :
+                                if "National code" not in informations :
+                                    informations.append("National code")
+                                if 4 not in indexes :
+                                    indexes.append(4)
+                            case "5" :
+                                if "Student code" not in informations :
+                                    informations.append("Student code")
+                                if 5 not in indexes :
+                                    indexes.append(5)
+                            case "6" :
+                                if "Class" not in informations :
+                                    informations.append("Class")
+                                if 6 not in indexes :
+                                    indexes.append(6)
+                            case "7" :
+                                if "Php score" not in informations :
+                                    informations.append("Php score")
+                                if 7 not in indexes :
+                                    indexes.append(7)
+                            case "8" :
+                                if "Python score" not in informations :
+                                    informations.append("Python score")
+                                if 8 not in indexes :
+                                    indexes.append(8)
+                            case "9" :
+                                if "JS score" not in informations :
+                                    informations.append("JS score")
+                                if 9 not in indexes :
+                                    indexes.append(9)
+                            case "10" :
+                                if "Status" not in informations :
+                                    informations.append("Status")
+                                if 10 not in indexes :
+                                    indexes.append(10) 
+                            case "0" :
+                                informations.insert(0 , "Code")
+                                indexes.insert(0 , 0)
+                                break
+                # endregion
+               
+                # region show information 
+                print("=" *170)
+                print("Row" , end = "\t")
+                for information in informations :
+                    if information == "Code" :
+                        end_ = "\t"
+                    elif len(information) >= 8 :
+                        end_ = "\t"
+                    else : 
+                        end_ = "\t\t"
+                    print(information , end = end_)
+                print()
+                print("-" * 170)
+                for row , student in enumerate(student_list , 1) : 
+                    print(row , end = "\t")
+                    for index in indexes :
+                        if index == 0 :
+                            end_ = "\t"
+                        elif len(student[index]) >= 8 :
+                            end_ = "\t"
+                        else :
+                            end_ = "\t\t"
+                        print(student[index] , end = end_)
+                    print()  
+                print("=" * 170)
+                # endregion
+
+                # region exit 
+                input("Press enter to back to main menu...")
+                system("cls")
+                break
+                # endregion
+
+            # endregion
+       
+        case "3" | "R" :
+            # region remove student
+            counter = 0
+            while True :
+                # region confirmation
+                if not counter :
+                    confirmation = input("Do you want to remove student(yes - etc) ? ").lower()
+                    counter += 1
+                else :
+                    confirmation = input("Do you want to remove student again(yes - etc) ? ").lower()
+                system("cls")
+                if confirmation != "yes" :
+                    break
+                # endregion
+                  
+                # region choose information
+                while True :
+                    # region show student
+                    informations = ["Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status"]
+                    indexes =[ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10]
+                    print("=" *170)
+                    print("Row" , end = "\t")
+                    for information in informations :
+                        if information == "Code" :
+                            end_ = "\t"
+                        elif len(information) >= 8 :
+                            end_ = "\t"
+                        else : 
+                            end_ = "\t\t"
+                        print(information , end = end_)
+                    print()
+                    print("-" * 170)
+                    for row , student in enumerate(student_list , 1) : 
+                        print(row , end = "\t")
+                        for index in indexes :
+                            if index == 0 :
+                                end_ = "\t"
+                            elif len(student[index]) >= 8 :
+                                end_ = "\t"
+                            else :
+                                end_ = "\t\t"
+                            print(student[index] , end = end_)
+                        print()  
+                    print("=" * 170)
+                    # endregion
+
+                    print("Information :")
+                    print("1.Code               2.Name               3.Last name          4.Age")
+                    print("5.National code      6.Student code       7.Class              8.Php score")
+                    print("9.Python score       10.JS score          11.Status")
+                    print("-" * 100)
+                    choose = input("Based on which information you want to found student to remove ? ")
+                    system("cls")
+                    if not choose :
+                        print("Empty input ! Please choose an option...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    if choose not in [ "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "11"] :
+                        print("Wrong input ! Please choose an option between 1 and 11...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    break
+                # endregion
+
+                # region match information with students
+
+                # region show student
+                informations = ["Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status"]
+                indexes =[ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10]
+                print("=" *170)
+                print("Row" , end = "\t")
+                for information in informations :
+                    if information == "Code" :
+                        end_ = "\t"
+                    elif len(information) >= 8 :
+                        end_ = "\t"
+                    else : 
+                        end_ = "\t\t"
+                    print(information , end = end_)
+                print()
+                print("-" * 170)
+                for row , student in enumerate(student_list , 1) : 
+                    print(row , end = "\t")
+                    for index in indexes :
+                        if index == 0 :
+                            end_ = "\t"
+                        elif len(student[index]) >= 8 :
+                            end_ = "\t"
+                        else :
+                            end_ = "\t\t"
+                        print(student[index] , end = end_)
+                    print()  
+                print("=" * 170)
+                # endregion
+                
+                match choose :
+                    case "1" :
+                        index = 0
+                        remove_item = input("Please enter the code of student you want to remove : ")
+                    case "2" :
+                        index = 1
+                        remove_item = input("Please enter the name of student you want to remove : ").capitalize()
+                    case "3" :
+                        index = 2
+                        remove_item = input("Please enter the last name of student you want to remove : ").capitalize()
+                    case "4" :
+                        index = 3
+                        remove_item = input("Please enter the age of student you want to remove : ")
+                    case "5" :
+                        index = 4
+                        remove_item = input("Please enter the national code of student you want to remove : ")
+                    case "6" :
+                        index = 5
+                        remove_item = input("Please enter the student code of student you want to remove : ")
+                    case "7" :
+                        index = 6
+                        remove_item = input("Please enter the class of student you want to remove : ").upper()
+                    case "8" :
+                        index = 7
+                        remove_item = input("Please enter the php score of student you want to remove : ")
+                        if not remove_item :
+                            remove_item = "Not registered"
+                    case "9" :
+                        index = 8
+                        remove_item = input("Please enter the python score of student you want to remove : ")
+                        if not remove_item :
+                            remove_item = "Not registered"
+                    case "10" :
+                        index = 9
+                        remove_item = input("Please enter the JS score of student you want to remove : ")
+                        if not remove_item :
+                            remove_item = "Not registered"
+                    case "11" :
+                        index = 10 
+                        remove_item = input("Please enter the status of student you want to remove : ").capitalize()
+                system("cls")
+                # endregion 
+                    
+                # region remove
+                counter_ = 0
+                for student in student_list :
+                    if remove_item == student[index] :
+                        counter_ += 1
+                print("searching students...")
+                sleep(5)
+                system("cls")
+                if counter_ :
+                    print(counter_ , "students found...")
+                    sleep(3)
+                    system("cls")
+                    num = 0
+                    for student in student_list.copy() :
+                        if remove_item == student[index] :
+                            num += 1
+                            print("Student number" , num , ":")
+                            print("Code :" , student[0])
+                            print("Name :" , student[1])
+                            print("Last name :" , student[2])
+                            print("Age :" , student[3])
+                            print("National code :" , student[4])
+                            print("Student code :" , student[5])
+                            print("Class :" , student[6])
+                            print("Php score :" , student[7])
+                            print("Python score :" , student[8])
+                            print("JS score :" , student[9])
+                            print("Status :" , student[10])
+                            print("-" * 100)
+                            remove = input("Do you want to remove this student(yes - etc) ? ").lower()
+                            system("cls")
+                            if remove == "yes" :
+                                student_list.remove(student)
+                                print("student removed successfully...")
+                                sleep(3)
+                                system("cls")
+                            if num == counter_ :
+                                break
+                else : 
+                    print("No students found...")
+                    sleep(3)
+                    system("cls")
+                # endregion
+
+            # endregion
+
+        case "4" | "E" :
+            # region edit student
+            counter = 0
+            while True :
+                # region confirmation
+                if not counter :
+                    confirmation = input("Do you want to edit student(yes - etc) ? ").lower()
+                    counter += 1
+                else :
+                    confirmation = input("Do you want to edit student again(yes - etc) ? ").lower()
+                system("cls")
+                if confirmation != "yes" :
+                    break
+                # endregion
+                
+                # region choose information
+                while True :
+                    # region show student
+                    informations = ["Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status"]
+                    indexes =[ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10]
+                    print("=" *170)
+                    print("Row" , end = "\t")
+                    for information in informations :
+                        if information == "Code" :
+                            end_ = "\t"
+                        elif len(information) >= 8 :
+                            end_ = "\t"
+                        else : 
+                            end_ = "\t\t"
+                        print(information , end = end_)
+                    print()
+                    print("-" * 170)
+                    for row , student in enumerate(student_list , 1) : 
+                        print(row , end = "\t")
+                        for index in indexes :
+                            if index == 0 :
+                                end_ = "\t"
+                            elif len(student[index]) >= 8 :
+                                end_ = "\t"
+                            else :
+                                end_ = "\t\t"
+                            print(student[index] , end = end_)
+                        print()  
+                    print("=" * 170)
+                    # endregion
+
+                    print("Informations :")
+                    print("1.Code               2.National code      3.Student code")
+                    print("-" * 100)
+                    choose = input("Based on which information you want to found student to remove ? ")
+                    system("cls")
+                    if not choose :
+                        print("Empty input ! Please choose an option...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    if choose not in [ "1" , "2" , "3"] :
+                        print("Wrong input ! Please choose an option between 1 and 3...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    break
+                # endregion
+
+                # region match student with information
+
+                # region show student 
+                informations = ["Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status"]
+                indexes =[ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10]
+                print("=" *170)
+                print("Row" , end = "\t")
+                for information in informations :
+                    if information == "Code" :
+                        end_ = "\t"
+                    elif len(information) >= 8 :
+                        end_ = "\t"
+                    else : 
+                        end_ = "\t\t"
+                    print(information , end = end_)
+                print()
+                print("-" * 170)
+                for row , student in enumerate(student_list , 1) : 
+                    print(row , end = "\t")
+                    for index in indexes :
+                        if index == 0 :
+                            end_ = "\t"
+                        elif len(student[index]) >= 8 :
+                            end_ = "\t"
+                        else :
+                            end_ = "\t\t"
+                        print(student[index] , end = end_)
+                    print()  
+                print("=" * 170)
+                # endregion
+                
+                match choose :
+                    case "1" :
+                        index = 0
+                        edit_found = input("Please enter the code of student you want to edit : ")
+                    case "2" :
+                        index = 4
+                        edit_found = input("Please enter the National code of student you want to edit : ")
+                    case "3" :
+                        index = 5
+                        edit_found = input("Please enter the Student code of student you want to edit : ")
+                system("cls")
+                # endregion
+
+                # region edit
+                found_student_to_edit = False
+                for student in student_list :
+                    if student[index] == edit_found :
+                        found_student_to_edit = True
+                        while True :
+                            # region choose information to edit
+                            while True :
+                                print("Student's information : ")
+                                print("Code :" , student[0])
+                                print("1.Name :" , student[1])
+                                print("2.Last name :" , student[2])
+                                print("3.Age :" , student[3])
+                                print("4.National code :" , student[4])
+                                print("5.Student code :" , student[5])
+                                print("6.Class :" , student[6])
+                                print("7.Php score :" , student[7])
+                                print("8.Python score :" , student[8])
+                                print("9.JS score :" , student[9])
+                                print("10.Status :" , student[10])
+                                print("0.Quit")
+                                print("-" * 100)
+                                edit_item = input("Which information do you want to edit ? ")
+                                system("cls")
+                                if not edit_item :
+                                    print("Empty input ! Please choose an option...")
+                                    sleep(3)
+                                    system("cls")
+                                    continue
+                                elif edit_item not in [ "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "0" ] :
+                                    print("Wrong input ! Please choose a number between 0 and 10...")
+                                    sleep(3)
+                                    system("cls")
+                                    continue
+                                break
+                            # endregion
+
+                            # region edit information
+                            if edit_item == "0" :
+                                break
+                            
+                            match edit_item :
+                                case "1" :
+                                    # region edit name
+                                    edit = "name"
+                                    while True :
+                                        print("Previous name :" , student[1])
+                                        new_information = input("Please enter the new name : ").capitalize()
+                                        system("cls")
+                                        if not new_information :
+                                            print("Empty input ! Please enter a name...")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        break
+                                    # endregion
+                    
+                                case "2" :
+                                    # region edit last name
+                                    edit = "last name"
+                                    while True :
+                                        print("Previous last name :" , student[2])
+                                        new_information = input("Please enter the new Last name : ").capitalize()
+                                        system("cls")
+                                        if not new_information :
+                                            print("Empty input ! Please enter a last name...")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        break
+                                    # endregion
+                                
+                                case "3" :
+                                    # region edit age
+                                    edit = "age"
+                                    while True :
+                                        print("Previous age :" , student[3])
+                                        new_information = input("Please enter the new age : ")
+                                        system("cls")
+                                        if not new_information :
+                                            print("Empty input ! Please enter an age...")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        if int(new_information) not in range(1,101) :
+                                            print("Wrong input ! The age entered must be between 1 and 100...")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        break
+                                    # endregion
+                                
+                                case "4" :
+                                    # region edit national code
+                                    edit = "national code"
+                                    while True :
+                                        print("Previous national code :" , student[4])
+                                        new_information = input("Please enter the new National code : ")
+                                        system("cls")
+                                        if not new_information :
+                                            print("Empty input ! Please enter a national code...")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        if int(new_information) not in range (1000000000,10000000000) :
+                                            print("Wrong input ! National code must be 10 digits")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        found = False
+                                        for student in student_list : 
+                                            if str(new_information) == student[4] :
+                                                found = True
+                                                break
+                                        if found :
+                                            print("National code already exists ! ... ")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        break
+                                    # endregion
+                                
+                                case "5" :
+                                    # region edit student code
+                                    edit = "student code"
+                                    while True :
+                                        print("Previous syudent code :" , student[5])
+                                        new_information = input("Please enter the new Student code : ")
+                                        system("cls")
+                                        if not new_information :
+                                            print("Empty input ! please enter a student code...")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        found = False 
+                                        for student in student_list : 
+                                            if new_information == student[5] :
+                                                found = True
+                                                break
+                                        if found :
+                                            print("Student code already exists ! ...")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        break
+                                    # endregion
+                                
+                                case "6" :
+                                    # region edit class
+                                    edit = "Class"
+                                    while True :
+                                        print("Previous class :" , student[6])
+                                        new_information = input("Please enter the new Class(A or B or C) : ").upper()
+                                        system("cls")
+                                        if not new_information :
+                                            print("Empty input ! Please enter a class...")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        if new_information not in [ "A" , "B" , "C" ] :
+                                            print("Wrong input ! Please choose a class between A or B or C...")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        break
+                                    # endregion
+
+                                case "7" :
+                                    # region edit php score
+                                    edit = "php score"
+                                    while True :
+                                        print("Previous php score :" , student[7])
+                                        new_information = input("Please enter the new php score : ")
+                                        system("cls")
+                                        if not new_information :
+                                            new_information = "Not registered"
+                                        elif int(new_information) not in range (0,101) : 
+                                            print("Wrong input ! score must be between 0 and 100...")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        break
+                                    # endregion
+                                                
+                                case "8" :
+                                    # region edit python score
+                                    edit = "python score"
+                                    while True :
+                                        print("Previous python score :" , student[8])
+                                        new_information = input("Please enter the new python score : ")
+                                        system("cls")
+                                        if not new_information :
+                                            new_information = "Not registered"
+                                        elif int(new_information) not in range(0 ,101) : 
+                                            print("Wrong input ! score must be between 0 and 100...")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        break
+                                    # endregion
+                                
+                                case "9" :
+                                    # region edit JS score
+                                    edit = "JS score"
+                                    while True :
+                                        print("Previous JS score :" , student[9])
+                                        new_information = input("Please enter the new JS score : ")
+                                        system("cls")
+                                        if not new_information : 
+                                            new_information = "Not registered"
+                                        elif int(new_information) not in range(0 , 101) : 
+                                            print("Wrong input ! score must be between 0 and 100...")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        break
+                                    # endregion
+                                
+                                case "10" :
+                                    # region edit status
+                                    edit = "status"
+                                    while True :
+                                        print("Previous status :" , student[10])
+                                        new_information = input("Please enter the new Status : ").capitalize()
+                                        system("cls")
+                                        if not new_information : 
+                                            print("Empty input ! Please enter status...")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        if new_information not in [ "Active" , "Deactive" ] :
+                                            print("Wrong input ! Status must be active or deactive...")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        break
+                                    # endregion
+
+                            student[int(edit_item)] = str(new_information)
+                            print("Student's" , edit , "edited successfully...")
+                            sleep(3)
+                            system("cls")
+                            # endregion
+
+                            # region edit again 
+                            edit_again = input("Do you want to edit other information of this student(yes - etc) ? ").lower()
+                            system("cls")
+                            if edit_again != "yes" :
+                                break
+                            # endregion
+                
+                if not found_student_to_edit :
+                    print("No student found...")
+                    sleep(3)
+                    system("cls")
+                # endregion
+
+            # endregion
+       
+        case "5" | "S" :
+            # region search student
+            counter = 0 
+            while True : 
+                # region confirmation 
+                if not counter :
+                    confirmation = input("Do you want to search an information(yes - etc) ? ").lower()
+                    counter += 1
+                else :
+                    confirmation = input("Do you want to search again(yes - etc) ? ").lower()
+                system("cls")
+                if confirmation != "yes" :
+                    break
+                # endregion 
+
+                # region get information to search
+                while True :
+                    search = input("Enter the information you want to search : ")
+                    system("cls")
+                    if not search :
+                        print("Empty input ! Please enter an information to search...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    break
+                # endregion
+
+                # region search and show
+                print("Searching...")
+                sleep(5)
+                system("cls")
+                search_found = False
+                for student in student_list :
+                    if search in student : 
+                        search_found = True 
+                        break
+                if not search_found :
+                    print("Item not found...")
+                    sleep(3)
+                    system("cls")
+                else :
+                    informations = ["Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status"]
+                    indexes =[ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10]
+                    print("Search result : (The searched item is marked with stars)")
+                    print("=" *170)
+                    print("Row" , end = "\t")
+                    for information in informations :
+                        if information == "Code" :
+                            end_ = "\t"
+                        elif len(information) >= 8 :
+                            end_ = "\t"
+                        else : 
+                            end_ = "\t\t"
+                        print(information , end = end_)
+                    print()
+                    print("-" * 170)
+                    row = 0
+                    for student in student_list : 
+                        if search in student :
+                            row += 1
+                            print(row , end = "\t")
+                            search_index = -1
+                            for index in indexes :
+                                if student[index] == search :
+                                    student[index] = "**" + search + "**"
+                                    search_index = index
+                                if index == 0 :
+                                    end_ = "\t"
+                                elif len(student[index]) >= 8 :
+                                    end_ = "\t"
+                                else :
+                                    end_ = "\t\t"
+                                print(student[index] , end = end_)
+                                if search_index == index :
+                                    student[index] = search
+                            print()  
+                    print("=" * 170)
+                # endregion
+
+            # endregion
+        
+        case "6" | "Re" :
+            # region report
+            while True :
+                # region confirmation 
+                confirmation = input("Do you want to see student's report(yes - etc) ? ").lower()
+                system("cls")
+                if confirmation != "yes" :
+                    break
+                # endregion
+                
+                # region choose report
+                while True :
+                    print("Reports : ")
+                    print("1.Class report       2.Subject report")
+                    report_choose = input("Which report do you want to see ? ")
+                    system("cls")
+                    if not report_choose :
+                        print("Empty input ! Please choose an option...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    elif report_choose not in [ "1" , "2" ] :
+                        print("Wrong input ! Please choose option 1 or 2 ...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    break
+                # endregion
+
+                # region class report
+                if report_choose == "1" :
+                    # region choose class
+                    while True : 
+                        report_class = input("Which class report would you like to see( A or B or C) ? ").upper()
+                        system("cls")
+                        if not report_class : 
+                            print("Empty input ! Please choose a class...")
+                            sleep(3)
+                            system("cls")
+                            continue
+                        elif report_class not in [ "A" , "B" , "C" ] :
+                            print("Wrong input ! Please choose a class between A or B or C...")
+                            sleep(3)
+                            system("cls")
+                            continue
+                        break
+                    # endregion
+                    
+                    # region report calculation
+                    class_capacity = 0
+                    php_scores = []
+                    python_scores = []
+                    js_scores = []
+                    student_avg_list = []
+                    for student in student_list :
+                        if student[6] == report_class :
+                            class_capacity += 1
+                            student_avg = 0
+                            registered_score = 0
+                            if student[7] != "Not registered" :
+                                php_scores.append(int(student[7]))
+                                student_avg += int(student[7])
+                                registered_score += 1
+                            if student[8] != "Not registered" :
+                                python_scores.append(int(student[8]))
+                                student_avg += int(student[8])
+                                registered_score += 1
+                            if student[9] != "Not registered" :
+                                js_scores.append(int(student[9]))
+                                student_avg += int(student[9])
+                                registered_score += 1
+                            
+                            if registered_score != 0 :
+                                student_avg /= registered_score
+                            student_avg_list.append(student_avg)
+
+                    class_avg = sum(student_avg_list) / len(student_avg_list)
+
+                    if php_scores :
+                        highest_php_score = max(php_scores)
+                        lowest_php_score = min(php_scores)
+                        avg_php_score = sum(php_scores) / len(php_scores)
+                    else :
+                        highest_php_score = "No php score registered for this class"
+                        lowest_php_score = "No php score registered for this class"
+                        avg_php_score = "No php score registered for this class"
+
+                    if python_scores :
+                        highest_python_score = max(python_scores)
+                        lowest_python_score = min(python_scores)
+                        avg_python_score = sum(python_scores) / len(python_scores)
+                    else :
+                        highest_python_score = "No python score registered for this class"
+                        lowest_python_score = "No python score registered for this class"
+                        avg_python_score = "No python score registered for this class"
+
+                    if js_scores :
+                        highest_js_score = max(js_scores)
+                        lowest_js_score = min(js_scores)
+                        avg_js_score = sum(js_scores) / len(js_scores)
+                    else :
+                        highest_js_score = "No JS score registered for this class"
+                        lowest_js_score = "No JS score registered for this class"
+                        avg_js_score = "No JS score registered for this class"
+                    # endregion
+
+                    # region show class report
+                    print("Class" , report_class , ":" )
+                    print("Number of students :" , class_capacity )
+                    print("Students scores average :" , class_avg )
+                    print("Php score average :" , avg_php_score )
+                    print("Highest php score :" , highest_php_score )
+                    print("Lowest php score :" , lowest_php_score )
+                    print("Python score average :" , avg_python_score )
+                    print("Highest python score :" , highest_python_score )
+                    print("Lowest python score :" , lowest_python_score)
+                    print("JS score average :" , avg_js_score)
+                    print("Highest JS score :" , highest_js_score )
+                    print("Lowest JS score :" , lowest_js_score)
+                    print("-" * 100)
+                    # endregion
+                
+                # endregion
+
+                # region subject report
+                if report_choose == "2" :
+                    # region choose lesson
+                    while True :
+                        print("Lessons :")
+                        print("1.Php          2.Python       3.JS           4.All" )
+                        report_lesson = input("Which lesson report would you like to see ? ")
+                        system("cls")
+                        if not report_lesson :
+                            print("Empty input ! Please choose a lesson...")
+                            sleep(3)
+                            system("cls")
+                            continue
+                        elif report_lesson not in [ "1" , "2" , "3" , "4"] :
+                            print("Wrong input ! Please choose an option between 1 and 4...")
+                            sleep(3)
+                            system("cls")
+                            continue
+                        break
+                    # endregion
+
+                    # region calculation and show
+
+                    # region php
+                    if report_lesson == "1" or report_lesson == "4" :
+                        scores = []
+                        class_a = []
+                        class_b = []
+                        class_c = []
+                        for student in student_list :
+                            if student[7] != "Not registered" :
+                                scores.append(int(student[7]))
+                                match student[6] :
+                                    case "A" :
+                                        class_a.append(int(student[7]))
+                                    case "B" :
+                                        class_b.append(int(student[7]))
+                                    case "C" :
+                                        class_c.append(int(student[7]))
+                        if scores :
+                            avg = sum(scores) / len(scores)
+                            high = max(scores)
+                            low = min(scores)
+                            if class_a :
+                                class_a_avg = sum(class_a) / len(class_a)
+                            else :
+                                class_a_avg = "No php score registered for class A"
+                            if class_b :
+                                class_b_avg = sum(class_b) / len(class_b)
+                            else :
+                                class_b_avg = "No php score registered for class B"
+                            if class_c :
+                                class_c_avg = sum(class_c) / len(class_c)
+                            else :
+                                class_c_avg = "No php score registered for class C" 
+                        else :
+                            avg = "No php score registered"
+                            high = "No php score registered"
+                            low =  "No php score registered"
+                            class_a_avg = "No php score registered for class A"
+                            class_b_avg = "No php score registered for class B"
+                            class_c_avg = "No php score registered for class C"
+                        print("PHP :")
+                        print("Php score averages :" , avg)
+                        print("Highest php score : " , high)
+                        print("Lowest php score :" , low)
+                        print("Class A average :" , class_a_avg)
+                        print("Class B average :" , class_b_avg)
+                        print("Class C average :" , class_c_avg)
+                        if report_lesson != "4" :
+                            print("-" * 100)
+                        else :
+                            print()
+                    # endregion
+
+                    # region python
+                    if report_lesson == "2" or report_lesson == "4" :
+                        scores = []
+                        class_a = []
+                        class_b = []
+                        class_c = []
+                        for student in student_list :
+                            if student[8] != "Not registered" :
+                                scores.append(int(student[8]))
+                                match student[6] :
+                                    case "A" :
+                                        class_a.append(int(student[8]))
+                                    case "B" :
+                                        class_b.append(int(student[8]))
+                                    case "C" :
+                                        class_c.append(int(student[8]))
+                        if scores :
+                            avg = sum(scores) / len(scores)
+                            high = max(scores)
+                            low = min(scores)
+                            if class_a :
+                                class_a_avg = sum(class_a) / len(class_a)
+                            else :
+                                class_a_avg = "No python score registered for class A"
+                            if class_b :
+                                class_b_avg = sum(class_b) / len(class_b)
+                            else :
+                                class_b_avg = "No python score registered for class B"
+                            if class_c :
+                                class_c_avg = sum(class_c) / len(class_c)
+                            else :
+                                class_c_avg = "No python score registered for class C" 
+                        else :
+                            avg = "No python score registered"
+                            high = "No python score registered"
+                            low =  "No python score registered"
+                            class_a_avg = "No python score registered for class A"
+                            class_b_avg = "No python score registered for class B"
+                            class_c_avg = "No python score registered for class C"
+                        print("PYTHON :")
+                        print("Python score averages :" , avg)
+                        print("Highest python score : " , high)
+                        print("Lowest python score :" , low)
+                        print("Class A average :" , class_a_avg)
+                        print("Class B average :" , class_b_avg)
+                        print("Class C average :" , class_c_avg)
+                        if report_lesson != "4" :
+                            print("-" * 100)
+                        else :
+                            print()
+                    # endregion
+
+                    # region JS
+                    if report_lesson == "3" or report_lesson == "4" :
+                        scores = []
+                        class_a = []
+                        class_b = []
+                        class_c = []
+                        for student in student_list :
+                            if student[9] != "Not registered" :
+                                scores.append(int(student[9]))
+                                match student[6] :
+                                    case "A" :
+                                        class_a.append(int(student[9]))
+                                    case "B" :
+                                        class_b.append(int(student[9]))
+                                    case "C" :
+                                        class_c.append(int(student[9]))
+                        if scores :
+                            avg = sum(scores) / len(scores)
+                            high = max(scores)
+                            low = min(scores)
+                            if class_a :
+                                class_a_avg = sum(class_a) / len(class_a)
+                            else :
+                                class_a_avg = "No JS score registered for class A"
+                            if class_b :
+                                class_b_avg = sum(class_b) / len(class_b)
+                            else :
+                                class_b_avg = "No JS score registered for class B"
+                            if class_c :
+                                class_c_avg = sum(class_c) / len(class_c)
+                            else :
+                                class_c_avg = "No JS score registered for class C" 
+                        else :
+                            avg = "No JS score registered"
+                            high = "No JS score registered"
+                            low =  "No JS score registered"
+                            class_a_avg = "No JS score registered for class A"
+                            class_b_avg = "No JS score registered for class B"
+                            class_c_avg = "No JS score registered for class C"
+                        print("JS :")
+                        print("JS score averages :" , avg)
+                        print("Highest JS score : " , high)
+                        print("Lowest JS score :" , low)
+                        print("Class A average :" , class_a_avg)
+                        print("Class B average :" , class_b_avg)
+                        print("Class C average :" , class_c_avg)      
+                        print("-" * 100)
+                    # endregion 
+
+                    # endregion
+
+                # endregion
+
+                # region exit
+                input("Press enter to back to main menu...")
+                system("cls")
+                break
+                # endregion
+
+            # endregion
+        
+        case "7" | "Q" :
+            # region quit
+            print("Program closed successfully. Good luck")
+            sleep(5)
+            system("cls")
+            exit()
+            # endregion
+    # endregion
+
+# endregion
