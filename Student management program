@@ -1,29 +1,32 @@
 from os import system
 from random import randint
 from time import sleep
+from collections import namedtuple 
+
+Student = namedtuple("student" , ["Code" , "Name" , "Last_name" , "Age" , "National_code" , "Student_code" , "Class" , "Php_score" , "Python_score" , "JS_score" , "Status"])
 
 # region student_list 
 student_list = [
-    [ "1" , "ali" , "musavi" , "17" , "2223334455" , "4021315000" , "A" , "80" , "60" , "Not registered" , "Active" ] , 
-    [ "2" , "Mehrbod" , "Yahyaie" , "19" , "2221117733" , "4021315001" , "A" , "70" , "90" , "70" , "Active"] ,  
-    [ "3" , "Mohammad" , "Abbasi" , "15" , "2451118733" , "4021315002" , "C" , "50" , "40" , "15" , "Deactive"] ,
-    [ "4" , "Farhad" , "Amin" , "21" , "5221217793" , "4021315003" , "B" , "100" , "90" , "60" , "Active" ] ,
-    [ "5" , "Parsa" , "Beyhaghi" , "22" , "2020117039" , "4021315004" , "C" , "70" , "65" , "20" , "Active"] ,
-    [ "6" , "Parham" , "Seyf" , "20" , "3216385027" , "4021315005" , "B" , "75" , "75" , "70" , "Active"] , 
-    [ "7" , "Ramtin" , "Moratahan" , "19" , "1234543219" , "4021315006" , "A" , "90" , "90" , "70" , "Active"] , 
-    [ "8" , "Mahmood" , "Rezai" , "25" , "7263947189" , "4021315007" , "A" , "60" , "40" , "45" , "Deactive"] , 
-    [ "9" , "Amirhossein" , "Rezvani" , "19" , "8194025368" , "4021315008" , "A" , "50" , "50" , "30" , "Active" ] ,
-    [ "10" , "Mehran" , "Kordrostami" , "21" , "8631924539" , "4021315009" , "C" , "70" , "75" , "Not registered" , "Active" ] ,
-    [ "11" , "Mohammad" , "Maghsoudloo" , "21" , "7382195666" , "4021315010" , "A" , "40" , "50" , "Not registered" , "Deactive"] ,
-    [ "12" , "Amin" , "Khoshkar" , "17" , "2811117458" , "4021315011" , "A" , "Not registered" , "60" , "75" , "Deactive"] , 
-    [ "13" , "Amir" , "Kolahi" , "23" , "2134569860" , "4021315012" , "C" , "50" , "40" , "85" , "Active"] , 
-    [ "14" , "Ahamd" , "Bahrami" , "25" , "2231546890" , "4021315013" , "A" , "45" , "35" , "50" , "Active" ] , 
-    [ "15" , "Fardin" , "Yaghoobi" , "16" , "2563748950" , "4021315014" , "C" , "50" , "25" , "60" , "Active" ] ,
-    [ "16" , "Amirreza" , "Mohammadi" , "24" , "2314897302" , "4021315015" , "A" , "20" ,"Not registered","Not registered", "Active" ] ,
-    [ "17" , "Amirali" , "Abbasian" , "23" , "3748596071" , "4021315016" , "A" , "35" , "45" , "40" , "Active" ] , 
-    [ "18" , "Saied" , "Moradi" , "19" , "8374659102" , "4021315017" , "A" , "40" , "10" , "55" , "Deactive" ] , 
-    [ "19" , "Hamid" , "Rahimi" , "18" , "1231428904" , "4021315018" , "C" , "50" , "20" , "85" , "Active" ] , 
-    [ "20" , "Mohammad" , "Jafari" , "24" , "3748592017" , "40213150019" , "A" , "65" , "0" , "45" , "Deactive"]
+    Student("1" , "Ali" , "Musavi" , "17" , "2223334455" , "4021315000" , "A" , "80" , "60" , "Not registered" , "Active" ) , 
+    Student("2" , "Mehrbod" , "Yahyaie" , "19" , "2221117733" , "4021315001" , "A" , "70" , "90" , "70" , "Active") ,  
+    Student("3" , "Mohammad" , "Abbasi" , "15" , "2451118733" , "4021315002" , "C" , "50" , "40" , "15" , "Deactive") ,
+    Student("4" , "Farhad" , "Amin" , "21" , "5221217793" , "4021315003" , "B" , "100" , "90" , "Not registered" , "Active" ) ,
+    Student("5" , "Parsa" , "Beyhaghi" , "22" , "2020117039" , "4021315004" , "C" , "70" , "65" , "20" , "Active") ,
+    Student("6" , "Parham" , "Seyf" , "20" , "3216385027" , "4021315005" , "B" , "75" , "75" , "Not registered" , "Active") , 
+    Student("7" , "Ramtin" , "Moratahan" , "19" , "1234543219" , "4021315006" , "A" , "90" , "90" , "70" , "Active") , 
+    Student("8" , "Mahmood" , "Rezai" , "25" , "7263947189" , "4021315007" , "A" , "60" , "40" , "45" , "Deactive") , 
+    Student("9" , "Amirhossein" , "Rezvani" , "19" , "8194025368" , "4021315008" , "A" , "50" , "50" , "30" , "Active" ) ,
+    Student("10" , "Mehran" , "Kordrostami" , "21" , "8631924539" , "4021315009" , "C" , "70" , "75" , "Not registered" , "Active" ) ,
+    Student("11" , "Mohammad" , "Maghsoudloo" , "21" , "7382195666" , "4021315010" , "A" , "40" , "50" , "Not registered" ,"Deactive") ,
+    Student("12" , "Amin" , "Khoshkar" , "17" , "2811117458" , "4021315011" , "A" , "Not registered" , "60" , "75" , "Deactive") , 
+    Student("13" , "Amir" , "Kolahi" , "23" , "2134569860" , "4021315012" , "C" , "50" , "40" , "85" , "Active") , 
+    Student("14" , "Ahamd" , "Bahrami" , "25" , "2231546890" , "4021315013" , "A" , "45" , "35" , "50" , "Active" ) , 
+    Student("15" , "Fardin" , "Yaghoobi" , "16" , "2563748950" , "4021315014" , "C" , "50" , "25" , "60" , "Active" ) ,
+    Student("16" , "Ali" , "Rahimi" , "24" , "2314897302" , "4021315015" , "A" , "20" ,"Not registered","Not registered", "Active" ) ,
+    Student("17" , "Amirali" , "Abbasian" , "23" , "3748596071" , "4021315016" , "A" , "35" , "45" , "40" , "Active" ) , 
+    Student("18" , "Saied" , "Moradi" , "19" , "8374659102" , "4021315017" , "A" , "40" , "10" , "55" , "Deactive" ) , 
+    Student("19" , "Hamid" , "Rahimi" , "18" , "1231428904" , "4021315018" , "C" , "50" , "20" , "85" , "Active" ) , 
+    Student("20" , "Mohammad" , "Jafari" , "24" , "3748592017" , "40213150019" , "A" , "65" , "0" , "45" , "Deactive")
 ]
 # endregion
 
@@ -79,15 +82,13 @@ while True :
                 system("cls")
                 if confirmation != "yes" :
                     break
-                new_student = []
                 # endregion
 
                 # region get code 
                 while True :
                     code = randint(1,len(student_list) + 1)
-                    if str(code) not in [student[0] for student in student_list] :
+                    if str(code) not in [student.Code for student in student_list] :
                         break
-                new_student.append(str(code))
                 # endregion
 
                 # region get name 
@@ -101,7 +102,6 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    new_student.append(name)
                     break
                 # endregion
 
@@ -117,7 +117,6 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    new_student.append(last_name)
                     break
                 # endregion
 
@@ -139,7 +138,6 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    new_student.append(str(age))
                     break
                 # endregion
 
@@ -164,7 +162,7 @@ while True :
                         continue
                     found = False
                     for student in student_list : 
-                        if str(national_code) == student[4] :
+                        if str(national_code) == student.National_code :
                             found = True
                             break
                     if found :
@@ -172,7 +170,6 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    new_student.append(str(national_code))
                     break
                 # endregion
 
@@ -193,7 +190,7 @@ while True :
                         continue
                     found = False 
                     for student in student_list : 
-                        if student_code == student[5] :
+                        if student_code == student.Student_code :
                             found = True
                             break
                     if found :
@@ -201,7 +198,6 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    new_student.append(student_code)
                     break
                 # endregion
 
@@ -226,7 +222,6 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    new_student.append(class_)
                     break
                 # endregion
 
@@ -249,7 +244,6 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    new_student.append(str(php_score))
                     break
                 # endregion
 
@@ -273,7 +267,6 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    new_student.append(str(python_score))
                     break
                 # endregion
 
@@ -298,7 +291,6 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    new_student.append(js_score)
                     break
                 # endregion
 
@@ -327,33 +319,31 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    new_student.append(status)
                     break
                 # endregion
 
                 # region show informatin and confirmation 
                 print("New student information :")
-                print("Code :" , new_student[0])
-                print("Name :" , new_student[1])
-                print("Last name :" , new_student[2])
-                print("Age :" , new_student[3])
-                print("National code :" , new_student[4])
-                print("Student code :" , new_student[5])
-                print("Class :" , new_student[6])
-                print("Php score :" , new_student[7])
-                print("Python score :" , new_student[8])
-                print("JS score :" , new_student[9])
-                print("Status :" , new_student[10])
+                print("Code :" , code)
+                print("Name :" , name)
+                print("Last name :" , last_name)
+                print("Age :" , age)
+                print("National code :" , national_code)
+                print("Student code :" , student_code)
+                print("Class :" , class_)
+                print("Php score :" , php_score)
+                print("Python score :" , python_score)
+                print("JS score :" , js_score)
+                print("Status :" , status)
                 print("-" * 100)
                 confirm = input("Do you want to add this student(yes-etc) ? ").lower()
                 system("cls")
                 if confirm == "yes" :
-                    student_list.append(new_student)
+                    student_list.append( Student( code , name , last_name , age , national_code , student_code , class_ , php_score , python_score , js_score , status ) )
                     print("New student added successfully...")
                     sleep(5)
                     system("cls")
                 else :
-                    new_student.clear()
                     print("New student addition canceled...")
                     sleep(5)
                     system("cls")
@@ -390,14 +380,12 @@ while True :
 
                 # region all information
                 if show == "1" :
-                    informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
-                    indexes =( 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10 )
+                    informations = ("Code" , "Name" , "Last_name" , "Age" , "National_code" , "Student_code" , "Class" , "Php_score" , "Python_score" , "JS_score" , "Status")
                 # endregion
 
                 # region select information
                 else:
                     informations = []
-                    indexes = []
                     while True :
                         while True :
                             print("Information :")
@@ -410,78 +398,55 @@ while True :
                             if informations :
                                 print()
                                 print("selected : {" , *informations , "}" , sep="-")
+                            else : 
+                                print()
+                                print("selected : Nothing selected yet...")
                             print("-" * 100)
-                            choose = input("Select informations you want to see : ")
+                            display_inf = input("Select informations you want to see : ")
                             system("cls")
-                            if not choose :
+                            if not display_inf :
                                 print("Empty input ! Please choose an option...")
                                 sleep(3)
                                 system("cls")
                                 continue
-                            elif choose not in ("1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "0") :
+                            elif display_inf not in ("1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "0") :
                                 print("Wrong input ! Please choose an option between 0 and 10...")
                                 sleep(3)
                                 system("cls")
                                 continue
                             break
-                # endregion
 
-                # region match selected information
-                        match choose : 
+                        match display_inf : 
                             case "1" :
-                                if "Name" not in informations :
-                                    informations.append("Name")
-                                if 1 not in indexes :
-                                    indexes.append(1) 
+                                display_inf = "Name"
                             case "2" :
-                                if "Last name" not in informations :
-                                    informations.append("Last name")
-                                if 2 not in indexes :
-                                    indexes.append(2)
+                                display_inf = "Last_name"
                             case "3" :
-                                if "Age" not in informations :
-                                    informations.append("Age")
-                                if 3 not in indexes :
-                                    indexes.append(3)
+                                display_inf = "Age"
                             case "4" :
-                                if "National code" not in informations :
-                                    informations.append("National code")
-                                if 4 not in indexes :
-                                    indexes.append(4)
+                                display_inf = "National_code"
                             case "5" :
-                                if "Student code" not in informations :
-                                    informations.append("Student code")
-                                if 5 not in indexes :
-                                    indexes.append(5)
+                                display_inf = "Student_code"
                             case "6" :
-                                if "Class" not in informations :
-                                    informations.append("Class")
-                                if 6 not in indexes :
-                                    indexes.append(6)
+                                display_inf = "Class"
                             case "7" :
-                                if "Php score" not in informations :
-                                    informations.append("Php score")
-                                if 7 not in indexes :
-                                    indexes.append(7)
+                                display_inf = "Php_score"
                             case "8" :
-                                if "Python score" not in informations :
-                                    informations.append("Python score")
-                                if 8 not in indexes :
-                                    indexes.append(8)
+                                display_inf = "Python_score"
                             case "9" :
-                                if "JS score" not in informations :
-                                    informations.append("JS score")
-                                if 9 not in indexes :
-                                    indexes.append(9)
+                                display_inf = "JS_score"
                             case "10" :
-                                if "Status" not in informations :
-                                    informations.append("Status")
-                                if 10 not in indexes :
-                                    indexes.append(10) 
+                                display_inf = "Status"
                             case "0" :
-                                informations.insert(0 , "Code")
-                                indexes.insert(0 , 0)
-                                break
+                                if not informations :
+                                    print("No item selected ! Please quit after selection...")
+                                    sleep(3)
+                                    system("cls")
+                                else :
+                                    break
+                        if display_inf not in ( *informations , "0" ) :
+                            informations.append(display_inf)
+                    informations.insert( 0 , "Code")
                 # endregion
                
                 # region show information 
@@ -499,14 +464,14 @@ while True :
                 print("-" * 170)
                 for row , student in enumerate(student_list , 1) : 
                     print(row , end = "\t")
-                    for index in indexes :
-                        if index == 0 :
+                    for information in informations :
+                        if information == "Code" :
                             end_ = "\t"
-                        elif len(student[index]) >= 8 :
+                        elif len(getattr(student , information)) >= 8 :
                             end_ = "\t"
                         else :
                             end_ = "\t\t"
-                        print(student[index] , end = end_)
+                        print(getattr(student , information) , end = end_)
                     print()  
                 print("=" * 170)
                 # endregion
@@ -537,8 +502,7 @@ while True :
                 # region choose information
                 while True :
                     # region show student
-                    informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
-                    indexes = ( 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10 )
+                    informations = ("Code" , "Name" , "Last_name" , "Age" , "National_code" , "Student_code" , "Class" , "Php_score" , "Python_score" , "JS_score" , "Status")
                     print("=" *170)
                     print("Row" , end = "\t")
                     for information in informations :
@@ -553,14 +517,14 @@ while True :
                     print("-" * 170)
                     for row , student in enumerate(student_list , 1) : 
                         print(row , end = "\t")
-                        for index in indexes :
-                            if index == 0 :
+                        for information in informations :
+                            if information == "Code" :
                                 end_ = "\t"
-                            elif len(student[index]) >= 8 :
+                            elif len(getattr(student , information)) >= 8 :
                                 end_ = "\t"
                             else :
                                 end_ = "\t\t"
-                            print(student[index] , end = end_)
+                            print(getattr(student , information) , end = end_)
                         print()  
                     print("=" * 170)
                     # endregion
@@ -570,14 +534,14 @@ while True :
                     print("5.National code      6.Student code       7.Class              8.Php score")
                     print("9.Python score       10.JS score          11.Status")
                     print("-" * 100)
-                    choose = input("Based on which information you want to found student to remove ? ")
+                    remove_inf = input("Based on which information you want to found student to remove ? ")
                     system("cls")
-                    if not choose :
+                    if not remove_inf :
                         print("Empty input ! Please choose an option...")
                         sleep(3)
                         system("cls")
                         continue
-                    if choose not in ("1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "11") :
+                    if remove_inf not in ("1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "11") :
                         print("Wrong input ! Please choose an option between 1 and 11...")
                         sleep(3)
                         system("cls")
@@ -588,8 +552,7 @@ while True :
                 # region match information with students
 
                 # region show student
-                informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
-                indexes = (0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10)
+                informations = ("Code" , "Name" , "Last_name" , "Age" , "National_code" , "Student_code" , "Class" , "Php_score" , "Python_score" , "JS_score" , "Status")
                 print("=" *170)
                 print("Row" , end = "\t")
                 for information in informations :
@@ -604,65 +567,55 @@ while True :
                 print("-" * 170)
                 for row , student in enumerate(student_list , 1) : 
                     print(row , end = "\t")
-                    for index in indexes :
-                        if index == 0 :
+                    for information in informations :
+                        if information == "Code" :
                             end_ = "\t"
-                        elif len(student[index]) >= 8 :
+                        elif len(getattr(student , information)) >= 8 :
                             end_ = "\t"
                         else :
                             end_ = "\t\t"
-                        print(student[index] , end = end_)
+                        print(getattr(student , information) , end = end_)
                     print()  
                 print("=" * 170)
                 # endregion
                 
-                match choose :
+                match remove_inf :
                     case "1" :
-                        index = 0
-                        remove_item = input("Please enter the code of student you want to remove : ")
+                        remove_inf = "Code"
                     case "2" :
-                        index = 1
-                        remove_item = input("Please enter the name of student you want to remove : ").capitalize()
+                        remove_inf = "Name"
                     case "3" :
-                        index = 2
-                        remove_item = input("Please enter the last name of student you want to remove : ").capitalize()
+                        remove_inf = "Last_name"
                     case "4" :
-                        index = 3
-                        remove_item = input("Please enter the age of student you want to remove : ")
+                        remove_inf = "Age"
                     case "5" :
-                        index = 4
-                        remove_item = input("Please enter the national code of student you want to remove : ")
+                        remove_inf = "National_code"
                     case "6" :
-                        index = 5
-                        remove_item = input("Please enter the student code of student you want to remove : ")
+                        remove_inf = "Student_code"
                     case "7" :
-                        index = 6
-                        remove_item = input("Please enter the class of student you want to remove : ").upper()
+                        remove_inf = "Class"
                     case "8" :
-                        index = 7
-                        remove_item = input("Please enter the php score of student you want to remove : ")
-                        if not remove_item :
-                            remove_item = "Not registered"
+                        remove_inf = "Php_score"
                     case "9" :
-                        index = 8
-                        remove_item = input("Please enter the python score of student you want to remove : ")
-                        if not remove_item :
-                            remove_item = "Not registered"
+                        remove_inf = "Python_score"
                     case "10" :
-                        index = 9
-                        remove_item = input("Please enter the JS score of student you want to remove : ")
-                        if not remove_item :
-                            remove_item = "Not registered"
+                        remove_inf = "JS_score"
                     case "11" :
-                        index = 10 
-                        remove_item = input("Please enter the status of student you want to remove : ").capitalize()
+                        remove_inf = "Status"
+                input_text = "Please enter the " + remove_inf.lower() + " of student you want to remove : "
+                remove_item = input(input_text)
+                if remove_inf in ("Name" , "Last_name" , "Status" , "Class") :
+                    remove_item = remove_item.capitalize()
+                if remove_inf in ("Php_score" , "Python_score" , "JS_score") :
+                    if not remove_item :
+                        remove_item = "Not registered"
                 system("cls")
                 # endregion 
                     
                 # region remove
                 counter_ = 0
                 for student in student_list :
-                    if remove_item == student[index] :
+                    if remove_item == getattr(student , remove_inf) :
                         counter_ += 1
                 print("searching students...")
                 sleep(5)
@@ -673,20 +626,12 @@ while True :
                     system("cls")
                     num = 0
                     for student in student_list.copy() :
-                        if remove_item == student[index] :
+                        if remove_item == getattr(student , remove_inf) :
                             num += 1
                             print("Student number" , num , ":")
-                            print("Code :" , student[0])
-                            print("Name :" , student[1])
-                            print("Last name :" , student[2])
-                            print("Age :" , student[3])
-                            print("National code :" , student[4])
-                            print("Student code :" , student[5])
-                            print("Class :" , student[6])
-                            print("Php score :" , student[7])
-                            print("Python score :" , student[8])
-                            print("JS score :" , student[9])
-                            print("Status :" , student[10])
+                            informations = ("Code" , "Name" , "Last_name" , "Age" , "National_code" , "Student_code" , "Class" , "Php_score" , "Python_score" , "JS_score" , "Status")
+                            for information in informations :
+                                print(information , ":" , getattr(student , information))
                             print("-" * 100)
                             remove = input("Do you want to remove this student(yes - etc) ? ").lower()
                             system("cls")
@@ -723,8 +668,7 @@ while True :
                 # region choose information
                 while True :
                     # region show student
-                    informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
-                    indexes = ( 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10 )
+                    informations = ("Code" , "Name" , "Last_name" , "Age" , "National_code" , "Student_code" , "Class" , "Php_score" , "Python_score" , "JS_score" , "Status")
                     print("=" *170)
                     print("Row" , end = "\t")
                     for information in informations :
@@ -739,14 +683,14 @@ while True :
                     print("-" * 170)
                     for row , student in enumerate(student_list , 1) : 
                         print(row , end = "\t")
-                        for index in indexes :
-                            if index == 0 :
+                        for information in informations :
+                            if information == "Code" :
                                 end_ = "\t"
-                            elif len(student[index]) >= 8 :
+                            elif len(getattr(student , information)) >= 8 :
                                 end_ = "\t"
                             else :
                                 end_ = "\t\t"
-                            print(student[index] , end = end_)
+                            print(getattr(student , information) , end = end_)
                         print()  
                     print("=" * 170)
                     # endregion
@@ -754,14 +698,14 @@ while True :
                     print("Informations :")
                     print("1.Code               2.National code      3.Student code")
                     print("-" * 100)
-                    choose = input("Based on which information you want to found student to remove ? ")
+                    edit_item_to_found = input("Based on which information you want to found student to edit ? ")
                     system("cls")
-                    if not choose :
+                    if not edit_item_to_found :
                         print("Empty input ! Please choose an option...")
                         sleep(3)
                         system("cls")
                         continue
-                    if choose not in  ("1" , "2" , "3") :
+                    if edit_item_to_found not in  ("1" , "2" , "3") :
                         print("Wrong input ! Please choose an option between 1 and 3...")
                         sleep(3)
                         system("cls")
@@ -772,8 +716,7 @@ while True :
                 # region match student with information
 
                 # region show student 
-                informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
-                indexes = (0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10)
+                informations = ("Code" , "Name" , "Last_name" , "Age" , "National_code" , "Student_code" , "Class" , "Php_score" , "Python_score" , "JS_score" , "Status")
                 print("=" *170)
                 print("Row" , end = "\t")
                 for information in informations :
@@ -788,51 +731,50 @@ while True :
                 print("-" * 170)
                 for row , student in enumerate(student_list , 1) : 
                     print(row , end = "\t")
-                    for index in indexes :
-                        if index == 0 :
+                    for information in informations :
+                        if information == "Code" :
                             end_ = "\t"
-                        elif len(student[index]) >= 8 :
+                        elif len(getattr(student , information)) >= 8 :
                             end_ = "\t"
                         else :
                             end_ = "\t\t"
-                        print(student[index] , end = end_)
+                        print(getattr(student , information) , end = end_)
                     print()  
                 print("=" * 170)
                 # endregion
                 
-                match choose :
+                match edit_item_to_found :
                     case "1" :
-                        index = 0
-                        edit_found = input("Please enter the code of student you want to edit : ")
+                        edit_item_to_found = "Code"
                     case "2" :
-                        index = 4
-                        edit_found = input("Please enter the National code of student you want to edit : ")
+                        edit_item_to_found = "National_code"
                     case "3" :
-                        index = 5
-                        edit_found = input("Please enter the Student code of student you want to edit : ")
+                        edit_item_to_found = "Student_code"
+                input_text = "Please enter the " + edit_item_to_found.lower() + " of student you want to edit : "
+                edit_found = input(input_text)
                 system("cls")
                 # endregion
 
                 # region edit
                 found_student_to_edit = False
                 for student in student_list :
-                    if student[index] == edit_found :
+                    if getattr( student , edit_item_to_found ) == edit_found :
                         found_student_to_edit = True
                         while True :
                             # region choose information to edit
                             while True :
                                 print("Student's information : ")
-                                print("Code :" , student[0])
-                                print("1.Name :" , student[1])
-                                print("2.Last name :" , student[2])
-                                print("3.Age :" , student[3])
-                                print("4.National code :" , student[4])
-                                print("5.Student code :" , student[5])
-                                print("6.Class :" , student[6])
-                                print("7.Php score :" , student[7])
-                                print("8.Python score :" , student[8])
-                                print("9.JS score :" , student[9])
-                                print("10.Status :" , student[10])
+                                print("Code :" , student.Code)
+                                print("1.Name :" , student.Name)
+                                print("2.Last name :" , student.Last_name)
+                                print("3.Age :" , student.Age)
+                                print("4.National code :" , student.National_code)
+                                print("5.Student code :" , student.Student_code)
+                                print("6.Class :" , student.Class)
+                                print("7.Php score :" , student.Php_score)
+                                print("8.Python score :" , student.Python_score)
+                                print("9.JS score :" , student.JS_score)
+                                print("10.Status :" , student.Status)
                                 print("0.Quit")
                                 print("-" * 100)
                                 edit_item = input("Which information do you want to edit ? ")
@@ -857,9 +799,9 @@ while True :
                             match edit_item :
                                 case "1" :
                                     # region edit name
-                                    edit = "name"
+                                    edit_item = "Name"
                                     while True :
-                                        print("Previous name :" , student[1])
+                                        print("Previous name :" , student.Name)
                                         new_information = input("Please enter the new name : ").capitalize()
                                         system("cls")
                                         if not new_information :
@@ -872,9 +814,9 @@ while True :
                     
                                 case "2" :
                                     # region edit last name
-                                    edit = "last name"
+                                    edit_item = "Last_name"
                                     while True :
-                                        print("Previous last name :" , student[2])
+                                        print("Previous last name :" , student.Last_name)
                                         new_information = input("Please enter the new Last name : ").capitalize()
                                         system("cls")
                                         if not new_information :
@@ -887,9 +829,9 @@ while True :
                                 
                                 case "3" :
                                     # region edit age
-                                    edit = "age"
+                                    edit_item = "Age"
                                     while True :
-                                        print("Previous age :" , student[3])
+                                        print("Previous age :" , student.Age)
                                         new_information = input("Please enter the new age : ")
                                         system("cls")
                                         if not new_information :
@@ -907,9 +849,9 @@ while True :
                                 
                                 case "4" :
                                     # region edit national code
-                                    edit = "national code"
+                                    edit_item = "National_code"
                                     while True :
-                                        print("Previous national code :" , student[4])
+                                        print("Previous national code :" , student.National_code)
                                         new_information = input("Please enter the new National code : ")
                                         system("cls")
                                         if not new_information :
@@ -923,8 +865,8 @@ while True :
                                             system("cls")
                                             continue
                                         found = False
-                                        for student in student_list : 
-                                            if str(new_information) == student[4] :
+                                        for student_ in student_list : 
+                                            if str(new_information) == student_.National_code :
                                                 found = True
                                                 break
                                         if found :
@@ -937,9 +879,9 @@ while True :
                                 
                                 case "5" :
                                     # region edit student code
-                                    edit = "student code"
+                                    edit_item = "Student_code"
                                     while True :
-                                        print("Previous syudent code :" , student[5])
+                                        print("Previous student code :" , student.Student_code)
                                         new_information = input("Please enter the new Student code : ")
                                         system("cls")
                                         if not new_information :
@@ -948,8 +890,8 @@ while True :
                                             system("cls")
                                             continue
                                         found = False 
-                                        for student in student_list : 
-                                            if new_information == student[5] :
+                                        for student_ in student_list : 
+                                            if new_information == student_.Student_code :
                                                 found = True
                                                 break
                                         if found :
@@ -962,9 +904,9 @@ while True :
                                 
                                 case "6" :
                                     # region edit class
-                                    edit = "Class"
+                                    edit_item = "Class"
                                     while True :
-                                        print("Previous class :" , student[6])
+                                        print("Previous class :" , student.Class)
                                         new_information = input("Please enter the new Class(A or B or C) : ").upper()
                                         system("cls")
                                         if not new_information :
@@ -982,9 +924,9 @@ while True :
 
                                 case "7" :
                                     # region edit php score
-                                    edit = "php score"
+                                    edit_item = "Php_score"
                                     while True :
-                                        print("Previous php score :" , student[7])
+                                        print("Previous php score :" , student.Php_score)
                                         new_information = input("Please enter the new php score : ")
                                         system("cls")
                                         if not new_information :
@@ -999,9 +941,9 @@ while True :
                                                 
                                 case "8" :
                                     # region edit python score
-                                    edit = "python score"
+                                    edit_item = "Python_score"
                                     while True :
-                                        print("Previous python score :" , student[8])
+                                        print("Previous python score :" , student.Python_score)
                                         new_information = input("Please enter the new python score : ")
                                         system("cls")
                                         if not new_information :
@@ -1016,9 +958,9 @@ while True :
                                 
                                 case "9" :
                                     # region edit JS score
-                                    edit = "JS score"
+                                    edit_item = "JS_score"
                                     while True :
-                                        print("Previous JS score :" , student[9])
+                                        print("Previous JS score :" , student.JS_score)
                                         new_information = input("Please enter the new JS score : ")
                                         system("cls")
                                         if not new_information : 
@@ -1033,9 +975,9 @@ while True :
                                 
                                 case "10" :
                                     # region edit status
-                                    edit = "status"
+                                    edit_item = "Status"
                                     while True :
-                                        print("Previous status :" , student[10])
+                                        print("Previous status :" , student.Status)
                                         new_information = input("Please enter the new Status : ").capitalize()
                                         system("cls")
                                         if not new_information : 
@@ -1051,8 +993,14 @@ while True :
                                         break
                                     # endregion
 
-                            student[int(edit_item)] = str(new_information)
-                            print("Student's" , edit , "edited successfully...")
+                            informations = ("Code" , "Name" , "Last_name" , "Age" , "National_code" , "Student_code" , "Class" , "Php_score" , "Python_score" , "JS_score" , "Status")
+                            index1 = student_list.index(student)
+                            index2 = informations.index(edit_item)
+                            student = [ *student ]
+                            student[index2] = new_information
+                            student = Student( *student )
+                            student_list[index1] = student 
+                            print("Student's" , edit_item.lower() , "edited successfully...")
                             sleep(3)
                             system("cls")
                             # endregion
@@ -1065,7 +1013,7 @@ while True :
                             # endregion
                 
                 if not found_student_to_edit :
-                    print("No student found...")
+                    print("No student found wit this" , edit_item_to_found.lower() , "...")
                     sleep(3)
                     system("cls")
                 # endregion
@@ -1089,7 +1037,7 @@ while True :
 
                 # region get information to search
                 while True :
-                    search = input("Enter the information you want to search : ")
+                    search = input("Enter the title you want to search : ")
                     system("cls")
                     if not search :
                         print("Empty input ! Please enter an information to search...")
@@ -1113,9 +1061,8 @@ while True :
                     sleep(3)
                     system("cls")
                 else :
-                    informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
-                    indexes = (0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10)
-                    print("Search result : (The searched item is marked with stars)")
+                    informations = ("Code" , "Name" , "Last_name" , "Age" , "National_code" , "Student_code" , "Class" , "Php_score" , "Python_score" , "JS_score" , "Status")
+                    print("Search result : (The searched item is marked with brackets)")
                     print("=" *170)
                     print("Row" , end = "\t")
                     for information in informations :
@@ -1133,20 +1080,29 @@ while True :
                         if search in student :
                             row += 1
                             print(row , end = "\t")
-                            search_index = -1
-                            for index in indexes :
-                                if student[index] == search :
-                                    student[index] = "**" + search + "**"
-                                    search_index = index
-                                if index == 0 :
+                            index = 0
+                            for information in informations :
+                                repair = False
+                                if  search == getattr(student , information) :
+                                    student = [ *student ]
+                                    student[index] = "{" + student[index] + "}"
+                                    student = Student( *student )
+                                    repair = True
+
+                                if information == "Code" :
                                     end_ = "\t"
-                                elif len(student[index]) >= 8 :
+                                elif len(getattr(student , information)) >= 8 :
                                     end_ = "\t"
                                 else :
                                     end_ = "\t\t"
-                                print(student[index] , end = end_)
-                                if search_index == index :
+                                print(getattr(student , information) , end = end_)
+
+                                if repair :
+                                    student = [ *student ]
                                     student[index] = search
+                                    student = Student( *student )
+
+                                index += 1
                             print()  
                     print("=" * 170)
                 # endregion
@@ -1182,104 +1138,97 @@ while True :
                     break
                 # endregion
 
-                # region class report
+                # region calculation
+                #                [php ,python,js,capacity]
+                class_a_scores = [ [] , [] , [] , 0 ]
+                class_b_scores = [ [] , [] , [] , 0 ]
+                class_c_scores = [ [] , [] , [] , 0 ]
+                for student in student_list :
+                    match student.Class :
+                        case "A" :
+                            class_a_scores[3] += 1
+                            if student.Php_score != "Not registered" :
+                                class_a_scores[0].append(int(student.Php_score))
+                            if student.Python_score != "Not registered" :
+                                class_a_scores[1].append(int(student.Python_score))
+                            if student.JS_score != "Not registered" :
+                                class_a_scores[2].append(int(student.JS_score))
+                        case "B" :
+                            class_b_scores[3] += 1
+                            if student.Php_score != "Not registered" :
+                                class_b_scores[0].append(int(student.Php_score))
+                            if student.Python_score != "Not registered" :
+                                class_b_scores[1].append(int(student.Python_score))
+                            if student.JS_score != "Not registered" :
+                                class_b_scores[2].append(int(student.JS_score))
+                        case "C" :
+                            class_c_scores[3] += 1
+                            if student.Php_score != "Not registered" :
+                                class_c_scores[0].append(int(student.Php_score))
+                            if student.Python_score != "Not registered" :
+                                class_c_scores[1].append(int(student.Python_score))
+                            if student.JS_score != "Not registered" :
+                                class_c_scores[2].append(int(student.JS_score))
+                # endregion
+
+                # region choose class report
                 if report_choose == "1" :
-                    # region choose class
                     while True : 
-                        report_class = input("Which class report would you like to see( A or B or C) ? ").upper()
+                        class_ = input("Which class report would you like to see(A or B or C) ? ").upper()
                         system("cls")
-                        if not report_class : 
+                        if not class_ : 
                             print("Empty input ! Please choose a class...")
                             sleep(3)
                             system("cls")
                             continue
-                        elif report_class not in ( "A" , "B" , "C" ) :
+                        elif class_ not in ( "A" , "B" , "C" ) :
                             print("Wrong input ! Please choose a class between A or B or C...")
                             sleep(3)
                             system("cls")
                             continue
                         break
-                    # endregion
+                # endregion
                     
-                    # region report calculation
-                    class_capacity = 0
-                    php_scores = []
-                    python_scores = []
-                    js_scores = []
-                    student_avg_list = []
-                    for student in student_list :
-                        if student[6] == report_class :
-                            class_capacity += 1
-                            student_avg = 0
-                            registered_score = 0
-                            if student[7] != "Not registered" :
-                                php_scores.append(int(student[7]))
-                                student_avg += int(student[7])
-                                registered_score += 1
-                            if student[8] != "Not registered" :
-                                python_scores.append(int(student[8]))
-                                student_avg += int(student[8])
-                                registered_score += 1
-                            if student[9] != "Not registered" :
-                                js_scores.append(int(student[9]))
-                                student_avg += int(student[9])
-                                registered_score += 1
-                            
-                            if registered_score != 0 :
-                                student_avg /= registered_score
-                            student_avg_list.append(student_avg)
-
-                    class_avg = sum(student_avg_list) / len(student_avg_list)
-
-                    if php_scores :
-                        highest_php_score = max(php_scores)
-                        lowest_php_score = min(php_scores)
-                        avg_php_score = sum(php_scores) / len(php_scores)
+                # region show class report
+                    Scores = namedtuple("Class_scores" , ["php_scores" , "python_scores" , "js_scores" , "capacity"])
+                    Classes = namedtuple("classes" , [ "A" , "B" , "C" ])
+                    class_scores = Classes(
+                        Scores( class_a_scores[0] , class_a_scores[1] , class_a_scores[2] , class_a_scores[3] ) ,
+                        Scores( class_b_scores[0] , class_b_scores[1] , class_b_scores[2] , class_b_scores[3] ) ,
+                        Scores( class_c_scores[0] , class_c_scores[1] , class_c_scores[2] , class_c_scores[3] )
+                        )
+                    
+                    print("Class" , class_ , ":" )
+                    print("Number of student :" , getattr(class_scores , class_ ).capacity )
+                    if  getattr(class_scores , class_ ).php_scores :
+                        print("Php scores average :" , sum(getattr(class_scores , class_ ).php_scores) / len(getattr(class_scores , class_ ).php_scores))
+                        print("Highest php score :" , max(getattr(class_scores , class_ ).php_scores))
+                        print("Lowest php score :" , min(getattr(class_scores , class_ ).php_scores))
                     else :
-                        highest_php_score = "No php score registered for this class"
-                        lowest_php_score = "No php score registered for this class"
-                        avg_php_score = "No php score registered for this class"
-
-                    if python_scores :
-                        highest_python_score = max(python_scores)
-                        lowest_python_score = min(python_scores)
-                        avg_python_score = sum(python_scores) / len(python_scores)
+                        print("Php scores average : No php score registered for this class"  )
+                        print("Highest php score : No php score registered for this class"  )
+                        print("Lowest php score : No php score registered for this class"  )
+                    if getattr(class_scores , class_ ).python_scores :
+                        print("Python scores average :" , sum(getattr(class_scores , class_ ).python_scores)/len(getattr(class_scores , class_ ).python_scores))
+                        print("Highest python score :" , max(getattr(class_scores , class_ ).python_scores))
+                        print("Lowest python score :" , min(getattr(class_scores , class_ ).python_scores))
                     else :
-                        highest_python_score = "No python score registered for this class"
-                        lowest_python_score = "No python score registered for this class"
-                        avg_python_score = "No python score registered for this class"
-
-                    if js_scores :
-                        highest_js_score = max(js_scores)
-                        lowest_js_score = min(js_scores)
-                        avg_js_score = sum(js_scores) / len(js_scores)
+                        print("Python scores average : No python score registered for this class"  )
+                        print("Highest python score : No python score registered for this class"  )
+                        print("Lowest python score : No python score registered for this class"  )
+                    if getattr(class_scores , class_ ).js_scores :
+                        print("JS scores average :" , sum(getattr(class_scores , class_ ).js_scores) / len(getattr(class_scores , class_ ).js_scores))
+                        print("Highest JS score :" , max(getattr(class_scores , class_ ).js_scores))
+                        print("Lowest JS score :" , min(getattr(class_scores , class_ ).js_scores))
                     else :
-                        highest_js_score = "No JS score registered for this class"
-                        lowest_js_score = "No JS score registered for this class"
-                        avg_js_score = "No JS score registered for this class"
-                    # endregion
-
-                    # region show class report
-                    print("Class" , report_class , ":" )
-                    print("Number of students :" , class_capacity )
-                    print("Students scores average :" , class_avg )
-                    print("Php score average :" , avg_php_score )
-                    print("Highest php score :" , highest_php_score )
-                    print("Lowest php score :" , lowest_php_score )
-                    print("Python score average :" , avg_python_score )
-                    print("Highest python score :" , highest_python_score )
-                    print("Lowest python score :" , lowest_python_score)
-                    print("JS score average :" , avg_js_score)
-                    print("Highest JS score :" , highest_js_score )
-                    print("Lowest JS score :" , lowest_js_score)
+                        print("JS scores average : No JS score registered for this class"  )
+                        print("Highest JS score : No JS score registered for this class"  )
+                        print("Lowest JS score : No JS score registered for this class"  )
                     print("-" * 100)
-                    # endregion
-                
                 # endregion
 
-                # region subject report
+                # region choose lesson report
                 if report_choose == "2" :
-                    # region choose lesson
                     while True :
                         print("Lessons :")
                         print("1.Php          2.Python       3.JS           4.All" )
@@ -1296,165 +1245,85 @@ while True :
                             system("cls")
                             continue
                         break
-                    # endregion
+                # endregion
 
-                    # region calculation and show
+                # region show lesson report
+                    php_scores = ( *class_a_scores[0] , *class_b_scores[0] , *class_c_scores[0] )
+                    python_scores = ( *class_a_scores[1] , *class_b_scores[1] , *class_c_scores[1] )
+                    js_scores = ( *class_a_scores[2] , *class_b_scores[2] , *class_c_scores[2] )
 
-                    # region php
-                    if report_lesson == "1" or report_lesson == "4" :
-                        scores = []
-                        class_a = []
-                        class_b = []
-                        class_c = []
-                        for student in student_list :
-                            if student[7] != "Not registered" :
-                                scores.append(int(student[7]))
-                                match student[6] :
-                                    case "A" :
-                                        class_a.append(int(student[7]))
-                                    case "B" :
-                                        class_b.append(int(student[7]))
-                                    case "C" :
-                                        class_c.append(int(student[7]))
-                        if scores :
-                            avg = sum(scores) / len(scores)
-                            high = max(scores)
-                            low = min(scores)
-                            if class_a :
-                                class_a_avg = sum(class_a) / len(class_a)
-                            else :
-                                class_a_avg = "No php score registered for class A"
-                            if class_b :
-                                class_b_avg = sum(class_b) / len(class_b)
-                            else :
-                                class_b_avg = "No php score registered for class B"
-                            if class_c :
-                                class_c_avg = sum(class_c) / len(class_c)
-                            else :
-                                class_c_avg = "No php score registered for class C" 
-                        else :
-                            avg = "No php score registered"
-                            high = "No php score registered"
-                            low =  "No php score registered"
-                            class_a_avg = "No php score registered for class A"
-                            class_b_avg = "No php score registered for class B"
-                            class_c_avg = "No php score registered for class C"
+                    if report_lesson == "1" or report_lesson == "4":
                         print("PHP :")
-                        print("Php score averages :" , avg)
-                        print("Highest php score : " , high)
-                        print("Lowest php score :" , low)
-                        print("Class A average :" , class_a_avg)
-                        print("Class B average :" , class_b_avg)
-                        print("Class C average :" , class_c_avg)
-                        if report_lesson != "4" :
+                        if php_scores :
+                            print("Average :" , sum(php_scores) / len(php_scores) )
+                            print("Highest score :" , max(php_scores))
+                            print("Lowest score :" , min(php_scores))
+                            if class_a_scores[0] :
+                                print("Class A average :" , sum(class_a_scores[0]) / len(class_a_scores[0]))
+                            else :
+                                print("Class A average : No php scores registered for this class")
+                            if class_b_scores[0] :
+                                print("Class B average :" , sum(class_b_scores[0]) / len(class_b_scores[0]))
+                            else :
+                                print("Class B average : No php scores registered for this class")
+                            if class_c_scores[0] :
+                                print("Class C average :" , sum(class_c_scores[0]) / len(class_c_scores[0]))
+                            else :
+                                print("Class C average : No php scores registered for this class")
+                        else :
+                            print("No php score registered yet...")
+                        if report_lesson == "1" :
                             print("-" * 100)
-                        else :
+                        if report_lesson == "4" :
                             print()
-                    # endregion
-
-                    # region python
-                    if report_lesson == "2" or report_lesson == "4" :
-                        scores = []
-                        class_a = []
-                        class_b = []
-                        class_c = []
-                        for student in student_list :
-                            if student[8] != "Not registered" :
-                                scores.append(int(student[8]))
-                                match student[6] :
-                                    case "A" :
-                                        class_a.append(int(student[8]))
-                                    case "B" :
-                                        class_b.append(int(student[8]))
-                                    case "C" :
-                                        class_c.append(int(student[8]))
-                        if scores :
-                            avg = sum(scores) / len(scores)
-                            high = max(scores)
-                            low = min(scores)
-                            if class_a :
-                                class_a_avg = sum(class_a) / len(class_a)
+                    
+                    if report_lesson == "2" or report_lesson == "4":
+                        print("Python :")
+                        if python_scores :
+                            print("Average :" , sum(python_scores) / len(python_scores) )
+                            print("Highest score :" , max(python_scores))
+                            print("Lowest score :" , min(python_scores))
+                            if class_a_scores[1] :
+                                print("Class A average :" , sum(class_a_scores[1]) / len(class_a_scores[1]))
                             else :
-                                class_a_avg = "No python score registered for class A"
-                            if class_b :
-                                class_b_avg = sum(class_b) / len(class_b)
+                                print("Class A average : No python scores registered for this class")
+                            if class_b_scores[1] :
+                                print("Class B average :" , sum(class_b_scores[1]) / len(class_b_scores[1]))
                             else :
-                                class_b_avg = "No python score registered for class B"
-                            if class_c :
-                                class_c_avg = sum(class_c) / len(class_c)
+                                print("Class B average : No python scores registered for this class")
+                            if class_c_scores[1] :
+                                print("Class C average :" , sum(class_c_scores[1]) / len(class_c_scores[1]))
                             else :
-                                class_c_avg = "No python score registered for class C" 
+                                print("Class C average : No python scores registered for this class")
                         else :
-                            avg = "No python score registered"
-                            high = "No python score registered"
-                            low =  "No python score registered"
-                            class_a_avg = "No python score registered for class A"
-                            class_b_avg = "No python score registered for class B"
-                            class_c_avg = "No python score registered for class C"
-                        print("PYTHON :")
-                        print("Python score averages :" , avg)
-                        print("Highest python score : " , high)
-                        print("Lowest python score :" , low)
-                        print("Class A average :" , class_a_avg)
-                        print("Class B average :" , class_b_avg)
-                        print("Class C average :" , class_c_avg)
-                        if report_lesson != "4" :
+                            print("No python score registered yet...")
+                        if report_lesson == "2" :
                             print("-" * 100)
-                        else :
+                        if report_lesson == "4" :
                             print()
-                    # endregion
 
-                    # region JS
-                    if report_lesson == "3" or report_lesson == "4" :
-                        scores = []
-                        class_a = []
-                        class_b = []
-                        class_c = []
-                        for student in student_list :
-                            if student[9] != "Not registered" :
-                                scores.append(int(student[9]))
-                                match student[6] :
-                                    case "A" :
-                                        class_a.append(int(student[9]))
-                                    case "B" :
-                                        class_b.append(int(student[9]))
-                                    case "C" :
-                                        class_c.append(int(student[9]))
-                        if scores :
-                            avg = sum(scores) / len(scores)
-                            high = max(scores)
-                            low = min(scores)
-                            if class_a :
-                                class_a_avg = sum(class_a) / len(class_a)
+                    if report_lesson == "3" or report_lesson == "4":
+                        print("Java Script :")
+                        if js_scores :
+                            print("Average :" , sum(js_scores) / len(js_scores) )
+                            print("Highest score :" , max(js_scores))
+                            print("Lowest score :" , min(js_scores))
+                            if class_a_scores[2] :
+                                print("Class A average :" , sum(class_a_scores[2]) / len(class_a_scores[2]))
                             else :
-                                class_a_avg = "No JS score registered for class A"
-                            if class_b :
-                                class_b_avg = sum(class_b) / len(class_b)
+                                print("Class A average : No JS scores registered for this class")
+                            if class_b_scores[2] :
+                                print("Class B average :" , sum(class_b_scores[2]) / len(class_b_scores[2]))
                             else :
-                                class_b_avg = "No JS score registered for class B"
-                            if class_c :
-                                class_c_avg = sum(class_c) / len(class_c)
+                                print("Class B average : No JS scores registered for this class")
+                            if class_c_scores[2] :
+                                print("Class C average :" , sum(class_c_scores[2]) / len(class_c_scores[2]))
                             else :
-                                class_c_avg = "No JS score registered for class C" 
+                                print("Class C average : No JS scores registered for this class")
                         else :
-                            avg = "No JS score registered"
-                            high = "No JS score registered"
-                            low =  "No JS score registered"
-                            class_a_avg = "No JS score registered for class A"
-                            class_b_avg = "No JS score registered for class B"
-                            class_c_avg = "No JS score registered for class C"
-                        print("JS :")
-                        print("JS score averages :" , avg)
-                        print("Highest JS score : " , high)
-                        print("Lowest JS score :" , low)
-                        print("Class A average :" , class_a_avg)
-                        print("Class B average :" , class_b_avg)
-                        print("Class C average :" , class_c_avg)      
+                            print("No JS score registered yet...")
+                        
                         print("-" * 100)
-                    # endregion 
-
-                    # endregion
-
                 # endregion
 
                 # region exit
@@ -1474,4 +1343,4 @@ while True :
             # endregion
     # endregion
 
-# endregion
+# endregion 
