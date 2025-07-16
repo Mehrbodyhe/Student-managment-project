@@ -70,10 +70,10 @@ while True :
             while True :
                 # region confirmation
                 if not counter :
-                    confirmation = input("Do you want to add a student(yse - etc) ? ").lower()
+                    confirmation = input("Do you want to add a student(yes - etc) ? ").lower()
                     counter += 1
                 else : 
-                    confirmation = input("Do you want to add a student again(yse - etc) ? ").lower()
+                    confirmation = input("Do you want to add a student again(yes - etc) ? ").lower()
                 system("cls")
                 if confirmation != "yes" :
                     break
@@ -84,6 +84,7 @@ while True :
                     code = randint(1,len(student_list) + 1)
                     if str(code) not in [student["Code"] for student in student_list] :
                         break
+                code = str(code)
                 print("Choosing code...")
                 sleep(3)
                 system("cls")
@@ -126,8 +127,18 @@ while True :
                     print("Last name :" , last_name)
                     age = input("Age : ")
                     system("cls")
+                    letter_found = False
+                    for letter in age :
+                        if letter not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" ) :
+                            letter_found = True
+                            break
                     if not age :
                         print("Empty input ! Please enter an age...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    elif letter_found :
+                        print("Wrong input ! Please enter number for age...")
                         sleep(3)
                         system("cls")
                         continue
@@ -148,23 +159,33 @@ while True :
                     print("Age :" , age)
                     national_code = input("National code : ")
                     system("cls")
+                    letter_found = False
+                    for letter in national_code :
+                        if letter not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" ) :
+                            letter_found = True
+                            break
+                    duplicate = False
+                    for student in student_list : 
+                        if national_code == student["National code"] :
+                            duplicate = True
+                            break
                     if not national_code :
                         print("Empty input ! Please enter a national code...")
                         sleep(3)
                         system("cls")
                         continue
-                    elif int(national_code) not in range (1000000000,10000000000) :
-                        print("Wrong input ! National code must be 10 digits...")
+                    elif letter_found :
+                        print("Wrong input ! Please enter number for national code...")
                         sleep(3)
                         system("cls")
                         continue
-                    found = False
-                    for student in student_list : 
-                        if str(national_code) == student["National code"] :
-                            found = True
-                            break
-                    if found :
+                    elif duplicate :
                         print("National code already exists ! Try again... ")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    elif int(national_code) not in range(1000000000,10000000000) :
+                        print("Wrong input ! National code must be 10 digits...")
                         sleep(3)
                         system("cls")
                         continue
@@ -181,17 +202,27 @@ while True :
                     print("National code :" , national_code)
                     student_code = input("Student code : ")
                     system("cls")
+                    letter_found = False
+                    for letter in student_code :
+                        if letter not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" ) :
+                            letter_found = True
+                            break
+                    duplicate = False
+                    for student in student_list : 
+                        if student_code == student["Student code"] :
+                            duplicate = True
+                            break
                     if not student_code :
                         print("Empty input ! please enter a student code...")
                         sleep(3)
                         system("cls")
                         continue
-                    found = False 
-                    for student in student_list : 
-                        if student_code == student["Student code"] :
-                            found = True
-                            break
-                    if found :
+                    elif letter_found :
+                        print("Wrong input ! Please enter number for student code...")
+                        sleep(3)
+                        system("cls")
+                        continue
+                    elif duplicate :
                         print("Student code already exists ! Try again...")
                         sleep(3)
                         system("cls")
@@ -235,8 +266,18 @@ while True :
                     print("Class :" , class_)
                     php_score = input("Php score : ")
                     system ("cls")
+                    letter_found = False
+                    for letter in php_score :
+                        if letter not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" ) :
+                            letter_found = True
+                            break
                     if not php_score :
                         php_score = "Not registered"
+                    elif letter_found :
+                        print("Wrong input ! Please enter number for score...")
+                        sleep(3)
+                        system("cls")
+                        continue
                     elif int(php_score) not in range (0,101) : 
                         print("Wrong input ! score must be between 0 and 100...")
                         sleep(3)
@@ -258,8 +299,18 @@ while True :
                     print("Php score :" , php_score)
                     python_score = input("Python score : ")
                     system("cls")
+                    letter_found = False
+                    for letter in python_score :
+                        if letter not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" ) :
+                            letter_found = True
+                            break
                     if not python_score :
                         python_score = "Not registered"
+                    elif letter_found :
+                        print("Wrong input ! Please enter number for score...")
+                        sleep(3)
+                        system("cls")
+                        continue
                     elif int(python_score) not in range(0 ,101) : 
                         print("Wrong input ! score must be between 0 and 100...")
                         sleep(3)
@@ -282,8 +333,18 @@ while True :
                     print("Python score :" , python_score)
                     js_score = input("JS score : ")
                     system("cls")
+                    letter_found = False
+                    for letter in js_score :
+                        if letter not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" ) :
+                            letter_found = True
+                            break
                     if not js_score : 
                         js_score = "Not registered"
+                    elif letter_found :
+                        print("Wrong input ! Please enter number for score...")
+                        sleep(3)
+                        system("cls")
+                        continue
                     elif int(js_score) not in range(0 , 101) : 
                         print("Wrong input ! score must be between 0 and 100...")
                         sleep(3)
@@ -291,7 +352,7 @@ while True :
                         continue
                     break
                 # endregion
-
+                
                 # region get status 
                 while True :
                     print("Please complete the information :")
@@ -320,7 +381,7 @@ while True :
                     break
                 # endregion
 
-                # region show informatin and confirmation 
+                # region show information and confirmation 
                 print("New student information :")
                 print("Code :" , code)
                 print("Name :" , name)
@@ -359,7 +420,7 @@ while True :
                     break
                 # endregion
 
-                # region choose all or selescted information
+                # region choose all or selected information
                 while True :
                     show = input("Do you want to see 1.all information or 2.selected information ? ")
                     system("cls")
@@ -590,9 +651,9 @@ while True :
                         remove_inf = "Status"
                 input_text = "Please enter the " + remove_inf.lower() + " of student you want to remove : "
                 remove_found = input(input_text)
-                if remove_inf in ("Name" , "Last_name" , "Status" , "Class") :
+                if remove_inf in ("Name" , "Last name" , "Status" , "Class") :
                     remove_found = remove_found.capitalize()
-                elif remove_inf in ("Php_score" , "Python_score" , "JS_score") :
+                elif remove_inf in ("Php score" , "Python score" , "JS score") :
                     if not remove_found :
                         remove_item = "Not registered"
                 system("cls")
@@ -808,29 +869,49 @@ while True :
                                         new_information = new_information.capitalize()
                                     
                                     case "Age" : 
-                                        if int(new_information) not in range(1,101) :
+                                        letter_found = False
+                                        for letter in new_information :
+                                            if letter not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" ) :
+                                                letter_found = True
+                                                break
+                                        if letter_found :
+                                            print("Wrong input ! Please enter number for age...")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        elif int(new_information) not in range(1,101) :
                                             print("Wrong input ! The entered age must be between 1 and 100...")
                                             sleep(3)
                                             system("cls")
                                             continue
 
                                     case "National code" | "Student code" :
+                                        letter_found = False
+                                        for letter in new_information :
+                                            if letter not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" ) :
+                                                letter_found = True
+                                                break
+                                        duplicate = False 
+                                        for student_ in student_list :
+                                            if student_[edit_item] == new_information :
+                                                duplicate = True
+                                                break
+                                        if letter_found :
+                                            print("Wrong input ! Please enter number for " , edit_item.lower() , "..." , sep="" )
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        elif duplicate :
+                                            print(edit_item, "already exists ! Try again...")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
                                         if edit_item == "National code" :
                                             if int(new_information) not in range(1000000000,10000000000) :
                                                 print("Wrong input ! National code must be 10 digits...")
                                                 sleep(3)
                                                 system("cls")
                                                 continue
-                                        found = False 
-                                        for student_ in student_list :
-                                            if student_[edit_item] == new_information :
-                                                found = True
-                                                break
-                                        if found :
-                                            print(edit_item, "already exists ! Try again...")
-                                            sleep(3)
-                                            system("cls")
-                                            continue
 
                                     case "Class" :
                                         new_information = new_information.upper()
@@ -841,7 +922,17 @@ while True :
                                             continue
 
                                     case "Php score" | "Python score" | "JS score" :
-                                        if int(new_information) not in range(0,101) :
+                                        letter_found = False
+                                        for letter in new_information :
+                                            if letter not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" ) :
+                                                letter_found = True
+                                                break
+                                        if letter_found :
+                                            print("Wrong input ! Please enter number for score...")
+                                            sleep(3)
+                                            system("cls")
+                                            continue
+                                        elif int(new_information) not in range(0,101) :
                                             print("Wrong input ! score must be between 0 and 100...")
                                             sleep(3)
                                             system("cls")
@@ -849,7 +940,7 @@ while True :
                                         
                                     case "Status" :
                                         new_information = new_information.capitalize()
-                                        if new_information not in ("Avtive" , "Deactive") :
+                                        if new_information not in ("Active" , "Deactive") :
                                             print("Wrong input ! Status must be active or deactive...")
                                             sleep(3)
                                             system("cls")
@@ -870,7 +961,7 @@ while True :
                             # endregion
                 
                 if not found_student_to_edit :
-                    print("No student found wit this" , edit_item_to_found.lower() , "...")
+                    print("No student found with this" , edit_item_to_found.lower() , "...")
                     sleep(3)
                     system("cls")
                 # endregion
@@ -1105,7 +1196,7 @@ while True :
                             print()
                     print("-" * 100)
                 # endregion
-
+                
                 # region exit
                 input("Press enter to back to main menu...")
                 system("cls")
