@@ -54,7 +54,7 @@ while True :
             sleep(3)
             system("cls")
             continue 
-        elif menu not in ( "1" , "A" , "2" , "Sh" , "3" , "R" , "4" , "E" , "5" , "S" , "6" , "Re" , "7" , "Q" ) :
+        elif menu not in frozenset(("1" , "A" , "2" , "Sh" , "3" , "R" , "4" , "E" , "5" , "S" , "6" , "Re" , "7" , "Q")) :
             print("Wrong input ! Please choose an option...")
             sleep(3)
             system("cls")
@@ -82,7 +82,7 @@ while True :
                 # region get code 
                 while True :
                     code = randint(1,len(student_list) + 1)
-                    if str(code) not in [student["Code"] for student in student_list] :
+                    if str(code) not in frozenset([student["Code"] for student in student_list]) :
                         break
                 code = str(code)
                 print("Choosing code...")
@@ -129,7 +129,7 @@ while True :
                     system("cls")
                     letter_found = False
                     for letter in age :
-                        if letter not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" ) :
+                        if letter not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" )) :
                             letter_found = True
                             break
                     if not age :
@@ -161,7 +161,7 @@ while True :
                     system("cls")
                     letter_found = False
                     for letter in national_code :
-                        if letter not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" ) :
+                        if letter not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" )) :
                             letter_found = True
                             break
                     duplicate = False
@@ -184,7 +184,7 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    elif int(national_code) not in range(1000000000,10000000000) :
+                    elif len(national_code) != 10 :
                         print("Wrong input ! National code must be 10 digits...")
                         sleep(3)
                         system("cls")
@@ -204,7 +204,7 @@ while True :
                     system("cls")
                     letter_found = False
                     for letter in student_code :
-                        if letter not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" ) :
+                        if letter not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" )) :
                             letter_found = True
                             break
                     duplicate = False
@@ -246,7 +246,7 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    elif class_ not in ( "A" , "B" , "C" ) :
+                    elif class_ not in frozenset(( "A" , "B" , "C" )) :
                         print("Wrong input ! Please choose class between A or B or C...")
                         sleep(3)
                         system("cls")
@@ -268,7 +268,7 @@ while True :
                     system ("cls")
                     letter_found = False
                     for letter in php_score :
-                        if letter not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" ) :
+                        if letter not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" )) :
                             letter_found = True
                             break
                     if not php_score :
@@ -301,7 +301,7 @@ while True :
                     system("cls")
                     letter_found = False
                     for letter in python_score :
-                        if letter not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" ) :
+                        if letter not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" )) :
                             letter_found = True
                             break
                     if not python_score :
@@ -335,7 +335,7 @@ while True :
                     system("cls")
                     letter_found = False
                     for letter in js_score :
-                        if letter not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" ) :
+                        if letter not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" )) :
                             letter_found = True
                             break
                     if not js_score : 
@@ -373,7 +373,7 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    elif status not in ( "Active" , "Deactive" ) :
+                    elif status not in frozenset(( "Active" , "Deactive" )) :
                         print("Wrong input ! Status must be active or deactive...")
                         sleep(3)
                         system("cls")
@@ -429,7 +429,7 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    if show not in ( "1" , "2" ) :
+                    if show not in frozenset(( "1" , "2" )) :
                         print("Wrong choose ! Please choose one of options...")
                         sleep(3)
                         system("cls")
@@ -467,7 +467,7 @@ while True :
                                 sleep(3)
                                 system("cls")
                                 continue
-                            elif display_inf not in ("1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "0") :
+                            elif display_inf not in frozenset(("1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "0")) :
                                 print("Wrong input ! Please choose an option between 0 and 10...")
                                 sleep(3)
                                 system("cls")
@@ -503,7 +503,7 @@ while True :
                                     continue
                                 else :
                                     break
-                        if display_inf not in informations :
+                        if display_inf not in frozenset(informations) :
                             informations.append(display_inf)
                     informations.insert( 0 , "Code")
                 # endregion
@@ -512,7 +512,7 @@ while True :
                 print("=" *160)
                 print("Row" , end = "\t")
                 for information in informations :
-                    if information in ("Code" , "Age" , "Class") or len(information) >= 8 :
+                    if information in frozenset(("Code" , "Age" , "Class")) or len(information) >= 8 :
                         end_ = "\t"
                     else : 
                         end_ = "\t\t"
@@ -522,7 +522,7 @@ while True :
                 for row , student in enumerate(student_list , 1) : 
                     print(row , end = "\t")
                     for information in informations :
-                        if information in ("Code" , "Age" , "Class") or len(student[information]) >= 8 :
+                        if information in frozenset(("Code" , "Age" , "Class")) or len(student[information]) >= 8 :
                             end_ = "\t"
                         else :
                             end_ = "\t\t"
@@ -561,7 +561,7 @@ while True :
                     print("=" *160)
                     print("Row" , end = "\t")
                     for information in informations :
-                        if information in ("Code" , "Age" , "Class") or len(information) >= 8 :
+                        if information in frozenset(("Code" , "Age" , "Class")) or len(information) >= 8 :
                             end_ = "\t"
                         else : 
                             end_ = "\t\t"
@@ -571,7 +571,7 @@ while True :
                     for row , student in enumerate(student_list , 1) : 
                         print(row , end = "\t")
                         for information in informations :
-                            if information in ("Code" , "Age" , "Class") or len(student[information]) >= 8 :
+                            if information in frozenset(("Code" , "Age" , "Class")) or len(student[information]) >= 8 :
                                 end_ = "\t"
                             else :
                                 end_ = "\t\t"
@@ -592,7 +592,7 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    if remove_inf not in ("1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "11") :
+                    if remove_inf not in frozenset(("1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "11")) :
                         print("Wrong input ! Please choose an option between 1 and 11...")
                         sleep(3)
                         system("cls")
@@ -607,7 +607,7 @@ while True :
                 print("=" *160)
                 print("Row" , end = "\t")
                 for information in informations :
-                    if information in ("Code" , "Age" , "Class") or len(information) >= 8 :
+                    if information in frozenset(("Code" , "Age" , "Class")) or len(information) >= 8 :
                         end_ = "\t"
                     else : 
                         end_ = "\t\t"
@@ -617,7 +617,7 @@ while True :
                 for row , student in enumerate(student_list , 1) : 
                     print(row , end = "\t")
                     for information in informations :
-                        if information in ("Code" , "Age" , "Class") or len(student[information]) >= 8 :
+                        if information in frozenset(("Code" , "Age" , "Class")) or len(student[information]) >= 8 :
                             end_ = "\t"
                         else :
                             end_ = "\t\t"
@@ -719,7 +719,7 @@ while True :
                     print("=" *160)
                     print("Row" , end = "\t")
                     for information in informations :
-                        if information in ("Code" , "Age" , "Class") or len(information) >= 8 :
+                        if information in frozenset(("Code" , "Age" , "Class")) or len(information) >= 8 :
                             end_ = "\t"
                         else : 
                             end_ = "\t\t"
@@ -729,7 +729,7 @@ while True :
                     for row , student in enumerate(student_list , 1) : 
                         print(row , end = "\t")
                         for information in informations :
-                            if information in ("Code" , "Age" , "Class") or len(student[information]) >= 8 :
+                            if information in frozenset(("Code" , "Age" , "Class")) or len(student[information]) >= 8 :
                                 end_ = "\t"
                             else :
                                 end_ = "\t\t"
@@ -748,7 +748,7 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    if edit_item_to_found not in  ("1" , "2" , "3") :
+                    if edit_item_to_found not in  frozenset(("1" , "2" , "3")) :
                         print("Wrong input ! Please choose an option between 1 and 3...")
                         sleep(3)
                         system("cls")
@@ -763,7 +763,7 @@ while True :
                 print("=" *160)
                 print("Row" , end = "\t")
                 for information in informations :
-                    if information in ("Code" , "Age" , "Class") or len(information) >= 8 :
+                    if information in frozenset(("Code" , "Age" , "Class")) or len(information) >= 8 :
                         end_ = "\t"
                     else : 
                         end_ = "\t\t"
@@ -773,7 +773,7 @@ while True :
                 for row , student in enumerate(student_list , 1) : 
                     print(row , end = "\t")
                     for information in informations :
-                        if information in ("Code" , "Age" , "Class") or len(student[information]) >= 8 :
+                        if information in frozenset(("Code" , "Age" , "Class")) or len(student[information]) >= 8 :
                             end_ = "\t"
                         else :
                             end_ = "\t\t"
@@ -816,7 +816,7 @@ while True :
                                     sleep(3)
                                     system("cls")
                                     continue
-                                elif edit_item not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "0" ) :
+                                elif edit_item not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "0" )) :
                                     print("Wrong input ! Please choose a number between 0 and 10...")
                                     sleep(3)
                                     system("cls")
@@ -856,7 +856,7 @@ while True :
                                 new_information = input(input_text)
                                 system("cls")
                                 if not new_information :
-                                    if edit_item in ("Php score" , "Python score" , "JS score") :
+                                    if edit_item in frozenset(("Php score" , "Python score" , "JS score")) :
                                         new_information = "Not registered"
                                         break
                                     else :
@@ -871,7 +871,7 @@ while True :
                                     case "Age" : 
                                         letter_found = False
                                         for letter in new_information :
-                                            if letter not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" ) :
+                                            if letter not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" )) :
                                                 letter_found = True
                                                 break
                                         if letter_found :
@@ -888,7 +888,7 @@ while True :
                                     case "National code" | "Student code" :
                                         letter_found = False
                                         for letter in new_information :
-                                            if letter not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" ) :
+                                            if letter not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" )) :
                                                 letter_found = True
                                                 break
                                         duplicate = False 
@@ -907,7 +907,7 @@ while True :
                                             system("cls")
                                             continue
                                         if edit_item == "National code" :
-                                            if int(new_information) not in range(1000000000,10000000000) :
+                                            if len(new_information) != 10  :
                                                 print("Wrong input ! National code must be 10 digits...")
                                                 sleep(3)
                                                 system("cls")
@@ -915,7 +915,7 @@ while True :
 
                                     case "Class" :
                                         new_information = new_information.upper()
-                                        if new_information not in ( "A" , "B" , "C" ) :
+                                        if new_information not in frozenset(( "A" , "B" , "C" )) :
                                             print("Wrong input ! Please choose class between A or B or C...")
                                             sleep(3)
                                             system("cls")
@@ -924,7 +924,7 @@ while True :
                                     case "Php score" | "Python score" | "JS score" :
                                         letter_found = False
                                         for letter in new_information :
-                                            if letter not in ( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" ) :
+                                            if letter not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" )) :
                                                 letter_found = True
                                                 break
                                         if letter_found :
@@ -940,7 +940,7 @@ while True :
                                         
                                     case "Status" :
                                         new_information = new_information.capitalize()
-                                        if new_information not in ("Active" , "Deactive") :
+                                        if new_information not in frozenset(("Active" , "Deactive")) :
                                             print("Wrong input ! Status must be active or deactive...")
                                             sleep(3)
                                             system("cls")
@@ -1014,7 +1014,7 @@ while True :
                     print("=" * 160)
                     print("Row" , end = "\t")
                     for information in informations :
-                        if information in ("Code" , "Age" , "Class") or len(information) >= 8 :
+                        if information in frozenset(("Code" , "Age" , "Class")) or len(information) >= 8 :
                             end_ = "\t"
                         else : 
                             end_ = "\t\t"
@@ -1031,7 +1031,7 @@ while True :
                                 if  search == student[information] :
                                     student[information] = "{" + student[information] + "}"
                                     repair = True
-                                if information in ("Code" , "Age" , "Class") or len(student[information]) >= 8 :
+                                if information in frozenset(("Code" , "Age" , "Class")) or len(student[information]) >= 8 :
                                     end_ = "\t"
                                 else :
                                     end_ = "\t\t"
@@ -1066,7 +1066,7 @@ while True :
                         sleep(3)
                         system("cls")
                         continue
-                    elif report_choose not in ( "1" , "2" ) :
+                    elif report_choose not in frozenset(( "1" , "2" )) :
                         print("Wrong input ! Please choose option 1 or 2 ...")
                         sleep(3)
                         system("cls")
@@ -1076,7 +1076,7 @@ while True :
 
                 # region calculation
                 classes = ( "A" , "B" , "C" ) 
-                lessons = ( "Php score" , "Python score" , "JS score" )
+                lessons = ( "Php score" , "Python score" , "JS score")
                 scores = {  "A" : {"Php score" : [] ,"Python score" : [] ,"JS score" : [] ,"Capacity" : 0 } ,
                             "B" : {"Php score" : [] ,"Python score" : [] ,"JS score" : [] ,"Capacity" : 0 } ,
                             "C" : {"Php score" : [] ,"Python score" : [] ,"JS score" : [] ,"Capacity" : 0 } }
@@ -1097,7 +1097,7 @@ while True :
                             sleep(3)
                             system("cls")
                             continue
-                        elif class_ not in ( "A" , "B" , "C" ) :
+                        elif class_ not in frozenset(( "A" , "B" , "C" )) :
                             print("Wrong input ! Please choose a class between A or B or C...")
                             sleep(3)
                             system("cls")
@@ -1111,7 +1111,7 @@ while True :
                     print("=" * 160)
                     print("Row" , end = "\t")
                     for information in informations :
-                        if information in ("Code" , "Age" , "Class") or len(information) >= 8 :
+                        if information in frozenset(("Code" , "Age" , "Class")) or len(information) >= 8 :
                             end_ = "\t"
                         else : 
                             end_ = "\t\t"
@@ -1124,7 +1124,7 @@ while True :
                             row += 1 
                             print(row , end = "\t")
                             for information in informations :
-                                if information in ("Code" , "Age" , "Class") or len(student[information]) >= 8 :
+                                if information in frozenset(("Code" , "Age" , "Class")) or len(student[information]) >= 8 :
                                     end_ = "\t"
                                 else :
                                     end_ = "\t\t"
@@ -1160,7 +1160,7 @@ while True :
                             sleep(3)
                             system("cls")
                             continue
-                        elif report_lesson not in ( "1" , "2" , "3" , "4" ) :
+                        elif report_lesson not in frozenset(( "1" , "2" , "3" , "4" )) :
                             print("Wrong input ! Please choose an option between 1 and 4...")
                             sleep(3)
                             system("cls")
