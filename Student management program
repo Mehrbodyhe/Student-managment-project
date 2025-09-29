@@ -1,36 +1,328 @@
+# region import modules
 from os import system
 from random import randint
-from time import sleep  
+from time import sleep
+from json import dump , load
+from re import match
+# endregion
 
-# region student_list  
-student_list = [
-    {"Code" : "2" ,"Name" : "Mehrbod" ,"Last name" : "Yahyaie" ,"Age" : "19" ,"National code" : "2221117733" ,"Student code" : "4021315001" ,"Class" : "A" , "Php score" : "70" ,"Python score" : "90" ,"JS score" : "70" ,"Status" : "Active"} ,  
-    {"Code" : "1" ,"Name" : "Ali" ,"Last name" : "Musavi" ,"Age" : "17" ,"National code" : "2223334455" ,"Student code" : "4021315000" ,"Class" : "A" , "Php score" : "80" ,"Python score" : "60" ,"JS score" : "Not registered" ,"Status" : "Active" } , 
-    {"Code" : "3" ,"Name" : "Mohammad" ,"Last name" : "Abbasi" ,"Age" : "15" ,"National code" : "2451118733" ,"Student code" : "4021315002" ,"Class" : "C" , "Php score" : "50" ,"Python score" : "40" ,"JS score" : "15" ,"Status" : "Deactive"} ,
-    {"Code" : "4" ,"Name" : "Farhad" ,"Last name" : "Amin" ,"Age" : "21" ,"National code" : "5221217793" ,"Student code" : "4021315003" ,"Class" : "B" , "Php score" : "100" ,"Python score" : "90" ,"JS score" : "Not registered" ,"Status" : "Active" } ,
-    {"Code" : "5" ,"Name" : "Parsa" ,"Last name" : "Beyhaghi" ,"Age" : "22" ,"National code" : "2020117039" ,"Student code" : "4021315004" ,"Class" : "C" , "Php score" : "70" ,"Python score" : "65" ,"JS score" : "20" ,"Status" : "Active"} ,
-    {"Code" : "6" ,"Name" : "Parham" ,"Last name" : "Seyf" ,"Age" : "20" ,"National code" : "3216385027" ,"Student code" : "4021315005" ,"Class" : "B" , "Php score" : "75" ,"Python score" : "75" ,"JS score" : "Not registered" ,"Status" : "Active"} , 
-    {"Code" : "7" ,"Name" : "Ramtin" ,"Last name" : "Moratahan" ,"Age" : "19" ,"National code" : "1234543219" ,"Student code" : "4021315006" ,"Class" : "A" , "Php score" : "90" ,"Python score" : "90" ,"JS score" : "70" ,"Status" : "Active"} , 
-    {"Code" : "8" ,"Name" : "Mahmood" ,"Last name" : "Rezai" ,"Age" : "25" ,"National code" : "7263947189" ,"Student code" : "4021315007" ,"Class" : "A" , "Php score" : "60" ,"Python score" : "40" ,"JS score" : "45" ,"Status" : "Deactive"} , 
-    {"Code" : "9" ,"Name" : "Amirhossein" ,"Last name" : "Rezvani" ,"Age" : "19" ,"National code" : "8194025368" ,"Student code" : "4021315008" ,"Class" : "A" , "Php score" : "50" ,"Python score" : "50" ,"JS score" : "30" ,"Status" : "Active" } ,
-    {"Code" : "10" ,"Name" : "Mehran" ,"Last name" : "Kordrostami" ,"Age" : "21" ,"National code" : "8631924539" ,"Student code" : "4021315009" ,"Class" : "C" , "Php score" : "70" ,"Python score" : "75" ,"JS score" : "Not registered" ,"Status" : "Active" } ,
-    {"Code" : "11" ,"Name" : "Mohammad" ,"Last name" : "Maghsoudloo" ,"Age" : "21" ,"National code" : "7382195666" ,"Student code" : "4021315010" ,"Class" : "A" , "Php score" : "40" ,"Python score" : "50" ,"JS score" : "Not registered" ,"Status" :"Deactive"} ,
-    {"Code" : "12" ,"Name" : "Amin" ,"Last name" : "Khoshkar" ,"Age" : "17" ,"National code" : "2811117458" ,"Student code" : "4021315011" ,"Class" : "A" , "Php score" : "Not registered" ,"Python score" : "60" ,"JS score" : "75" ,"Status" : "Deactive"} , 
-    {"Code" : "13" ,"Name" : "Amir" ,"Last name" : "Kolahi" ,"Age" : "23" ,"National code" : "2134569860" ,"Student code" : "4021315012" ,"Class" : "C" , "Php score" : "50" ,"Python score" : "40" ,"JS score" : "85" ,"Status" : "Active"} , 
-    {"Code" : "14" ,"Name" : "Ahamd" ,"Last name" : "Bahrami" ,"Age" : "25" ,"National code" : "2231546890" ,"Student code" : "4021315013" ,"Class" : "A" , "Php score" : "45" ,"Python score" : "35" ,"JS score" : "50" ,"Status" : "Active" } , 
-    {"Code" : "15" ,"Name" : "Fardin" ,"Last name" : "Yaghoobi" ,"Age" : "16" ,"National code" : "2563748950" ,"Student code" : "4021315014" ,"Class" : "C" , "Php score" : "50" ,"Python score" : "25" ,"JS score" : "60" ,"Status" : "Active" } ,
-    {"Code" : "16" ,"Name" : "Ali" ,"Last name" : "Rahimi" ,"Age" : "24" ,"National code" : "2314897302" ,"Student code" : "4021315015" ,"Class" : "A" , "Php score" : "20" ,"Python score" :"Not registered","JS score" :"Not registered","Status" : "Active" } ,
-    {"Code" : "17" ,"Name" : "Amirali" ,"Last name" : "Abbasian" ,"Age" : "23" ,"National code" : "3748596071" ,"Student code" : "4021315016" ,"Class" : "A" , "Php score" : "35" ,"Python score" : "45" ,"JS score" : "40" ,"Status" : "Active" } , 
-    {"Code" : "18" ,"Name" : "Saied" ,"Last name" : "Moradi" ,"Age" : "19" ,"National code" : "8374659102" ,"Student code" : "4021315017" ,"Class" : "A" , "Php score" : "40" ,"Python score" : "10" ,"JS score" : "55" ,"Status" : "Deactive" } , 
-    {"Code" : "19" ,"Name" : "Hamid" ,"Last name" : "Rahimi" ,"Age" : "18" ,"National code" : "1231428904" ,"Student code" : "4021315018" ,"Class" : "C" , "Php score" : "50" ,"Python score" : "20" ,"JS score" : "85" ,"Status" : "Active" } , 
-    {"Code" : "20" ,"Name" : "Mohammad" ,"Last name" : "Jafari" ,"Age" : "24" ,"National code" : "3748592017" ,"Student code" : "4021315019" ,"Class" : "A" ,"Php score" :  "65" ,"Python score" : "0" ,"JS score" : "45" ,"Status" : "Deactive"} ]
+# region functions definition
+def save_informations() :
+    with open(f"{path}\{students_file_name}" , "w") as student_data :
+        dump(student_list , student_data)
+    with open(f"{path}\{classes_file_name}" , "w") as classes_data :
+        dump(classes , classes_data)
+    with open(f"{path}\{courses_file_name}" , "w") as courses_data :
+        dump(courses , courses_data)
+
+def show_text(error_text , wait_time = 3) :
+    print(error_text)
+    sleep(wait_time)
+    system("cls")
+
+def isvalid_name(name) : 
+    if not name or name.isspace() :
+        show_text("Empty input ! Please enter a name...")
+        return False
+    elif not name.isalpha() : 
+        show_text("wrong input ! Please enter a name without any number or symbol...")
+        return False
+    else : 
+        return True
+    
+def isvalid_lastname(last_name) :
+    if not last_name or last_name.isspace() :
+        show_text("Empty input ! Please enter a last name...")
+        return False
+    elif not last_name.isalpha() : 
+        show_text("wrong input ! Please enter a last name without any number or symbol...")
+        return False
+    else : 
+        return True
+    
+def isvalid_age(age) :
+    if not age or age.isspace() :
+        show_text("Empty input ! Please enter an age...")
+        return False
+    elif not age.isdigit() :
+        show_text("Wrong input ! Please enter number for age...")
+        return False
+    elif int(age) not in range(1,101) :
+        show_text("Wrong input ! The entered age must be between 1 and 100...")
+        return False
+    else :
+        return True
+    
+def isvalid_national_code(national_code) :
+    if not national_code or national_code.isspace():
+        show_text("Empty input ! Please enter a national code...")
+        return False
+    elif not national_code.isdigit() :
+        show_text("Wrong input ! Please enter number for national code...")
+        return False
+    elif len(national_code) != 10 :
+        show_text("Wrong input ! National code must be 10 digits...")
+        return False
+    elif any(national_code == student["National code"] for student in student_list) :
+        show_text("National code already exists ! Try again... ")
+        return False
+    else : 
+        return True
+    
+def isvalid_student_code(student_code) :
+    if not student_code or student_code.isspace() :
+        show_text("Empty input ! please enter a student code...")
+        return False
+    elif not student_code.isdigit() :
+        show_text("Wrong input ! Please enter number for student code...")
+        return False
+    elif any(student_code == student["Student code"] for student in student_list) :
+        show_text("Student code already exists ! Try again...")
+        return False 
+    else : 
+        return True
+    
+def isvalid_phone_number(phone_number) :
+    if not phone_number or phone_number.isspace() :
+        show_text("Empty input ! please enter a phone number...")
+        return False
+    elif not phone_number.isdigit() :
+        show_text("Wrong input ! Please enter number for phone number...")
+        return False
+    elif match(r"^09\d{9}$" , phone_number) is None :
+        show_text("Invalid phone number ! Please enter a valid phone number...")
+        return False
+    else : 
+        return True
+    
+def isvalid_class(class_) :
+    if not class_ or class_.isspace() :
+        show_text("Empty input ! Please enter a class...")
+        return False
+    elif class_ not in frozenset(classes.keys()) :
+        show_text("Class doesn't exists ! Try again...")
+        return False
+    elif int(classes[class_]["Capacity"]) < 1 :
+        show_text("Class is full ! Try another class...")
+        return False 
+    else :
+        return True
+    
+def isvalid_class_name(class_name) : 
+    if not class_name or class_name.isspace() :
+        show_text("Empty input ! Please enter a name...")
+        return False
+    elif not class_name.isalnum() :
+        show_text("Invlaid name ! Please enter a name without any symbol...")
+        return False
+    elif class_name in frozenset(classes.keys()) :
+        show_text("Class already exists ! Please choose another name...")
+        return False
+    else : 
+        return True
+    
+def isvalid_capacity(capacity) :
+    if not capacity or capacity.isspace() :
+        show_text("Empty input ! Please enter a capacity...")
+        return False
+    elif not capacity.isdigit() :
+        show_text("Invalid input ! Please enter number for capacity...")
+        return False
+    else : 
+        return True
+    
+def isvalid_course_name(course_name) :
+    if not course_name or course_name.isspace() :
+        show_text("Empty input ! Please enter a name...")
+        return False
+    elif match(r"^(\w| )+$" , course_name) is None :
+        show_text("wrong input ! Please enter course name without any symbol...")
+        return False
+    else :
+        return True
+
+def isvalid_full_name(name) :
+    if not name or name.isspace() :
+        show_text("Empty input ! Please enter a name...")
+        return False
+    elif match(r"^[A-Za-z]+( [A-Za-z]+)?$" , name) is None :
+        show_text("Invalid input ! Please enter a valid name...")
+        return False
+    else :
+        return True
+    
+def isvalid_code(code) :
+    if not code or code.isspace() :
+        show_text("Empty input ! Please enter a code...")
+        return False
+    elif not any(code == student["Code"] for student in student_list) :
+        show_text("No student found with this code ! Try again...")
+        return False
+    else :
+        return True
+    
+def isvalid_course_code(course_code) :
+    if not course_code or course_code.isspace() :
+        show_text("Empty input ! Please enter a code...")
+        return False
+    elif not any(course_code == course["Code"] for course in courses) :
+        show_text("There is no course with this code ! Try again...")
+        return False
+    else :
+        return True
+    
+def isvalid_score(score) :
+    if not score or score.isspace() :
+        show_text("Empty input ! Please enter a score...")
+        return False
+    elif score.capitalize() == "Not registered" :
+        return True
+    elif not score.isdigit() : 
+        show_text("Invalid input ! Please enter a number for score...")
+        return False
+    elif int(score) not in range(1 , 101) :
+        show_text("Invalid score ! Please enter a score between 1 and 100...")
+        return False
+    else :
+        return True
+
+def show_students_informations(informations=("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Phone number" , "Class" , "Courses")) : 
+    lenghts = {}
+    for information in informations :
+        max_len = len(information)
+        for student in student_list :
+            if len(student[information]) > max_len :
+                max_len = len(student[information])
+        lenght = max_len + 4
+        lenghts[information] = lenght
+    print("=" *160)
+    print("Row" , end = "\t")
+    for information in informations :
+        end_ = (lenghts[information] - len(information)) * " "
+        print(information , end = end_)
+    print()
+    print("-" * 160)
+    for row , student in enumerate(student_list , 1) : 
+        print(row , end = "\t")
+        for information in informations :
+            end_ = (lenghts[information] - len(student[information])) * " "
+            print(student[information], end = end_)
+        print()  
+    print("=" * 160)
+
+def show_classes_information() :
+    informations = ("Class name" , "Capacity" , "Students")
+    lenghts = {}
+    for information in informations :
+        max_len = len(information)
+        if information == "Class name" :
+            for class_name in classes.keys() :
+                if len(class_name) > max_len :
+                    max_len = len(class_name)
+        else :
+            for class_name in classes.keys() :
+                if len(classes[class_name][information]) > max_len :
+                    max_len = len(classes[class_name][information])
+        lenght = max_len + 4
+        lenghts[information] = lenght
+    print("=" * 60)
+    print("Row" , end = "\t")
+    for information in informations :
+        end_ = (lenghts[information] - len(information)) * " "
+        print(information , end = end_)
+    print()
+    print("-" * 60)
+    for row , class_name in enumerate(classes.keys() , 1) :
+        print(row , end = "\t")
+        for information in informations :
+            if information == "Class name" :
+                end_ = (lenghts["Class name"] - len(class_name)) * " "
+                print(class_name , end = end_)
+            else :
+                end_ = (lenghts[information] - len(classes[class_name][information])) * " "
+                print(classes[class_name][information] , end = end_)
+        print()
+    print("=" * 60)
+
+def show_courses_information(informations = ("Code" , "Course name" , "Teacher" , "Offline capacity" , "Offline students" , "Online capacity" , "Online students" , "Total capacity" , "Total students" )) :
+    lenghts = {}
+    for information in informations :
+        max_len = len(information)
+        for course in courses :
+            if len(course[information]) > max_len :
+                max_len = len(course[information])
+        lenght = max_len + 4
+        lenghts[information] = lenght
+    print("=" * 160)
+    print("Row" , end = "\t")
+    for information in informations :
+        end_ = (lenghts[information] - len(information)) * " "
+        print(information , end = end_)
+    print()
+    print("-" * 160)
+    for row , course in enumerate(courses , 1) :
+        print(row , end = "\t")
+        for information in informations :
+            end_ = (lenghts[information] - len(course[information])) * " "
+            print(course[information] , end = end_)
+        print()
+    print("=" * 160)
+
+def show_student_course(student , informations = ("Course code" , "Course name" , "Presentation" , "Score" )) :
+    lenghts = {}
+    for information in informations :
+        max_len = len(information)
+        for student_course in student["Courses information"] :
+            if len(student_course[information]) > max_len :
+                max_len = len(student_course[information])
+        lenght = max_len + 4
+        lenghts[information] = lenght
+    print("=" * 100)
+    print("Row" , end = "\t")
+    for information in informations :
+        end_ = (lenghts[information] - len(information)) * " "
+        print(information , end = end_)
+    print()
+    print("-" * 100)
+    for row , student_course in enumerate(student["Courses information"] , 1)  :
+        print(row , end = "\t")
+        for information in informations :
+            end_ = (lenghts[information] - len(student_course[information])) * " "
+            print(student_course[information] , end = end_)
+        print()
+    print("=" * 100)
+# endregion
+
+# region defind pathway
+path = r"D:\camputer\programming\projects\school project\data"
+students_file_name = r"students_data.json"
+classes_file_name = r"classes_data.json"
+courses_file_name = r"courses_data.json"
+# endregion
+
+# region data
+try :
+    with open(f"{path}\{students_file_name}" , "r") as student_data :
+        student_list = load(student_data)
+except FileNotFoundError :
+    student_list = []
+
+try :
+    with open(f"{path}\{classes_file_name}" , "r") as classes_data :
+        classes = load(classes_data)
+except FileNotFoundError :
+    classes = {}
+
+try :
+    with open(f"{path}\{courses_file_name}" , "r") as courses_data :
+        courses = load(courses_data)
+except FileNotFoundError :
+    courses = []
 # endregion
 
 # region welcome
 system("cls")
-print("*** Welcome to student management program ***")
-sleep(3)
-system("cls")
+show_text("*** Welcome to student management program ***")
 # endregion
 
 # region program
@@ -38,40 +330,43 @@ while True :
     # region input menu
     while True : 
         print("Menu : ")
-        print("1.[A]dd a student")
-        print("2.[Sh]ow students ")
-        print("3.[R]emove student ")
-        print("4.[E]dit student's informations") 
-        print("5.[S]earch student")
-        print("6.[Re]port ")
-        print("7.[Q]uit")
+        print("1.Add a student")
+        print("2.Show students informations")
+        print("3.Remove students")
+        print("4.Edit student's informations") 
+        print("5.Edit student's courses")
+        print("6.Search informations of students")
+        print("7.Add a class")
+        print("8.Show classes informations")
+        print("9.Remove classes")
+        print("10.Edit classes capacity")
+        print("11.Add a course")
+        print("12.Show courses informations")
+        print("13.Remove courses")
+        print("14.Edit courses informations")
+        print("15.Show courses report")
+        print("0.Exit")
         print("-" * 100)
-
-        menu = input("Please enter your choose : ").capitalize()
+        menu = input("Please enter your choose : ")
         system("cls")
-        if not menu :
-            print("Empty input ! Please choose an option...")
-            sleep(3)
-            system("cls")
-            continue 
-        elif menu not in frozenset(("1" , "A" , "2" , "Sh" , "3" , "R" , "4" , "E" , "5" , "S" , "6" , "Re" , "7" , "Q")) :
-            print("Wrong input ! Please choose an option...")
-            sleep(3)
-            system("cls")
-            continue
-        break
+        if not menu or menu.isspace() :
+            show_text("Empty input ! Please choose an option...") 
+        elif menu not in frozenset(("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "0")) :
+            show_text("Invalid input ! Please choose an option between 0 and 14...")
+        else :
+            break
     # endregion
 
     # region match menu 
     match menu : 
-        case "1" | "A" :
+        case "1" :
             # region add student
-            counter = 0 
+            first_time = True 
             while True :
                 # region confirmation
-                if not counter :
+                if first_time :
                     confirmation = input("Do you want to add a student(yes - etc) ? ").lower()
-                    counter += 1
+                    first_time = False
                 else : 
                     confirmation = input("Do you want to add a student again(yes - etc) ? ").lower()
                 system("cls")
@@ -79,338 +374,184 @@ while True :
                     break
                 # endregion
 
+                # region class check
+                if not classes :
+                    show_text("There is no class for add a student to... ")
+                    break
+                # endregion
+
                 # region get code 
+                print("Choosing code...")
                 while True :
                     code = randint(1,len(student_list) + 1)
                     if str(code) not in frozenset([student["Code"] for student in student_list]) :
                         break
                 code = str(code)
-                print("Choosing code...")
                 sleep(3)
                 system("cls")
+                exit = False
                 # endregion
 
                 # region get name 
                 while True : 
-                    print("Please complete the information :")
-                    print("Code :" , code )
+                    print("Please complete the information : (Enter # to quit)")
+                    print(f"Code : {code}")
                     name = input("Name : ").capitalize()
                     system("cls")
-                    if not name :
-                        print("Empty input ! Please enter a name...")
-                        sleep(3)
-                        system("cls")
-                        continue
+                    if name == "#" :
+                        exit = True
+                        break
+                    elif isvalid_name(name) :
+                        break
+                if exit : 
+                    show_text("Returning to the main menu...")
                     break
                 # endregion
 
                 # region get last name 
                 while True :
-                    print("Please complete the information :")
-                    print("Code :" , code )
-                    print("Name :" , name)
+                    print("Please complete the information : (Enter # to quit)")
+                    print(f"Code : {code}")
+                    print(f"Name : {name}")
                     last_name = input("Last name : ").capitalize()
                     system("cls")
-                    if not last_name :
-                        print("Empty input ! Please enter a last name...")
-                        sleep(3)
-                        system("cls")
-                        continue
+                    if last_name == "#" :
+                        exit = True
+                        break
+                    elif isvalid_lastname(last_name) :
+                        break
+                if exit : 
+                    show_text("Returning to the main menu...")
                     break
                 # endregion
 
                 # region get age
                 while True :
-                    print("Please complete the information :")
-                    print("Code :" , code )
-                    print("Name :" , name)
-                    print("Last name :" , last_name)
+                    print("Please complete the information : (Enter # to quit)")
+                    print(f"Code : {code}")
+                    print(f"Name : {name}")
+                    print(f"Last name : {last_name}")
                     age = input("Age : ")
                     system("cls")
-                    letter_found = False
-                    for letter in age :
-                        if letter not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" )) :
-                            letter_found = True
-                            break
-                    if not age :
-                        print("Empty input ! Please enter an age...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    elif letter_found :
-                        print("Wrong input ! Please enter number for age...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    elif int(age) not in range(1,101) :
-                        print("Wrong input ! The entered age must be between 1 and 100...")
-                        sleep(3)
-                        system("cls")
-                        continue
+                    if age == "#" :
+                        exit = True 
+                        break
+                    elif isvalid_age(age) :
+                        break
+                if exit : 
+                    show_text("Returning to the main menu...")
                     break
                 # endregion
 
                 # region get national code 
                 while True :
-                    print("Please complete the information :")
-                    print("Code :" , code )
-                    print("Name :" , name)
-                    print("Last name :" , last_name)
-                    print("Age :" , age)
+                    print("Please complete the information : (Enter # to quit)")
+                    print(f"Code : {code}")
+                    print(f"Name : {name}")
+                    print(f"Last name : {last_name}")
+                    print(f"Age : {age}")
                     national_code = input("National code : ")
                     system("cls")
-                    letter_found = False
-                    for letter in national_code :
-                        if letter not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" )) :
-                            letter_found = True
-                            break
-                    duplicate = False
-                    for student in student_list : 
-                        if national_code == student["National code"] :
-                            duplicate = True
-                            break
-                    if not national_code :
-                        print("Empty input ! Please enter a national code...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    elif letter_found :
-                        print("Wrong input ! Please enter number for national code...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    elif duplicate :
-                        print("National code already exists ! Try again... ")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    elif len(national_code) != 10 :
-                        print("Wrong input ! National code must be 10 digits...")
-                        sleep(3)
-                        system("cls")
-                        continue
+                    if national_code == "#" :
+                        exit = True
+                        break
+                    elif isvalid_national_code(national_code) : 
+                        break
+                if exit : 
+                    show_text("Returning to the main menu...")
                     break
                 # endregion
 
                 # region get student code
                 while True :
-                    print("Please complete the information :")
-                    print("Code :" , code )
-                    print("Name :" , name)
-                    print("Last name :" , last_name)
-                    print("Age :" , age)
-                    print("National code :" , national_code)
+                    print("Please complete the information : (Enter # to quit)")
+                    print(f"Code : {code}")
+                    print(f"Name : {name}")
+                    print(f"Last name : {last_name}")
+                    print(f"Age : {age}")
+                    print(f"National code : {national_code}")
                     student_code = input("Student code : ")
                     system("cls")
-                    letter_found = False
-                    for letter in student_code :
-                        if letter not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" )) :
-                            letter_found = True
-                            break
-                    duplicate = False
-                    for student in student_list : 
-                        if student_code == student["Student code"] :
-                            duplicate = True
-                            break
-                    if not student_code :
-                        print("Empty input ! please enter a student code...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    elif letter_found :
-                        print("Wrong input ! Please enter number for student code...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    elif duplicate :
-                        print("Student code already exists ! Try again...")
-                        sleep(3)
-                        system("cls")
-                        continue
+                    if student_code == "#" :
+                        exit = True
+                        break
+                    elif isvalid_student_code(student_code) : 
+                        break
+                if exit : 
+                    show_text("Returning to the main menu...")
                     break
                 # endregion
 
+                # region get phone number
+                while True :
+                    print("Please complete the information : (Enter # to quit)")
+                    print(f"Code : {code}")
+                    print(f"Name : {name}")
+                    print(f"Last name : {last_name}")
+                    print(f"Age : {age}")
+                    print(f"National code : {national_code}")
+                    print(f"Student code : {student_code}")
+                    phone_number = input("Phone number : ")
+                    system("cls")
+                    if phone_number == "#" :
+                        exit = True
+                        break
+                    elif isvalid_phone_number(phone_number) :
+                        break
+                if exit : 
+                    show_text("Returning to the main menu...")
+                    break
+                # endregion
+               
                 # region get class
                 while True :
-                    print("Please complete the information :")
-                    print("Code :" , code )
-                    print("Name :" , name)
-                    print("Last name :" , last_name)
-                    print("Age :" , age)
-                    print("National code :" , national_code)
-                    print("Student code :" , student_code)
-                    class_ = input("Class(A or B or C) : ").upper()
+                    print("Please complete the information : (Enter # to quit)")
+                    print(f"Code : {code}")
+                    print(f"Name : {name}")
+                    print(f"Last name : {last_name}")
+                    print(f"Age : {age}")
+                    print(f"National code : {national_code}")
+                    print(f"Student code : {student_code}")
+                    print(f"Phone number : {phone_number}")
+                    class_ = input("Class : ")
                     system("cls")
-                    if not class_ :
-                        print("Empty input ! Please enter a class...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    elif class_ not in frozenset(( "A" , "B" , "C" )) :
-                        print("Wrong input ! Please choose class between A or B or C...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    break
-                # endregion
-
-                # region get php score 
-                while True :
-                    print("Please complete the information :")
-                    print("Code :" , code )
-                    print("Name :" , name)
-                    print("Last name :" , last_name)
-                    print("Age :" , age)
-                    print("National code :" , national_code)
-                    print("Student code :" , student_code)
-                    print("Class :" , class_)
-                    php_score = input("Php score : ")
-                    system ("cls")
-                    letter_found = False
-                    for letter in php_score :
-                        if letter not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" )) :
-                            letter_found = True
-                            break
-                    if not php_score :
-                        php_score = "Not registered"
-                    elif letter_found :
-                        print("Wrong input ! Please enter number for score...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    elif int(php_score) not in range (0,101) : 
-                        print("Wrong input ! score must be between 0 and 100...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    break
-                # endregion
-
-                # region get python score 
-                while True :
-                    print("Please complete the information :")
-                    print("Code :" , code )
-                    print("Name :" , name)
-                    print("Last name :" , last_name)
-                    print("Age :" , age)
-                    print("National code :" , national_code)
-                    print("Student code :" , student_code)
-                    print("Class :" , class_)
-                    print("Php score :" , php_score)
-                    python_score = input("Python score : ")
-                    system("cls")
-                    letter_found = False
-                    for letter in python_score :
-                        if letter not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" )) :
-                            letter_found = True
-                            break
-                    if not python_score :
-                        python_score = "Not registered"
-                    elif letter_found :
-                        print("Wrong input ! Please enter number for score...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    elif int(python_score) not in range(0 ,101) : 
-                        print("Wrong input ! score must be between 0 and 100...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    break
-                # endregion
-
-                # region get js score 
-                while True :
-                    print("Please complete the information :")
-                    print("Code :" , code )
-                    print("Name :" , name)
-                    print("Last name :" , last_name)
-                    print("Age :" , age)
-                    print("National code :" , national_code)
-                    print("Student code :" , student_code)
-                    print("Class :" , class_)
-                    print("Php score :" , php_score)
-                    print("Python score :" , python_score)
-                    js_score = input("JS score : ")
-                    system("cls")
-                    letter_found = False
-                    for letter in js_score :
-                        if letter not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" )) :
-                            letter_found = True
-                            break
-                    if not js_score : 
-                        js_score = "Not registered"
-                    elif letter_found :
-                        print("Wrong input ! Please enter number for score...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    elif int(js_score) not in range(0 , 101) : 
-                        print("Wrong input ! score must be between 0 and 100...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    break
-                # endregion
-                
-                # region get status 
-                while True :
-                    print("Please complete the information :")
-                    print("Code :" , code )
-                    print("Name :" , name)
-                    print("Last name :" , last_name)
-                    print("Age :" , age)
-                    print("National code :" , national_code)
-                    print("Student code :" , student_code)
-                    print("Class :" , class_)
-                    print("Php score :" , php_score)
-                    print("Python score :" , python_score)
-                    print("JS score :" , js_score)
-                    status = input("Status(active or deactive) : ").capitalize()
-                    system("cls")
-                    if not status : 
-                        print("Empty input ! Please enter status...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    elif status not in frozenset(( "Active" , "Deactive" )) :
-                        print("Wrong input ! Status must be active or deactive...")
-                        sleep(3)
-                        system("cls")
-                        continue
+                    if class_ == "#" :
+                        exit = True
+                        break
+                    elif isvalid_class(class_) : 
+                        break
+                if exit : 
+                    show_text("Returning to the main menu...")
                     break
                 # endregion
 
                 # region show information and confirmation 
                 print("New student information :")
-                print("Code :" , code)
-                print("Name :" , name)
-                print("Last name :" , last_name)
-                print("Age :" , age)
-                print("National code :" , national_code)
-                print("Student code :" , student_code)
-                print("Class :" , class_)
-                print("Php score :" , php_score)
-                print("Python score :" , python_score)
-                print("JS score :" , js_score)
-                print("Status :" , status)
+                print(f"Code : {code}")
+                print(f"Name : {name}")
+                print(f"Last name : {last_name}")
+                print(f"Age : {age}")
+                print(f"National code : {national_code}")
+                print(f"Student code : {student_code}")
+                print(f"Phone number : {phone_number}")
+                print(f"Class : {class_}")
+                print(f"Courses : No courses")
                 print("-" * 100)
-                add = input("Do you want to add this student(yes-etc) ? ").lower()
+                add_confirmation = input("Do you want to add this student(yes-etc) ? ").lower()
                 system("cls")
-                if add == "yes" :
-                    student_list.append({"Code":code , "Name":name , "Last name":last_name , "Age":age , "National code":national_code , "Student code":student_code , "Class":class_ , "Php score":php_score , "Python score":python_score , "JS score":js_score , "Status":status }) 
-                    print("New student added successfully...")
-                    sleep(5)
-                    system("cls")
+                if add_confirmation == "yes" :
+                    classes[class_]["Capacity"] = str(int(classes[class_]["Capacity"]) - 1)
+                    classes[class_]["Students"] = str(int(classes[class_]["Students"]) + 1)
+                    student_list.append({"Code":code , "Name":name , "Last name":last_name , "Age":age , "National code":national_code , "Student code":student_code ,"Phone number":phone_number, "Class":class_ , "Courses": "0" , "Courses information":[]}) 
+                    save_informations()
+                    show_text("New student added successfully...")
                 else :
-                    print("New student addition canceled...")
-                    sleep(5)
-                    system("cls")
+                    show_text("New student addition canceled...")
                 # endregion
         
             # endregion
         
-        case "2" | "Sh" :
+        case "2" :
             # region show students
             while True :
                 # region confirmation 
@@ -420,60 +561,69 @@ while True :
                     break
                 # endregion
 
-                # region choose all or selected information
-                while True :
-                    show = input("Do you want to see 1.all information or 2.selected information ? ")
-                    system("cls")
-                    if not show : 
-                        print("Empty choose ! Please choose an option...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    if show not in frozenset(( "1" , "2" )) :
-                        print("Wrong choose ! Please choose one of options...")
-                        sleep(3)
-                        system("cls")
-                        continue
+                # region student check
+                if not student_list :
+                    show_text("There is no student to show informations...")
                     break
                 # endregion
 
-                # region all information
-                if show == "1" :
-                    informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
+                # region choose all or selected information
+                exit = False
+                while True :
+                    select_show = input("Do you want to see 1.all information or 2.selected information(Enter # to quit) ? ")
+                    system("cls")
+                    if select_show == "#" :
+                        exit = True
+                        break
+                    elif not select_show or select_show.isspace() : 
+                        show_text("Empty choose ! Please choose an option...")
+                    elif select_show not in frozenset(( "1" , "2" )) :
+                        show_text("Invalid choose ! Please choose one of options between 1 and 2...")
+                    else :
+                        break
+                if exit :
+                    show_text("Returning to the main menu...")
+                    break
                 # endregion
 
                 # region select information
+                if select_show == "1" :
+                    # region select all informations
+                    informations=("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Phone number" , "Class" , "Courses")
+                    # endregion
                 else:
+                    # region select specific informations
                     informations = []
                     while True :
+                        # region select information
                         while True :
-                            print("Information :")
+                            print("Informations :")
                             print("1.Name               2.Last name")
                             print("3.Age                4.National code")
-                            print("5.Student code       6.Class")
-                            print("7.Php score          8.Python score")
-                            print("9.JS score           10.Status")
-                            print("0.Quit")
+                            print("5.Student code       6.Phone number")
+                            print("7.Class              8.Courses")
+                            print("0.Confirm selections")
                             print()
                             if informations :
-                                print("selected : {" , *informations , "}" , sep="-")
+                                print("selected : {" , " - ".join(informations) , "}")
                             else : 
                                 print("selected : Nothing selected yet...")
                             print("-" * 100)
-                            display_inf = input("Select informations you want to see : ")
+                            display_inf = input("Enter the number of information you want to see(Enter # to quit) : ")
                             system("cls")
-                            if not display_inf :
-                                print("Empty input ! Please choose an option...")
-                                sleep(3)
-                                system("cls")
-                                continue
-                            elif display_inf not in frozenset(("1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "0")) :
-                                print("Wrong input ! Please choose an option between 0 and 10...")
-                                sleep(3)
-                                system("cls")
-                                continue
-                            break
-
+                            if display_inf == "#" :
+                                exit = True
+                                break
+                            elif not display_inf or display_inf.isspace() :
+                                show_text("Empty input ! Please choose an option...")
+                            elif display_inf not in frozenset(("1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "0")) :
+                                show_text("Invalid input ! Please choose an option between 0 and 8...")
+                            else :
+                                break
+                        if exit : break
+                        # endregion
+                        
+                        # region match selected information
                         match display_inf : 
                             case "1" :
                                 display_inf = "Name"
@@ -486,732 +636,1772 @@ while True :
                             case "5" :
                                 display_inf = "Student code"
                             case "6" :
-                                display_inf = "Class"
+                                display_inf = "Phone number"
                             case "7" :
-                                display_inf = "Php score"
+                                display_inf = "Class"
                             case "8" :
-                                display_inf = "Python score"
-                            case "9" :
-                                display_inf = "JS score"
-                            case "10" :
-                                display_inf = "Status"
+                                display_inf = "Courses"
                             case "0" :
                                 if not informations :
-                                    print("No item selected ! Please quit after selection...")
-                                    sleep(3)
-                                    system("cls")
+                                    show_text("No item selected ! Please confirm after selection...")
                                     continue
                                 else :
                                     break
                         if display_inf not in frozenset(informations) :
                             informations.append(display_inf)
-                    informations.insert( 0 , "Code")
-                # endregion
-               
-                # region show information 
-                print("=" *160)
-                print("Row" , end = "\t")
-                for information in informations :
-                    if information in frozenset(("Code" , "Age" , "Class")) or len(information) >= 8 :
-                        end_ = "\t"
-                    else : 
-                        end_ = "\t\t"
-                    print(information , end = end_)
-                print()
-                print("-" * 160)
-                for row , student in enumerate(student_list , 1) : 
-                    print(row , end = "\t")
-                    for information in informations :
-                        if information in frozenset(("Code" , "Age" , "Class")) or len(student[information]) >= 8 :
-                            end_ = "\t"
-                        else :
-                            end_ = "\t\t"
-                        print(student[information], end = end_)
-                    print()  
-                print("=" * 160)
+                        # endregion
+
+                    if exit :
+                        show_text("Returning to the main menu...")
+                        break
+                    informations.insert(0 , "Code")
+                    # endregion
+                
                 # endregion
 
-                # region exit 
-                input("Press enter to back to main menu...")
-                system("cls")
+                # region show students informations
+                show_students_informations(informations)
+                if "Courses" in informations :
+                    show_student_course_confirmation = input("Do you want to see students courses(yes - etc) ? ").lower()
+                    system("cls")
+                    if show_student_course_confirmation != "yes" :
+                        break
+                else :
+                    input("Press enter to back to main menu...")
+                    system("cls")
+                    break
+                # endregion
+
+                # region show student courses
+                while True :
+                    # region get code
+                    while True :
+                        show_students_informations(informations)
+                        code = input("Please enter the code of student you want to see its courses(Enter # to qiut) : ")
+                        system("cls")
+                        if code == "#" :
+                            exit = True
+                            break
+                        elif isvalid_code(code) :
+                            break
+                    if exit :
+                        show_text("Returning to the main menu...")
+                        break
+                    # endregion
+
+                    # region show student courses
+                    for student in student_list :
+                        if code == student["Code"] :
+                            print("Student's information :")
+                            print(f"Code : {student["Code"]}")
+                            print(f"Name : {student["Name"]}")
+                            print(f"Last name : {student["Last name"]}")
+                            print(f"Age : {student["Age"]}")
+                            print(f"National code : {student["National code"]}")
+                            print(f"Student code : {student["Student code"]}")
+                            print(f"Phone number : {student["Phone number"]}")
+                            print(f"Class : {student["Class"]}")
+                            if student["Courses"] == "0" :
+                                print("Courses : No courses")
+                                print("-" * 100)
+                            else :
+                                print("Courses :")
+                                show_student_course(student)
+                            break
+                    # endregion
+                    
+                    # region show student courses again
+                    show_students_course_again = input("Do you want to see other student courses(yes - etc) ? ").lower()
+                    system("cls")
+                    if show_students_course_again != "yes" :
+                        break
+                    # endregion
+
                 break
                 # endregion
-
+                
             # endregion
                
-        case "3" | "R" :
+        case "3" :
             # region remove student
-            counter = 0
+            first_time = True
             while True :
                 # region confirmation
-                if not counter :
-                    confirmation = input("Do you want to remove student(yes - etc) ? ").lower()
-                    counter += 1
+                if first_time :
+                    confirmation = input("Do you want to remove a student(yes - etc) ? ").lower()
+                    first_time = False
                 else :
-                    confirmation = input("Do you want to remove student again(yes - etc) ? ").lower()
+                    confirmation = input("Do you want to remove a student again(yes - etc) ? ").lower()
                 system("cls")
                 if confirmation != "yes" :
+                    break
+                # endregion
+
+                # region student check
+                if not student_list :
+                    show_text("There is no student to remove...")
                     break
                 # endregion
                   
-                # region choose information
+                # region get code  
+                exit = False
                 while True :
-                    # region show student
-                    informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
-                    print("=" *160)
-                    print("Row" , end = "\t")
-                    for information in informations :
-                        if information in frozenset(("Code" , "Age" , "Class")) or len(information) >= 8 :
-                            end_ = "\t"
-                        else : 
-                            end_ = "\t\t"
-                        print(information , end = end_)
-                    print()
-                    print("-" * 160)
-                    for row , student in enumerate(student_list , 1) : 
-                        print(row , end = "\t")
-                        for information in informations :
-                            if information in frozenset(("Code" , "Age" , "Class")) or len(student[information]) >= 8 :
-                                end_ = "\t"
-                            else :
-                                end_ = "\t\t"
-                            print(student[information], end = end_)
-                        print()  
-                    print("=" * 160)
-                    # endregion
-
-                    print("Information :")
-                    print("1.Code               2.Name               3.Last name          4.Age")
-                    print("5.National code      6.Student code       7.Class              8.Php score")
-                    print("9.Python score       10.JS score          11.Status")
-                    print("-" * 100)
-                    remove_inf = input("Based on which information you want to found student to remove ? ")
+                    show_students_informations()  
+                    code = input("Please enter the code of student you want to remove(Enter # to quit) : ")
                     system("cls")
-                    if not remove_inf :
-                        print("Empty input ! Please choose an option...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    if remove_inf not in frozenset(("1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "11")) :
-                        print("Wrong input ! Please choose an option between 1 and 11...")
-                        sleep(3)
-                        system("cls")
-                        continue
+                    if code == "#" :
+                        exit = True
+                        break
+                    elif isvalid_code(code) :
+                        break
+                if exit : 
+                    show_text("Returning to the main menu...")
                     break
                 # endregion
 
-                # region match information with students
-
-                # region show student
-                informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
-                print("=" *160)
-                print("Row" , end = "\t")
-                for information in informations :
-                    if information in frozenset(("Code" , "Age" , "Class")) or len(information) >= 8 :
-                        end_ = "\t"
-                    else : 
-                        end_ = "\t\t"
-                    print(information , end = end_)
-                print()
-                print("-" * 160)
-                for row , student in enumerate(student_list , 1) : 
-                    print(row , end = "\t")
-                    for information in informations :
-                        if information in frozenset(("Code" , "Age" , "Class")) or len(student[information]) >= 8 :
-                            end_ = "\t"
-                        else :
-                            end_ = "\t\t"
-                        print(student[information], end = end_)
-                    print()  
-                print("=" * 160)
-                # endregion
-                
-                match remove_inf :
-                    case "1" :
-                        remove_inf = "Code"
-                    case "2" :
-                        remove_inf = "Name"
-                    case "3" :
-                        remove_inf = "Last name"
-                    case "4" :
-                        remove_inf = "Age"
-                    case "5" :
-                        remove_inf = "National code"
-                    case "6" :
-                        remove_inf = "Student code"
-                    case "7" :
-                        remove_inf = "Class"
-                    case "8" :
-                        remove_inf = "Php score"
-                    case "9" :
-                        remove_inf = "Python score"
-                    case "10" :
-                        remove_inf = "JS score"
-                    case "11" :
-                        remove_inf = "Status"
-                input_text = "Please enter the " + remove_inf.lower() + " of student you want to remove : "
-                remove_found = input(input_text)
-                if remove_inf in ("Name" , "Last name" , "Status" , "Class") :
-                    remove_found = remove_found.capitalize()
-                elif remove_inf in ("Php score" , "Python score" , "JS score") :
-                    if not remove_found :
-                        remove_item = "Not registered"
-                system("cls")
-                # endregion 
-                    
                 # region remove
-                counter_ = 0
                 for student in student_list :
-                    if remove_found == student[remove_inf] :
-                        counter_ += 1
-                print("searching students...")
-                sleep(5)
-                system("cls")
-                if  not counter_ :
-                    print("No students found with this" , remove_inf , "...")
-                    sleep(3)
-                    system("cls")
-                else :
-                    print(counter_ , "students found...")
-                    sleep(3)
-                    system("cls")
-                    num = 0
-                    for student in student_list.copy() :
-                        if remove_found == student[remove_inf] :
-                            num += 1
-                            print("Student number" , num , ":")
-                            informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
-                            for information in informations :
-                                print(information , ":" , student[information])
+                    if code == student["Code"] :
+                        print("Student's information : ")
+                        print(f"Code : {student["Code"]}")
+                        print(f"Name : {student["Name"]}")
+                        print(f"Last name : {student["Last name"]}")
+                        print(f"Age : {student["Age"]}")
+                        print(f"National code : {student["National code"]}")
+                        print(f"Student code : {student["Student code"]}")
+                        print(f"Phone number : {student["Phone number"]}")
+                        print(f"Class : {student["Class"]}")
+                        if student["Courses"] == "0" :
+                            print("Courses : No courses")
                             print("-" * 100)
-                            remove = input("Do you want to remove this student(yes - etc) ? ").lower()
-                            system("cls")
-                            if remove == "yes" :
-                                student_list.remove(student)
-                                print("student removed successfully...")
-                                sleep(3)
-                                system("cls")
-                            if num == counter_ :
-                                break
+                        else :
+                            print("Courses :")
+                            show_student_course(student)
+                        remove_confirmation = input("Do you want to remove this student(yes - etc) ? ").lower()
+                        system("cls")
+                        if remove_confirmation == "yes" :
+                            classes[student["Class"]]["Capacity"] = str(int(classes[student["Class"]]["Capacity"]) + 1)
+                            classes[student["Class"]]["Students"] = str(int(classes[student["Class"]]["Students"]) - 1)
+                            if student["Courses"] != "0"  :
+                                for student_course in student["Courses information"] :
+                                    for course in courses :
+                                        if student_course["Course code"] == course["Code"] :
+                                            if student_course["Presentation"] == "Offline" :
+                                                course["Offline capacity"] = str(int(course["Offline capacity"]) + 1)
+                                                course["Offline students"] = str(int(course["Offline students"]) - 1)
+                                            elif student_course["Presentation"] == "Online" :
+                                                course["Online capacity"] = str(int(course["Online capacity"]) + 1)
+                                                course["Online students"] = str(int(course["Online students"]) - 1)
+                                            course["Total capacity"] = str(int(course["Total capacity"]) + 1)
+                                            course["Total students"] = str(int(course["Total students"]) - 1)
+                                            break
+                            student_list.remove(student)
+                            save_informations()
+                            show_text("Student removed successfully...")
+                        else :
+                            show_text("Student removal canceled...")
+                        break
                 # endregion
 
             # endregion
 
-        case "4" | "E" :
-            # region edit student
-            counter = 0
+        case "4" :
+            # region edit students informations
+            first_time = True
             while True :
                 # region confirmation
-                if not counter :
-                    confirmation = input("Do you want to edit student(yes - etc) ? ").lower()
-                    counter += 1
+                if first_time :
+                    confirmation = input("Do you want to edit students informations(yes - etc) ? ").lower()
+                    first_time = False
                 else :
-                    confirmation = input("Do you want to edit student again(yes - etc) ? ").lower()
+                    confirmation = input("Do you want to edit students informations again(yes - etc) ? ").lower()
                 system("cls")
                 if confirmation != "yes" :
                     break
                 # endregion
-                
-                # region choose information
-                while True :
-                    # region show student
-                    informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
-                    print("=" *160)
-                    print("Row" , end = "\t")
-                    for information in informations :
-                        if information in frozenset(("Code" , "Age" , "Class")) or len(information) >= 8 :
-                            end_ = "\t"
-                        else : 
-                            end_ = "\t\t"
-                        print(information , end = end_)
-                    print()
-                    print("-" * 160)
-                    for row , student in enumerate(student_list , 1) : 
-                        print(row , end = "\t")
-                        for information in informations :
-                            if information in frozenset(("Code" , "Age" , "Class")) or len(student[information]) >= 8 :
-                                end_ = "\t"
-                            else :
-                                end_ = "\t\t"
-                            print(student[information], end = end_)
-                        print()  
-                    print("=" * 160)
-                    # endregion
 
-                    print("Informations :")
-                    print("1.Code               2.National code      3.Student code")
-                    print("-" * 100)
-                    edit_item_to_found = input("Based on which information you want to found student to edit ? ")
+                #  region student check
+                if not student_list :
+                    show_text("There is no student to edit...")
+                    break
+                # endregion
+                
+                # region get code
+                exit = False
+                while True :
+                    show_students_informations()
+                    code = input("Please enter the code of student you want to edit(Enter # to quit) : ")
                     system("cls")
-                    if not edit_item_to_found :
-                        print("Empty input ! Please choose an option...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    if edit_item_to_found not in  frozenset(("1" , "2" , "3")) :
-                        print("Wrong input ! Please choose an option between 1 and 3...")
-                        sleep(3)
-                        system("cls")
-                        continue
+                    if code == "#" :
+                        exit = True
+                        break
+                    elif isvalid_code(code) :
+                        break
+                if exit : 
+                    show_text("Returning to the main menu...")
                     break
                 # endregion
 
-                # region match student with information
-
-                # region show student 
-                informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
-                print("=" *160)
-                print("Row" , end = "\t")
-                for information in informations :
-                    if information in frozenset(("Code" , "Age" , "Class")) or len(information) >= 8 :
-                        end_ = "\t"
-                    else : 
-                        end_ = "\t\t"
-                    print(information , end = end_)
-                print()
-                print("-" * 160)
-                for row , student in enumerate(student_list , 1) : 
-                    print(row , end = "\t")
-                    for information in informations :
-                        if information in frozenset(("Code" , "Age" , "Class")) or len(student[information]) >= 8 :
-                            end_ = "\t"
-                        else :
-                            end_ = "\t\t"
-                        print(student[information], end = end_)
-                    print()  
-                print("=" * 160)
-                # endregion
-                
-                match edit_item_to_found :
-                    case "1" :
-                        edit_item_to_found = "Code"
-                    case "2" :
-                        edit_item_to_found = "National code"
-                    case "3" :
-                        edit_item_to_found = "Student code"
-                input_text = "Please enter the " + edit_item_to_found.lower() + " of student you want to edit : "
-                edit_found = input(input_text)
-                system("cls")
-                # endregion
-
-                # region edit
-                found_student_to_edit = False
+                # region edit informations
                 for student in student_list :
-                    if student[edit_item_to_found] == edit_found :
-                        found_student_to_edit = True
+                    if code == student["Code"] :
                         while True :
                             # region choose information to edit
+                            exit = False
                             while True :
                                 print("Student's information : ")
-                                print("Code :" , student["Code"])
-                                informations = ( "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
-                                for row , information in enumerate(informations , 1) :
-                                    print(row , "." , information , " : " , student[information] , sep = "")
-                                print("0.Quit")
+                                print(f"Code : {student["Code"]}")
+                                print(f"1.Name : {student["Name"]}")
+                                print(f"2.Last name : {student["Last name"]}")
+                                print(f"3.Age : {student["Age"]}")
+                                print(f"4.National code : {student["National code"]}")
+                                print(f"5.Student code : {student["Student code"]}")
+                                print(f"6.Phone number : {student["Phone number"]}")
+                                print(f"7.Class : {student["Class"]}")
+                                print(f"Courses : {student["Courses"]}")
                                 print("-" * 100)
-                                edit_item = input("Which information do you want to edit ? ")
+                                information_number =input("Please enter the number of information you want to edit(Enter # to quit) : ")
                                 system("cls")
-                                if not edit_item :
-                                    print("Empty input ! Please choose an option...")
-                                    sleep(3)
-                                    system("cls")
-                                    continue
-                                elif edit_item not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "0" )) :
-                                    print("Wrong input ! Please choose a number between 0 and 10...")
-                                    sleep(3)
-                                    system("cls")
-                                    continue
-                                break
+                                if information_number == "#" :
+                                    exit = True
+                                    break
+                                elif not information_number or information_number.isspace() :
+                                    show_text("Empty iput ! Please enter the number of information you want to edit...")
+                                elif information_number not in frozenset(("1","2","3","4","5","6","7")) :
+                                    show_text("invalid input ! Please choose an option between 1 and 7...")
+                                else :
+                                    break
+                            if exit : break
                             # endregion
-
-                            # region edit information
-                            if edit_item == "0" :
-                                break
                             
-                            match edit_item :
-                                case "1" : 
-                                    edit_item = "Name"
-                                case "2" : 
-                                    edit_item = "Last name"
-                                case "3" : 
-                                    edit_item = "Age"
-                                case "4" : 
-                                    edit_item = "National code"
-                                case "5" : 
-                                    edit_item = "Student code"
-                                case "6" : 
-                                    edit_item = "Class"
-                                case "7" : 
-                                    edit_item = "Php score"
-                                case "8" : 
-                                    edit_item = "Python score"
-                                case "9" : 
-                                    edit_item = "JS score"
-                                case "10" : 
-                                    edit_item = "Status"
-                            
-                            while True :
-                                print("previous" , edit_item , ":" , student[edit_item])
-                                input_text = "Please enter the new " + edit_item.lower() + " : "
-                                new_information = input(input_text)
-                                system("cls")
-                                if not new_information :
-                                    if edit_item in frozenset(("Php score" , "Python score" , "JS score")) :
-                                        new_information = "Not registered"
-                                        break
-                                    else :
-                                        print("Empty input ! Please enter " , edit_item.lower() , "..." , sep="")
-                                        sleep(3)
+                            # region edit
+                            match information_number :
+                                case "1" :
+                                    # region edit name
+                                    while True :
+                                        print(f"Previous name : {student["Name"]}")
+                                        new_name = input("Please enter the new name(Enter # to quit) : ").capitalize()
                                         system("cls")
-                                        continue
-                                match edit_item :
-                                    case "Name" | "Last name" :
-                                        new_information = new_information.capitalize()
-                                    
-                                    case "Age" : 
-                                        letter_found = False
-                                        for letter in new_information :
-                                            if letter not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" )) :
-                                                letter_found = True
-                                                break
-                                        if letter_found :
-                                            print("Wrong input ! Please enter number for age...")
-                                            sleep(3)
-                                            system("cls")
-                                            continue
-                                        elif int(new_information) not in range(1,101) :
-                                            print("Wrong input ! The entered age must be between 1 and 100...")
-                                            sleep(3)
-                                            system("cls")
-                                            continue
-
-                                    case "National code" | "Student code" :
-                                        letter_found = False
-                                        for letter in new_information :
-                                            if letter not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" )) :
-                                                letter_found = True
-                                                break
-                                        duplicate = False 
-                                        for student_ in student_list :
-                                            if student_[edit_item] == new_information :
-                                                duplicate = True
-                                                break
-                                        if letter_found :
-                                            print("Wrong input ! Please enter number for " , edit_item.lower() , "..." , sep="" )
-                                            sleep(3)
-                                            system("cls")
-                                            continue
-                                        elif duplicate :
-                                            print(edit_item, "already exists ! Try again...")
-                                            sleep(3)
-                                            system("cls")
-                                            continue
-                                        if edit_item == "National code" :
-                                            if len(new_information) != 10  :
-                                                print("Wrong input ! National code must be 10 digits...")
-                                                sleep(3)
-                                                system("cls")
-                                                continue
-
-                                    case "Class" :
-                                        new_information = new_information.upper()
-                                        if new_information not in frozenset(( "A" , "B" , "C" )) :
-                                            print("Wrong input ! Please choose class between A or B or C...")
-                                            sleep(3)
-                                            system("cls")
-                                            continue
-
-                                    case "Php score" | "Python score" | "JS score" :
-                                        letter_found = False
-                                        for letter in new_information :
-                                            if letter not in frozenset(( "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "0" )) :
-                                                letter_found = True
-                                                break
-                                        if letter_found :
-                                            print("Wrong input ! Please enter number for score...")
-                                            sleep(3)
-                                            system("cls")
-                                            continue
-                                        elif int(new_information) not in range(0,101) :
-                                            print("Wrong input ! score must be between 0 and 100...")
-                                            sleep(3)
-                                            system("cls")
-                                            continue
-                                        
-                                    case "Status" :
-                                        new_information = new_information.capitalize()
-                                        if new_information not in frozenset(("Active" , "Deactive")) :
-                                            print("Wrong input ! Status must be active or deactive...")
-                                            sleep(3)
-                                            system("cls")
-                                            continue
-                                break
+                                        if new_name == "#" :
+                                            break
+                                        elif isvalid_name(new_name) : 
+                                            student["Name"] = new_name
+                                            save_informations()
+                                            show_text("Student's name edited successfully...")
+                                            break
+                                    # endregion
+                                
+                                case "2" :
+                                    # region edit last name 
+                                    while True :
+                                        print(f"Previous last name : {student["Last name"]}")
+                                        new_last_name = input("Please enter the new last name(Enter # to quit) : ").capitalize()
+                                        system("cls")
+                                        if new_last_name == "#" :
+                                            break
+                                        elif isvalid_lastname(new_last_name) :
+                                            student["Last name"] = new_last_name
+                                            save_informations()
+                                            show_text("Student's last name edited successfully...")
+                                            break
+                                    # endregion
+                                
+                                case "3" :
+                                    # region edit age
+                                    while True :
+                                        print(f"Previous age : {student["Age"]}")
+                                        new_age = input("Please enter the new age(Enter # to quit) : ")
+                                        system("cls")
+                                        if new_age == "#" :
+                                            break
+                                        elif isvalid_age(new_age) :
+                                            student["Age"] = new_age
+                                            save_informations()
+                                            show_text("Student's age edited successfully...")
+                                            break
+                                    # endregion
+                                
+                                case "4" :
+                                    # region edit national code
+                                    while True :
+                                        print(f"Previous national code : {student["National code"]}")
+                                        new_national_code = input("Please enter the new national code(Enter # to quit) : ")
+                                        system("cls")
+                                        if new_national_code == "#" :
+                                            break
+                                        elif isvalid_national_code(new_national_code) :
+                                            student["National code"] = new_national_code
+                                            save_informations()
+                                            show_text("Student's national code edited successfully...")
+                                            break
+                                    # endregion
+                                
+                                case "5" :
+                                    # region edit student code
+                                    while True :
+                                        print(f"Previous student code : {student["Student code"]}")
+                                        new_student_code = input("Please enter the new student code(Enter # to quit) : ")
+                                        system("cls")
+                                        if new_student_code == "#" :
+                                            break
+                                        elif isvalid_student_code(new_student_code) :
+                                            student["Student code"] = new_student_code
+                                            save_informations()
+                                            show_text("Student's student code edited successfully...")
+                                            break
+                                    # endregion
+                                
+                                case "6" : 
+                                    # region edit phone number
+                                    while True :
+                                        print(f"Previous phone number : {student["Phone number"]}")
+                                        new_phone_number = input("Please enter the new phone number(Enter # to quit) : ")
+                                        if new_phone_number == "#" :
+                                            break
+                                        elif isvalid_phone_number(new_phone_number) : 
+                                            student["Phone number"] = new_phone_number
+                                            save_informations()
+                                            show_text("Student's phone number edited successfully...")
+                                            break
+                                    # endregion
+                                
+                                case "7" :
+                                    # region edit class
+                                    while True :
+                                        print(f"Previous class : {student["Class"]}")
+                                        new_class = input("Please enter the new class(Enter # to quit) : ").upper()
+                                        system("cls")
+                                        if new_class == "#" :
+                                            break
+                                        elif isvalid_class(new_class) :
+                                            classes[student["Class"]]["Capacity"] = str(int(classes[student["Class"]]["Capacity"]) + 1)
+                                            classes[student["Class"]]["Students"] = str(int(classes[student["Class"]]["Students"]) - 1)
+                                            classes[new_class]["Capacity"] = str(int(classes[new_class]["Capacity"]) - 1)
+                                            classes[new_class]["Students"] = str(int(classes[new_class]["Students"]) + 1)
+                                            student["Class"] = new_class
+                                            save_informations()
+                                            show_text("Student's class edited successfully...")
+                                            break
+                                    # endregion
                             
-                            student[edit_item] = new_information
-                            print("Student's" , edit_item.lower() , "edited successfully...")
-                            sleep(3)
-                            system("cls")
                             # endregion
 
-                            # region edit again 
-                            edit_again = input("Do you want to edit other information of this student(yes - etc) ? ").lower()
+                            # region edit again
+                            edit_again = input("Do you want to edit other informations of this student (yes - etc) ? ").lower()
                             system("cls")
                             if edit_again != "yes" :
                                 break
                             # endregion
-                
-                if not found_student_to_edit :
-                    print("No student found with this" , edit_item_to_found.lower() , "...")
-                    sleep(3)
-                    system("cls")
+                        
+                        break
+                if exit : 
+                    show_text("Returning to the main menu...")
+                    break
                 # endregion
 
             # endregion
-       
-        case "5" | "S" :
+
+        case "5" :
+            # region edit student's courses
+            first_time =True 
+            while True :
+                # region confirmation
+                if first_time :
+                    confirmation = input("Do you want to edit students courses(yes - etc) ? ").lower()
+                    first_time = False
+                else :
+                    confirmation = input("Do you want to edit students courses again(yes - etc) ? ").lower()
+                system("cls")
+                if confirmation != "yes" :
+                    break
+                # endregion
+
+                # region check student and courses
+                if not student_list :
+                    show_text("There is no student to edit courses...")
+                    break
+                if not courses :
+                    show_text("No courses exists...")
+                    break
+                # endregion
+
+                # region get code
+                exit = False
+                while True :
+                    show_students_informations()
+                    code = input("Please enter the code of student for which you want to edit the courses(Enter # to quit) : ")
+                    system("cls")
+                    if code == "#" :
+                        exit = True
+                        break
+                    elif isvalid_code(code) :
+                        break
+                if exit : 
+                    show_text("Returning to the main menu...")
+                    break
+                # endregion
+
+                # region edit student courses
+                for student in student_list :
+                    if student["Code"] == code :
+                        while True :
+                            # region choose edit
+                            exit = False
+                            while True:
+                                print("Student's information :")
+                                print(f"Code : {student["Code"]}")
+                                print(f"Name : {student["Name"]}")
+                                print(f"Last name : {student["Last name"]}")
+                                print(f"Age : {student["Age"]}")
+                                print(f"National code : {student["National code"]}")
+                                print(f"Student code : {student["Student code"]}")
+                                print(f"Phone number : {student["Phone number"]}")
+                                print(f"Class : {student["Class"]}")
+                                if student["Courses"] == "0" :
+                                    print("Courses : No courses")
+                                    print("-" * 100)
+                                else :
+                                    print("Courses :")
+                                    show_student_course(student)
+                                print("1.Add a course        2.Remove a course     3.Edit scores         0.Quit")
+                                student_courses_edit_choose = input("Please enter the edit you want to do : ")
+                                system("cls")
+                                if not student_courses_edit_choose or student_courses_edit_choose.isspace() :
+                                    show_text("Empty input ! Please choose an option...")
+                                elif student_courses_edit_choose not in frozenset(("0" , "1" , "2" , "3")) :
+                                    show_text("Invalid input ! Please choose an option between 1 and 3...")
+                                else :
+                                    break
+                            if student_courses_edit_choose == "0" : 
+                                exit = True
+                                break
+                            # endregion
+
+                            # region edit student courses
+                            match student_courses_edit_choose :
+                                case "1" :
+                                    # region add courses
+                                    while True :
+                                        # region get course code
+                                        exit = False
+                                        while True :
+                                            show_courses_information()
+                                            course_code = input("Please enter the code of course you want to add(Enter # to quit) : ")
+                                            system("cls")
+                                            if course_code == "#" :
+                                                exit = True
+                                                break
+                                            elif isvalid_course_code(course_code) :
+                                                if any(course_code == student_course["Course code"] for student_course in student["Courses information"]) :
+                                                    show_text("Student already have this course ! Try another course...")
+                                                else :
+                                                    break
+                                        if exit : break
+                                        # endregion
+                                        
+                                        # region add course to student
+                                        for course in courses :
+                                            if course_code == course["Code"] :
+                                                # region total capacity check
+                                                if course["Total capacity"] == "0" :
+                                                    show_text("Course is full...")
+                                                    break
+                                                # endregion
+
+                                                # region add course confirmation
+                                                print("Course information :")
+                                                print(f"Code : {course["Code"]}")
+                                                print(f"Course name : {course["Course name"]}")
+                                                print(f"Teacher : {course["Teacher"]}")
+                                                print(f"Offline capacity : {course["Offline capacity"]}")
+                                                print(f"Offline students : {course["Offline students"]}")
+                                                print(f"Online capacity : {course["Online capacity"]}")
+                                                print(f"Online students : {course["Online students"]}")
+                                                print(f"Total capacity : {course["Total capacity"]}")
+                                                print(f"Total students : {course["Total students"]}")
+                                                print("-" * 100)
+                                                course_add_confirmation = input("Do you want to add this course(yes - etc) ? ").lower()
+                                                system("cls")
+                                                if course_add_confirmation != "yes" :
+                                                    show_text("Course addition canceled...")
+                                                    break
+                                                # endregion
+
+                                                # region choose online or offline
+                                                while True :
+                                                    print("Course information :")
+                                                    print(f"Code : {course["Code"]}")
+                                                    print(f"Course name : {course["Course name"]}")
+                                                    print(f"Teacher : {course["Teacher"]}")
+                                                    print(f"Offline capacity : {course["Offline capacity"]}")
+                                                    print(f"Offline students : {course["Offline students"]}")
+                                                    print(f"Online capacity : {course["Online capacity"]}")
+                                                    print(f"Online students : {course["Online students"]}")
+                                                    print(f"Total capacity : {course["Total capacity"]}")
+                                                    print(f"Total students : {course["Total students"]}")
+                                                    print("-" * 100)
+                                                    online_offline = input("Do you want to add this course 1.oniline or 2.offline(Enter # to quit) : ")
+                                                    system("cls")
+                                                    if online_offline == "#" :
+                                                        exit = True
+                                                        break
+                                                    elif not online_offline or online_offline.isspace() :
+                                                        show_text("Empty input ! Please choose an option...")
+                                                    elif online_offline not in frozenset(("1" , "2")) :
+                                                        show_text("Invalid input ! Please choose an option between 1 and 2...")
+                                                    else :
+                                                        break
+                                                if exit : break
+                                                # endregion
+                                                
+                                                # region add
+                                                if online_offline == "1" :
+                                                    if course["Online capacity"] == "0" :
+                                                        show_text("Course is full...")
+                                                    else :
+                                                        student["Courses"] = str(int(student["Courses"]) + 1) 
+                                                        student["Courses information"].append({"Course code":course["Code"] , "Course name":course["Course name"] , "Presentation":"Online" , "Score" : "Not registered"})
+                                                        course["Online capacity"] = str(int(course["Online capacity"]) - 1)
+                                                        course["Total capacity"] = str(int(course["Total capacity"]) - 1)
+                                                        course["Online students"] = str(int(course["Online students"]) + 1)
+                                                        course["Total students"] = str(int(course["Total students"]) + 1)
+                                                        save_informations()
+                                                        show_text("Course added successfully...")
+                                                elif online_offline == "2" :
+                                                    if course["Offline capacity"] == "0" :
+                                                        show_text("Course is full...")
+                                                    else :
+                                                        student["Courses"] = str(int(student["Courses"]) + 1) 
+                                                        student["Courses information"].append({"Course code":course["Code"] , "Course name":course["Course name"] , "Presentation":"Offline" , "Score" : "Not registered"})
+                                                        course["Offline capacity"] = str(int(course["Offline capacity"]) - 1)
+                                                        course["Total capacity"] = str(int(course["Total capacity"]) - 1)
+                                                        course["Offline students"] = str(int(course["Offline students"]) + 1)
+                                                        course["Total students"] = str(int(course["Total students"]) + 1)
+                                                        save_informations()
+                                                        show_text("Course added successfully...")
+                                                break
+                                                # endregion
+
+                                        # endregion
+
+                                        # region add course to student again
+                                        add_student_course_again = input("Do you want to add other courses for this student(yes - etc) ? ").lower()
+                                        system("cls")
+                                        if add_student_course_again != "yes" :
+                                            break
+                                        # endregion
+
+                                    # endregion
+
+                                case "2" :
+                                    # region remove course
+                                    while True :
+                                        # region student course check
+                                        if student["Courses"] == "0" :
+                                            show_text("There is no course to remove...")
+                                            break
+                                        # endregion
+
+                                        # region get course code
+                                        exit = False
+                                        while True :
+                                            print("Student's information :")
+                                            print(f"Code : {student["Code"]}")
+                                            print(f"Name : {student["Name"]}")
+                                            print(f"Last name : {student["Last name"]}")
+                                            print(f"Age : {student["Age"]}")
+                                            print(f"National code : {student["National code"]}")
+                                            print(f"Student code : {student["Student code"]}")
+                                            print(f"Phone number : {student["Phone number"]}")
+                                            print(f"Class : {student["Class"]}")
+                                            print("Courses :")
+                                            show_student_course(student)
+                                            course_code=input("Please enter the code of course you want to remove(Enter # to quit) : ")
+                                            system("cls")
+                                            if course_code == "#" :
+                                                exit = True
+                                                break
+                                            elif not course_code or course_code.isspace() :
+                                                show_text("Empty input ! Please enter a code...")
+                                            elif not any(course_code == student_course["Course code"] for student_course in student["Courses information"]) :
+                                                show_text("This student doesn't have any course with this code ! Try again...")
+                                            else :
+                                                break
+                                        if exit : break
+                                        # endregion
+
+                                        # region remove student course
+                                        for student_course in student["Courses information"] :
+                                            if course_code == student_course["Course code"] :
+                                                print("Course information :")
+                                                print(f"Course code : {student_course["Course code"]}")
+                                                print(f"Course name : {student_course["Course name"]}")
+                                                print(f"Presentation : {student_course["Presentation"]}")
+                                                print(f"Score : {student_course["Score"]}")
+                                                print("-" * 100)
+                                                remove_course_confirmation = input("Do you want to remove this course(yes - ect) ? ").lower()
+                                                system("cls")
+                                                if remove_course_confirmation != "yes" :
+                                                    show_text("Course removal canceled...")
+                                                    break
+                                                student["Courses"] = str(int(student["Courses"]) - 1)
+                                                student["Courses information"].remove(student_course)
+                                                for course in courses :
+                                                    if course["Code"] == course_code : 
+                                                        course["Total capacity"] = str(int(course["Total capacity"]) + 1)
+                                                        course["Total students"] = str(int(course["Total students"]) - 1)
+                                                        if student_course["Presentation"] == "Online" :
+                                                            course["Online capacity"] = str(int(course["Online capacity"]) + 1)
+                                                            course["Online students"] = str(int(course["Online students"]) - 1)
+                                                        elif student_course["Presentation"] == "Offline" :
+                                                            course["Offline capacity"] = str(int(course["Offline capacity"]) + 1)
+                                                            course["Offline students"] = str(int(course["Offline students"]) - 1)
+                                                        show_text("Course removed successfully...")
+                                                        save_informations()
+                                                        break
+                                                break
+                                        # endregion
+
+                                        # region remove student course again
+                                        remove_course_again = input("Do you want to remove other courses from this student(yes - etc) ? ").lower()
+                                        system("cls")
+                                        if remove_course_again != "yes" :
+                                            break
+                                        # endregion
+                                    
+                                    # endregion
+
+                                case "3" :
+                                    # region edit student courses scores
+                                    while True :
+                                        # region check student course
+                                        if student["Courses"] == "0" :
+                                            show_text("There is no course to edit...")
+                                            break
+                                        # endregion
+
+                                        # region get student course code
+                                        while True :
+                                            print("Student's information :")
+                                            print(f"Code : {student["Code"]}")
+                                            print(f"Name : {student["Name"]}")
+                                            print(f"Last name : {student["Last name"]}")
+                                            print(f"Age : {student["Age"]}")
+                                            print(f"National code : {student["National code"]}")
+                                            print(f"Student code : {student["Student code"]}")
+                                            print(f"Phone number : {student["Phone number"]}")
+                                            print(f"Class : {student["Class"]}")
+                                            print("Courses :")
+                                            show_student_course(student)
+                                            course_code = input("Please enter the code of cousre you want to edit the score for(Enter # to quit) : ")
+                                            system('cls')
+                                            if course_code == "#" :
+                                                exit = True
+                                                break
+                                            elif not course_code or course_code.isspace() :
+                                                show_text("Empty input ! Please enter a code...")
+                                            elif not any(course_code == student_course["Course code"] for student_course in student["Courses information"]) :
+                                                show_text("This student doesn't have any course with this code ! Try again...")
+                                            else :
+                                                break
+                                        if exit : break
+                                        # endregion
+
+                                        # region edit score
+                                        for student_course in student["Courses information"] :
+                                            if course_code == student_course["Course code"] :
+                                                while True :
+                                                    print(f"Course : {student_course["Course name"]}")
+                                                    print(f"Previous score : {student_course["Score"]}")
+                                                    new_score = input("Please enter the new score(Enter # to quit) : ")
+                                                    system("cls")
+                                                    if new_score == "#" :
+                                                        break
+                                                    elif isvalid_score(new_score) :
+                                                        student_course["Score"] = new_score
+                                                        show_text("Score edited successfully...")
+                                                        save_informations()
+                                                        break
+                                                break
+                                        # endregion
+
+                                        # region edit student course score again
+                                        edit_course_score_again = input("Do you want to edit scores for other courses for this student(yes - etc) ? ").lower()
+                                        system("cls")
+                                        if edit_course_score_again != "yes" :
+                                            break
+                                        # endregion
+
+                                    # endregion
+
+                            # endregion
+                    
+                        break
+                if exit : 
+                    show_text("Returning to the main menu...")
+                    break
+                # endregion
+
+            # endregion
+
+        case "6" :
             # region search student
-            counter = 0 
+            first_time = True 
             while True : 
                 # region confirmation 
-                if not counter :
+                if first_time :
                     confirmation = input("Do you want to search an information(yes - etc) ? ").lower()
-                    counter += 1
+                    first_time = False
                 else :
-                    confirmation = input("Do you want to search again(yes - etc) ? ").lower()
+                    confirmation = input("Do you want to search an information again(yes - etc) ? ").lower()
                 system("cls")
                 if confirmation != "yes" :
                     break
                 # endregion 
+
+                # region student check
+                if not student_list :
+                    show_text("There is no student to search information...")
+                    break
+                # endregion
 
                 # region get information to search
                 while True :
                     search = input("Enter the title you want to search : ")
                     system("cls")
-                    if not search :
-                        print("Empty input ! Please enter an information to search...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    break
+                    if not search or search.isspace() :
+                        show_text("Empty input ! Please enter an information to search...")
+                    else :
+                        break
                 # endregion
 
-                # region search and show
+                # region check search
                 print("Searching...")
-                sleep(5)
-                system("cls")
                 search_found = False
                 for student in student_list :
-                    if search in student : 
-                        search_found = True 
+                    for information in student.values() :
+                        if search in information :
+                            search_found = True
+                            break
+                    if search_found :
                         break
+                sleep(3)
+                system("cls")
+                # endregion
+
+                # region show
                 if not search_found :
-                    print("Item not found...")
-                    sleep(3)
-                    system("cls")
+                    show_text("Item not found...")
                 else :
-                    informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
-                    print("Search result : (The searched item is marked with brackets)")
-                    print("=" * 160)
+                    print(f"Search result for searched item {search} :")
+                    informations=("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Phone number" , "Class" , "Courses")
+                    lenghts = {}
+                    for information in informations :
+                        max_len = len(information)
+                        for student in student_list :
+                            search_found = False
+                            for student_information in student.values() :
+                                if search in student_information :
+                                    search_found = True
+                                    break
+                            if search_found :
+                                if len(student[information]) > max_len :
+                                    max_len = len(student[information])
+                        lenght = max_len + 10
+                        lenghts[information] = lenght
+                    print("=" *160)
                     print("Row" , end = "\t")
                     for information in informations :
-                        if information in frozenset(("Code" , "Age" , "Class")) or len(information) >= 8 :
-                            end_ = "\t"
-                        else : 
-                            end_ = "\t\t"
+                        end_ = (lenghts[information] - len(information)) * " "
                         print(information , end = end_)
                     print()
                     print("-" * 160)
                     row = 0
                     for student in student_list : 
-                        if search in student :
+                        search_found = False
+                        for student_information in student.values() :
+                            if search in student_information :
+                                search_found = True
+                                break
+                        if search_found :
                             row += 1
                             print(row , end = "\t")
                             for information in informations :
                                 repair = False
-                                if  search == student[information] :
-                                    student[information] = "{" + student[information] + "}"
+                                if search in student[information] :
+                                    join_string = "{" + search + "}"
+                                    student[information] = join_string.join(student[information].split(search))
                                     repair = True
-                                if information in frozenset(("Code" , "Age" , "Class")) or len(student[information]) >= 8 :
-                                    end_ = "\t"
-                                else :
-                                    end_ = "\t\t"
+                                end_ = (lenghts[information] - len(student[information])) * " "
                                 print(student[information] , end = end_)
-                            
-                                if repair :                                
-                                    student[information] = search
-                            print()  
+                                if repair :
+                                    student[information] = search.join(student[information].split(join_string))
+                            print()
                     print("=" * 160)
                 # endregion
 
             # endregion
         
-        case "6" | "Re" :
-            # region report
-            while True :
-                # region confirmation 
-                confirmation = input("Do you want to see student's report(yes - etc) ? ").lower()
+        case "7" :
+            # region add class
+            first_time = True 
+            while True : 
+                # region confoirmation
+                if first_time :
+                    confirmation = input("Do you want to add a new class(yes - etc) ? ").lower()
+                    first_time = False
+                else : 
+                    confirmation = input("Do you want to add a new class again(yes - etc) ? ").lower()
                 system("cls")
                 if confirmation != "yes" :
                     break
                 # endregion
-                
-                # region choose report
-                while True :
-                    print("Reports : ")
-                    print("1.Class report       2.Subject report")
-                    report_choose = input("Which report do you want to see ? ")
+
+                # region get name 
+                exit = False
+                while True : 
+                    print("Please complete information(Enter # to quit) :")
+                    class_name = input("Class name : ")
                     system("cls")
-                    if not report_choose :
-                        print("Empty input ! Please choose an option...")
-                        sleep(3)
-                        system("cls")
-                        continue
-                    elif report_choose not in frozenset(( "1" , "2" )) :
-                        print("Wrong input ! Please choose option 1 or 2 ...")
-                        sleep(3)
-                        system("cls")
-                        continue
+                    if class_name == "#" :
+                        exit = True 
+                        break
+                    elif isvalid_class_name(class_name) : 
+                        break
+                if exit : 
+                    show_text("Returning to the main menu...")
                     break
                 # endregion
 
-                # region calculation
-                classes = ( "A" , "B" , "C" ) 
-                lessons = ( "Php score" , "Python score" , "JS score")
-                scores = {  "A" : {"Php score" : [] ,"Python score" : [] ,"JS score" : [] ,"Capacity" : 0 } ,
-                            "B" : {"Php score" : [] ,"Python score" : [] ,"JS score" : [] ,"Capacity" : 0 } ,
-                            "C" : {"Php score" : [] ,"Python score" : [] ,"JS score" : [] ,"Capacity" : 0 } }
-                for student in student_list :
-                    scores[student["Class"]]["Capacity"] += 1
-                    for lesson in lessons :
-                        if student[lesson] != "Not registered" :
-                            scores[student["Class"]][lesson].append(int(student[lesson]))
-                # endregion
-
-                # region choose class report
-                if report_choose == "1" :
-                    while True : 
-                        class_ = input("Which class report would you like to see(A or B or C) ? ").upper()
-                        system("cls")
-                        if not class_ : 
-                            print("Empty input ! Please choose a class...")
-                            sleep(3)
-                            system("cls")
-                            continue
-                        elif class_ not in frozenset(( "A" , "B" , "C" )) :
-                            print("Wrong input ! Please choose a class between A or B or C...")
-                            sleep(3)
-                            system("cls")
-                            continue
+                # region get capacity
+                exit = False
+                while True :
+                    print("Please complete information :")
+                    print(f"Class name : {class_name}")
+                    class_capacity = input("Capacity : ")
+                    system("cls")
+                    if class_capacity == "#" :
+                        exit = True
                         break
-                # endregion
-                    
-                # region show class report
-                    print("Class" , class_ , ":")
-                    informations = ("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Class" , "Php score" , "Python score" , "JS score" , "Status")
-                    print("=" * 160)
-                    print("Row" , end = "\t")
-                    for information in informations :
-                        if information in frozenset(("Code" , "Age" , "Class")) or len(information) >= 8 :
-                            end_ = "\t"
-                        else : 
-                            end_ = "\t\t"
-                        print(information , end = end_)
-                    print()
-                    print("-" * 160)
-                    row = 0
-                    for student in (student_list) :
-                        if student["Class"] ==  class_ :
-                            row += 1 
-                            print(row , end = "\t")
-                            for information in informations :
-                                if information in frozenset(("Code" , "Age" , "Class")) or len(student[information]) >= 8 :
-                                    end_ = "\t"
-                                else :
-                                    end_ = "\t\t"
-                                print(student[information], end = end_)
-                            print()  
-                    print("=" * 160)
-                    
-                    print("Number of students :" , scores[class_]["Capacity"])
-                    print()
-                    for lesson in lessons :
-                        print((lesson).upper() , "S : " , sep = "")
-                        if scores[class_][lesson] :
-                            print(lesson ,"s average : " , sum(scores[class_][lesson])/len(scores[class_][lesson]) , sep = "")
-                            print("Highest" , lesson , "score :" , max(scores[class_][lesson]))
-                            print("Lowest" , lesson , "score :" , min(scores[class_][lesson]))
-                        else :
-                            print(lesson ,"s average : No " , lesson , " registered for this class" , sep ="")
-                            print("Highest" , lesson , "score : No" , lesson , "registered for this class")
-                            print("Lowest" , lesson , "score : No" , lesson , "registered for this class" )
-                        print()
-                    print("-" * 100)
-                # endregion
-
-                # region choose lesson report
-                if report_choose == "2" :
-                    while True :
-                        print("Lessons :")
-                        print("1.Php          2.Python       3.JS           4.All" )
-                        report_lesson = input("Which lesson report would you like to see ? ")
-                        system("cls")
-                        if not report_lesson :
-                            print("Empty input ! Please choose a lesson...")
-                            sleep(3)
-                            system("cls")
-                            continue
-                        elif report_lesson not in frozenset(( "1" , "2" , "3" , "4" )) :
-                            print("Wrong input ! Please choose an option between 1 and 4...")
-                            sleep(3)
-                            system("cls")
-                            continue
+                    elif isvalid_capacity(class_capacity) :
                         break
+                if exit : 
+                    show_text("Returning to the main menu...")
+                    break
                 # endregion
 
-                # region show lesson report
-                    match report_lesson :
-                        case "1" :  
-                            lessons = ("Php score" ,)
-                        case "2" : 
-                            lessons = ("Python score" ,) 
-                        case "3" :
-                            lessons = ("JS score" ,)
-                        case "4" : 
-                            lessons = ("Php score" , "Python score" , "JS score")
-                    for lesson in lessons : 
-                        lesson_scores = ( *scores["A"][lesson] , *scores["B"][lesson] , *scores["C"][lesson] )
-                        print(lesson.upper() , "S report : " , sep="")
-                        if lesson_scores :  
-                            print("Average :" , sum(lesson_scores)/len(lesson_scores))
-                            print("Highest score :" , max(lesson_scores))
-                            print("Lowest score :" , min(lesson_scores))
-                            for class_ in classes :
-                                if scores[class_][lesson] :
-                                    print("Class" , class_ , "average :" , sum(scores[class_][lesson])/len(scores[class_][lesson]))
-                                else : 
-                                    print("Class" , class_ , "average : No score registered for this class" )
-                        else :
-                            print("No score registered for this lesson")    
-                        if len(lessons) == 3 :
-                            print()
-                    print("-" * 100)
+                # region show information and confirmation
+                print("Class information :")
+                print(f"Class name : {class_name}")
+                print(f"Capacity : {class_capacity}")
+                print("-" * 100)
+                add_class_confirmation = input("Do you want to add this class(yes-etc) ? ").lower()
+                system("cls")
+                if add_class_confirmation == "yes" :
+                    classes[class_name] = {"Capacity" : class_capacity , "Students" : "0"}
+                    save_informations()
+                    show_text("New class added successfully...")
+                else : 
+                    show_text("New class adition canceled...")
                 # endregion
                 
-                # region exit
-                input("Press enter to back to main menu...")
+            # endregion  
+        
+        case "8" :
+            # region show classes
+            while True : 
+                # region confoirmation
+                confirmation = input("Do you want to show classes informations(yes - etc) ? ").lower()
                 system("cls")
+                if confirmation != "yes" :
+                    break
+                # endregion
+
+                # region class check
+                if not classes :
+                    show_text("There is no class to show information...")
+                    break
+                # endregion
+
+                # region show classes information
+                show_classes_information()
+                show_class_student = input("Do you want to see students of each class(yes - etc) ? ").lower()
+                system("cls")
+                if show_class_student != "yes" :
+                    break
+                # endregion
+
+                # region show classes students
+                exit = False
+                while True :
+                    # region choose class
+                    while True :
+                        print("Classes :")
+                        for number , class_ in enumerate(classes.keys() , 1) :
+                            print(f"{number}.{class_}")
+                        print("-" * 100)
+                        class_number = input("Please Enter the number of class you want to see its students(Enter # to quit) : ")
+                        system("cls")
+                        if class_number == "#" :
+                            exit = True
+                            break
+                        elif not class_number or class_number.isspace() :
+                            show_text("Empty input ! Please choose a class...")
+                        elif class_number not in frozenset([str(number) for number in range(1 , len(classes.keys())+1)]) :
+                            show_text(f"invalid input ! Please choose a number between 1 and {len(classes.keys())+1}...")
+                        else :
+                            break
+                    if exit : 
+                        show_text("Returning to the main menu...")
+                        break
+                    # endregion
+
+                    # region show class and student
+                    show_class = list(classes.keys())[int(class_number) - 1] 
+                    if classes[show_class]["Students"] == "0" :
+                        show_text("There is no student in this class...")
+                    else :
+                        informations=("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Phone number" ,"Class" , "Courses")
+                        print(f"Class {show_class} :")
+                        lenghts = {}
+                        for information in informations :
+                            max_len = len(information)
+                            for student in student_list :
+                                if student["Class"] == show_class :
+                                    if len(student[information]) > max_len :
+                                        max_len = len(student[information])
+                            lenght = max_len + 4
+                            lenghts[information] = lenght
+                        print("=" *160)
+                        print("Row" , end = "\t")
+                        for information in informations :
+                            end_ = (lenghts[information] - len(information)) * " "
+                            print(information , end = end_)
+                        print()
+                        print("-" * 160)
+                        row = 0
+                        for student in student_list: 
+                            if student["Class"] == show_class :
+                                row += 1
+                                print(row , end = "\t")
+                                for information in informations :
+                                    end_ = (lenghts[information] - len(student[information])) * " "
+                                    print(student[information], end = end_)
+                                print()  
+                        print("=" * 160)
+                    # endregion
+
+                    # region show classes students again
+                    show_class_students_again = input("Do you want to see students of other classes(yes - etc) ? ")
+                    system("cls")
+                    if show_class_students_again != "yes" :
+                        break
+                    # endregion
+                
                 break
                 # endregion
 
             # endregion
-        
-        case "7" | "Q" :
-            # region quit
-            print("Program closed successfully. Good luck")
-            sleep(5)
-            system("cls")
-            exit()
+
+        case "9" :
+            # region remove class
+            first_time = True
+            while True :
+                # region confirmation
+                if first_time :
+                    confirmation = input("Do you want to remove a class(yes - etc) ? ").lower()
+                    first_time = False
+                else :
+                    confirmation = input("Do you want to remove a class again(yes - etc) ? ").lower()
+                system("cls")
+                if confirmation != "yes" :
+                    break
+                # endregion
+
+                # region class check
+                if not classes :
+                    show_text("There is no class to remove...")
+                    break
+                # endregion
+
+                # region get class name 
+                exit = False
+                while True :
+                    show_classes_information()
+                    class_name = input("Enter the name of class you want to remove(Enter # to quit) : ")
+                    system("cls")
+                    if class_name == "#" :
+                        exit = True
+                        break
+                    elif not class_name or class_name.isspace() :
+                        show_text("Empty input ! Please enter a name...")
+                    elif not class_name in classes.keys() :
+                        show_text("Class doesn't exist ! Try again...")
+                    else :
+                        break
+                if exit :
+                    show_text("Returning to the main menu...")
+                    break
+                # endregion
+
+                # region remove
+                print("Class information :")
+                print(f"Class name : {class_name}")
+                print(f"Capacity : {classes[class_name]["Capacity"]}")
+                print(f"Students : {classes[class_name]["Students"]}")
+                print("-" * 100)
+                remove_class_confirmation = input("Do you want to remove this class(yes - etc) ? ").lower()
+                system("cls")
+                if remove_class_confirmation == "yes" :
+                    if classes[class_name]["Students"] != "0" :
+                        show_text("you can't remove class with existing student...")
+                    else :
+                        classes.pop(class_name)
+                        save_informations()
+                        show_text("Class removed successfully...")
+                else : 
+                    show_text("Class removing canceled...")
+                # endregion
+
             # endregion
+        
+        case "10" :
+            # region edit class
+            first_time = True
+            while True :
+                # region confirmation
+                if first_time :
+                    confirmation = input("Do you want to edit a class capacity(yes - etc) ? ").lower()
+                    first_time = False
+                else :
+                    if not classes :
+                        break
+                    confirmation = input("Do you want to edit a class capacity again(yes - etc) ? ").lower()
+                system("cls")
+                if confirmation != "yes" :
+                    break
+                # endregion
+
+                # region class check
+                if not classes :
+                    show_text("There is no class to edit...")
+                    break
+                # endregion
+
+                # region get class name
+                exit = False
+                while True :
+                    show_classes_information()
+                    class_name = input("Enter the name of class you want to edit(Enter # to quit) : ")
+                    system("cls")
+                    if class_name == "#" :
+                        exit = True
+                        break
+                    elif not class_name or class_name.isspace() :
+                        show_text("Empty input ! Please enter a name...")
+                    elif not class_name in classes.keys() :
+                        show_text("Class doesn't exist ! Try again...")
+                    else : 
+                        break
+                if exit :
+                    show_text("Returning to the main menu...")
+                    break
+                # endregion
+
+                # region choose edit capacity
+                exit = False
+                while True :
+                    print(f"Current capacity : {classes[class_name]["Capacity"]}")
+                    increase_decrease = input("Do you want to 1.increase or 2.decrease the capacity(Enter # to quit) ? ")
+                    system("cls")
+                    if increase_decrease == "#" :
+                        exit = True
+                        break
+                    elif not increase_decrease or increase_decrease.isspace() :
+                        show_text("Empty input ! Please choose an option...")
+                    elif increase_decrease not in frozenset(("1" , "2")) :
+                        show_text("Invalid input ! Please choose an option between 1 and 2...")
+                    else :
+                        break
+                if exit :
+                    show_text("Returning to the main menu...")
+                    break
+                # endregion
+
+                # region edit capacity
+                exit = False
+                if increase_decrease == "1" : 
+                    # region increase capacity
+                    while True :
+                        print(f"Current capacity : {classes[class_name]["Capacity"]}")
+                        increase_number = input("Please enter the amount you want to increase the capacity by(Enter # to quit) : ")
+                        system("cls")
+                        if increase_number == "#" :
+                            exit = True
+                            break
+                        elif not increase_number or increase_number.isspace() :
+                            show_text("Empty input ! Please enter a increase amount...")
+                        elif not increase_number.isdigit() :
+                            show_text("Invalid input ! Please enter a number for increase amount...")
+                        else :
+                            break
+                    if exit :
+                        show_text("Returning to the main menu...")
+                        break
+                    classes[class_name]["Capacity"] = str(int(classes[class_name]["Capacity"]) + int(increase_number))
+                    save_informations()
+                    show_text("Capacity increased successfully...")
+                    # endregion
+
+                elif increase_decrease == "2" :
+                    # region decrease capacity
+                    while True :
+                        print(f"Current capacity : {classes[class_name]["Capacity"]}")
+                        decrease_number = input("Please enter the amount you want to decrease the capacity by(Enter # to quit) : ")
+                        system("cls")
+                        if decrease_number == "#" :
+                            exit = True
+                            break
+                        elif not decrease_number or decrease_number.isspace() :
+                            show_text("Empty input ! Please enter a decrease amount...")
+                        elif not decrease_number.isdigit() :
+                            show_text("Invalid input ! Please enter a number for decrease amount...")
+                        elif int(decrease_number) > int(classes[class_name]["Capacity"]) :
+                            show_text("Invalid input ! Capacity can't be less than zero...")
+                        else :
+                            break
+                    if exit :
+                        show_text("Returning to the main menu...")
+                        break
+                    classes[class_name]["Capacity"] = str(int(classes[class_name]["Capacity"]) - int(decrease_number))
+                    save_informations()
+                    show_text("Capacity decreased successfully...")
+                    # endregion
+                
+                # endregion
+
+            # endregion
+        
+        case "11" :
+            # region add a course
+            first_time = True 
+            while True :
+                # region confirmation
+                if first_time :
+                    confirmation = input("Do you want to add a new course(yes - etc) ? ").lower()
+                    first_time = False
+                else :
+                    confirmation = input("Do you want to add a new course again(yes - etc) ? ").lower()
+                system("cls")
+                if confirmation != "yes" :
+                    break
+                # endregion
+
+                # region get code
+                print("Choosing code...")
+                for code in range(1 , len(courses) + 2) :
+                    if not any(str(code) == course["Code"] for course in courses) :
+                        break
+                code = str(code)
+                sleep(3)
+                system("cls")
+                # endregion
+
+                # region get name
+                exit = False
+                while True :
+                    print("Please complete the information(Enter # to quit) : ")
+                    print(f"Code : {code}")
+                    course_name = input("Course name : ")
+                    system("cls")
+                    if course_name == "#" :
+                        exit = True
+                        break
+                    elif isvalid_course_name(course_name) :
+                        break
+                if exit :
+                    show_text("Returning to the main menu...")
+                    break
+                # endregion
+
+                # region get teacher
+                exit = False
+                while True :
+                    print("Please complete the information(Enter # to quit) : ")
+                    print(f"Code : {code}")
+                    print(f"Course name : {course_name}")
+                    teacher = input("Teacher : ")
+                    system("cls")
+                    if teacher == "#" :
+                        exit = True
+                        break
+                    elif isvalid_full_name(teacher) :
+                        break
+                if exit :
+                    show_text("Returning to the main menu...")
+                    break
+                # endregion
+                
+                # region get offline capacity
+                exit = False
+                while True :
+                    print("Please complete the information(Enter # to quit) : ")
+                    print(f"Code : {code}")
+                    print(f"Course name : {course_name}")
+                    print(f"Teacher : {teacher}")
+                    offline_capacity = input("Offline capacity : ")
+                    system("cls")
+                    if offline_capacity == "#" :
+                        exit = True
+                        break
+                    elif isvalid_capacity(offline_capacity) :
+                        break
+                if exit :
+                    show_text("Returning to the main menu...")
+                    break
+                # endregion
+                
+                # region get online capacity
+                exit = False
+                while True :
+                    print("Please complete the information(Enter # to quit) : ")
+                    print(f"Code : {code}")
+                    print(f"Course name : {course_name}")
+                    print(f"Teacher : {teacher}")
+                    print(f"Offline capacity : {offline_capacity}")
+                    online_capacity = input("Online capacity : ")
+                    system("cls")
+                    if online_capacity == "#" :
+                        exit = True
+                        break
+                    elif isvalid_capacity(online_capacity) :
+                        break
+                if exit :
+                    show_text("Returning to the main menu...")
+                    break
+                # endregion
+
+                # region show information and confirmation
+                print("Course information : ")
+                print(f"Code : {code}")
+                print(f"Course name : {course_name}")
+                print(f"Teacher : {teacher}")
+                print(f"Offline capacity : {offline_capacity}")
+                print(f"Online capacity : {online_capacity}")
+                print(f"Total capacity : {int(offline_capacity) + int(online_capacity)}")
+                print("-" * 100)
+                add_confirmation = input("Do you want to add this course(yes - etc) ? ").lower()
+                system("cls")
+                if add_confirmation == "yes" :
+                    courses.append({"Code":code , "Course name":course_name , "Teacher":teacher , "Offline capacity":offline_capacity , "Offline students":"0" , "Online capacity":online_capacity , "Online students":"0" , "Total capacity":str(int(offline_capacity) + int(online_capacity)) , "Total students":"0"})
+                    save_informations()
+                    show_text("New course added successfully...")
+                else : 
+                    show_text("New course addition canceled...")
+                # endregion
+
+            # endregion
+        
+        case "12" :
+            # region show courses
+            while True :
+                # region confirmation
+                confirmation = input("Do you want to show courses information(yes - etc) ? ").lower()
+                system("cls")
+                if confirmation != "yes" :
+                    break
+                # endregion
+
+                # region course check
+                if not courses :
+                    show_text("There is no course to show information...")
+                    break
+                # endregion
+
+                # region choose all or selected informayion
+                exit = False
+                while True :
+                    all_or_selected = input("Do you want to see 1.all informations or 2.selected informations(Enter # to quit) ? ")
+                    system("cls")
+                    if all_or_selected == "#" :
+                        exit = True
+                        break
+                    elif not all_or_selected or all_or_selected.isspace() :
+                        show_text("Empty input ! Please choose an option...")
+                    elif all_or_selected not in frozenset(("1" , "2")) :
+                        show_text("Wrong input ! Please choose option between 1 and 2...")
+                    else : 
+                        break
+                if exit :
+                    show_text("Returning to the main menu...")
+                    break
+                # endregion
+                
+                # region select informations
+                if all_or_selected == "1" :
+                    # region select all informations
+                    courses_informations = ("Code" , "Course name" , "Teacher" , "Offline capacity" , "Offline students" , "Online capacity" , "Online students" , "Total capacity" , "Total students" )
+                    # endregion
+                
+                elif all_or_selected == "2" :
+                    # region select specific informations
+                    courses_informations = []
+                    while True :
+                        # region choose information
+                        exit = False
+                        while True :
+                            print("Informations :")
+                            print("1.Course name             2.Teacher")
+                            print("3.Offline capacity        4.Offline students")
+                            print("5.Online capacity         6.Online students")
+                            print("7.Total capacity          8.Total students")
+                            print("0.Confirm selections")
+                            print()
+                            if courses_informations :
+                                print("selected : {" , " - ".join(courses_informations) , "}")
+                            else : 
+                                print("selected : Nothing selected yet...")
+                            print("-" * 100)
+                            display_inf = input("Please enter the information you want to see(Enter # to quit) : ")
+                            system("cls")
+                            if display_inf == "#" :
+                                exit = True
+                                break
+                            elif not display_inf or display_inf.isspace() :
+                                show_text("Empty input ! Please choose an option...")
+                            elif display_inf not in frozenset(("1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "0")) :
+                                show_text("Invalid input ! Please choose an option between 0 and 8")
+                            else : 
+                                break
+                        if exit : break
+                        # endregion
+
+                        # region match information
+                        match display_inf :
+                            case "1" : 
+                                display_inf = "Course name"
+                            case "2" : 
+                                display_inf = "Teacher"
+                            case "3" : 
+                                display_inf = "Offline capacity"
+                            case "4" : 
+                                display_inf = "Offline students"
+                            case "5" : 
+                                display_inf = "Online capacity"
+                            case "6" : 
+                                display_inf = "Online students"
+                            case "7" : 
+                                display_inf = "Total capacity"
+                            case "8" : 
+                                display_inf = "Total students"
+                            case "0" :
+                                if not courses_informations :
+                                    show_text("No item selected ! Please quit after selection...")
+                                    continue
+                                else :
+                                    break
+                        if display_inf not in courses_informations :
+                            courses_informations.append(display_inf)
+                        # endregion
+                    
+                    if exit :
+                        show_text("Returning to the main menu...")
+                        break
+                    courses_informations.insert(0 , "Code")
+                    # endregion
+
+                # endregion
+
+                # region show courses informations
+                show_courses_information(courses_informations)
+                show_course_students_confirmation = input("Do you want to see students of each courses(yee - etc) ? ").lower()
+                system("cls")
+                if show_course_students_confirmation != "yes" :
+                    break
+                # endregion
+
+                # region show courses students
+                while True :                    
+                    # region get course code
+                    exit = False
+                    while True :
+                        show_courses_information(courses_informations)
+                        course_code = input("Please enter the code of course you want to see its students(Enter # to quit) : ")
+                        system("cls")
+                        if course_code == "#" :
+                            exit = True
+                            break
+                        elif isvalid_course_code(course_code) :
+                            break
+                    if exit :
+                        show_text("Returning to the main menu...")
+                        break
+                    # endregion
+
+                    # region show course students
+                    for course in courses :
+                        if course_code == course["Code"] :
+                            course_students = course["Total students"]
+                            break
+                    if course_students == "0" :
+                        show_text("There is no student in this course...")
+                    else :
+                        informations=("Code" , "Name" , "Last name" , "Age" , "National code" , "Student code" , "Phone number" , "Class")
+                        lenghts = {}
+                        for information in informations :
+                            max_len = len(information)
+                            for student in student_list :
+                                if len(student[information]) > max_len :
+                                    max_len = len(student[information])
+                            lenght = max_len + 4
+                            lenghts[information] = lenght
+                        for course in courses :
+                            if course_code == course["Code"] :
+                                course_name = course["Course name"]
+                                break
+                        print(f"Course {course_code} : {course_name}")
+                        print("=" *160)
+                        print("Row" , end = "\t")
+                        for information in informations :
+                            end_ = (lenghts[information] - len(information)) * " "
+                            print(information , end = end_)
+                        print("Score")
+                        print("-" * 160)
+                        row = 0
+                        for student in student_list : 
+                            if any(course_code == student_course["Course code"] for student_course in student["Courses information"]) :
+                                row += 1
+                                print(row , end = "\t")
+                                for information in informations :
+                                    end_ = (lenghts[information] - len(student[information])) * " "
+                                    print(student[information], end = end_)
+                                for student_course in student["Courses information"] :
+                                    if course_code == student_course["Course code"] :
+                                        print(student_course["Score"])
+                                        break
+                        print("=" * 160)
+                    # endregion
+
+                    # region show courses students again
+                    show_course_students_again = input("Do you want to see students of other courses(yes - etc) ? ").lower()
+                    system("cls")
+                    if show_course_students_again != "yes" :
+                        break
+                    # endregion
+
+                break
+                # endregion
+
+            # endregion
+
+        case "13" :
+            # region remove a course
+            first_time = True 
+            while True :
+                # region comfirmation 
+                if first_time :
+                    confirmation = input("Do you want to remove a course(yes - etc) ? ").lower()
+                    first_time = False
+                else :
+                    confirmation = input("Do you want to remove a course again(yes - etc) ? ").lower()
+                system("cls")
+                if confirmation != "yes" :
+                    break
+                # endregion
+                 
+                # region course check
+                if not courses :
+                    show_text("There is no course to remove...")
+                    break
+                # endregion
+
+                # region get code 
+                exit = False
+                while True :
+                    show_courses_information()
+                    course_code = input("Please enter the code if course you want to remove(Enter # to quit) : ")
+                    system("cls")
+                    if course_code == "#" :
+                        exit = True
+                        break
+                    elif isvalid_course_code(course_code) :
+                        break
+                if exit :
+                    show_text("Returning to the main menu...")
+                    break
+                # endregion
+
+                # region remove
+                for course in courses :
+                    if course_code == course["Code"] :
+                        print("Course information : ")
+                        print(f"Code : {course["Code"]}")
+                        print(f"Course name : {course["Course name"]}")
+                        print(f"Teacher : {course["Teacher"]}")
+                        print(f"Offline capacity : {course["Offline capacity"]}")
+                        print(f"Offline students : {course["Offline students"]}")
+                        print(f"Online capacity : {course["Online capacity"]}")
+                        print(f"Online students : {course["Online students"]}")
+                        print(f"Total capacity : {course["Total capacity"]}")
+                        print(f"Total students : {course["Total students"]}")
+                        print("-" * 100)
+                        remove_course_confirmation = input("Do you want to remove this course(yes - etc) ? ").lower()
+                        system("cls")
+                        if remove_course_confirmation == "yes" :
+                            if course["Total students"] != "0" :
+                                for student in student_list :
+                                    for student_course in student["Courses information"].copy() :
+                                        if course_code == student_course["Course code"] :
+                                            student["Courses information"].remove(student_course)
+                                            student["Courses"] = str(int(student["Courses"]) - 1)
+                                            break
+                            courses.remove(course)
+                            save_informations()
+                            show_text("Course removed successfully...")
+                        else :
+                            show_text("course removing canceled...")
+                        break
+                # endregion
+
+            # endregion
+        
+        case "14" :
+            # region edit courses
+            first_time = True 
+            while True :
+                # region confiramtion
+                if first_time :
+                    confirmation = input("Do you want to edit courses informations(yes - etc) ? ").lower()
+                    first_time = False
+                else :
+                    confirmation = input("Do you want to edit courses informations again(yes - etc) ? ").lower()
+                system("cls")
+                if confirmation != "yes" :
+                    break
+                # endregion
+
+                # region course check
+                if not courses :
+                    show_text("There is no course to edit...")
+                    break
+                # endregion
+
+                # region get course code
+                exit = False
+                while True :
+                    show_courses_information()
+                    course_code = input("Please enter the code of course you want to edit(Enter # to quit) : ")
+                    system("cls")
+                    if course_code == "#" :
+                        exit = True
+                        break
+                    elif isvalid_course_code(course_code) :
+                        break
+                if exit :
+                    show_text("Returning to the main menu...")
+                    break
+                # endregion
+
+                # region edit
+                for course in courses :
+                    if course["Code"] == course_code :
+                        while True :
+                            # region choose information to edit
+                            exit = False
+                            while True :
+                                print("Course information : ")
+                                print(f"Code : {course["Code"]}")
+                                print(f"1.Course name : {course["Course name"]}")
+                                print(f"2.Teacher : {course["Teacher"]}")
+                                print(f"3.Offline capacity : {course["Offline capacity"]}")
+                                print(f"4.Online capacity : {course["Online capacity"]}")
+                                print("-" * 100)
+                                information_number=input("Please enter the number of information you want to edit(Enter # to quit) : ")
+                                system("cls")
+                                if information_number == "#" :
+                                    exit = True
+                                    break
+                                elif not information_number or information_number.isspace() :
+                                    show_text("Empty input ! Please enter a number...")
+                                elif information_number not in frozenset(("1" , "2" , "3" , "4")) :
+                                    show_text("Invalid input ! Please choose an option between 1 and 4...") 
+                                else :
+                                    break
+                            if exit : break
+                            # endregion
+
+                            # region edit information
+                            match information_number :
+                                case "1" :
+                                    # region edit name
+                                    while True :
+                                        print(f"Previous name : {course["Course name"]}")
+                                        new_course_name = input("Please enter the new course name(Enter # to quit) : ")
+                                        system("cls")
+                                        if new_course_name == "#" :
+                                            break
+                                        elif isvalid_course_name(new_course_name) :
+                                            course["Course name"] = new_course_name
+                                            save_informations()
+                                            show_text("Course name edited successfully...")
+                                            break
+                                    # endregion
+                                
+                                case "2" :
+                                    # region edit teacher
+                                    while True :
+                                        print(f"Previous teacher : {course["Teacher"]}")
+                                        new_teacher = input("Please enter the new teacher(Enter # to quit) : ")
+                                        system("cls")
+                                        if new_teacher == "#" :
+                                            break
+                                        elif isvalid_full_name(new_teacher) :
+                                            course["Teacher"] = new_teacher
+                                            show_text("Course's teacher edited successfully...")
+                                            save_informations()
+                                            break
+                                    # endregion
+                                
+                                case "3" :
+                                    # region edit offline capacity
+                                    while True :
+                                        print(f"Previous offline capacity : {course["Offline capacity"]}")
+                                        new_offline_capacity = input("Please enter the new offline capacity(Enter # to quit) : ")
+                                        system("cls")
+                                        if new_offline_capacity == "#" :
+                                            break
+                                        elif isvalid_capacity(new_offline_capacity) :
+                                            course["Offline capacity"] = new_offline_capacity
+                                            course["Total capacity"] = str(int(course["Offline capacity"]) + int(course["Online capacity"]))
+                                            save_informations()
+                                            show_text("Course's offline capacity edited successfully...")
+                                            break
+                                    # endregion
+                                
+                                case "4" :
+                                    # region edit online capacity
+                                    while True :
+                                        print(f"Previous online capacity : {course["Online capacity"]}")
+                                        new_online_capacity = input("Please enter the new online capacity(Enter # to quit) : ")
+                                        system("cls")
+                                        if new_online_capacity == "#" :
+                                            break
+                                        elif isvalid_capacity(new_online_capacity) :
+                                            course["Online capacity"] = new_online_capacity
+                                            course["Total capacity"] = str(int(course["Offline capacity"]) + int(course["Online capacity"]))
+                                            save_informations()
+                                            show_text("Course's online capacity edited successfully...")
+                                            break
+                                    # endregion
+
+                            # endregion
+
+                            # region edit again 
+                            course_information_edit_again = input("Do you wnat to edit other informations of this course(yes - etc) ? ").lower()
+                            system("cls")
+                            if course_information_edit_again != "yes" :
+                                break
+                            # endregion
+
+                        break
+                if exit :
+                    show_text("Returning to the main menu...")
+                    break
+                # endregion
+
+            # endregion
+            
+        case "15" :
+            # region show courses report
+            while True :
+                # region confirmation
+                confirmation = input("Do you want to show courses report(yes - etc) ? ").lower()
+                system("cls")
+                if confirmation != "yes" :
+                    break
+                # endregion
+
+                # region check courses
+                if not courses :
+                    show_text("There is no course to get report...")
+                    break
+                # endregion
+
+                # region show course report
+                while True :
+                    # region get course code
+                    exit = False
+                    while True :
+                        show_courses_information()
+                        course_code = input("Please enter the code of course you want to get its report(Enter # to quit) : ")
+                        system("cls")
+                        if course_code == "#" :
+                            exit = True
+                            break
+                        elif isvalid_course_code(course_code) :
+                            break
+                    if exit :
+                        show_text("Returning to the main menu...")
+                        break
+                    # endregion
+
+                    # region calculation
+                    scores = []
+                    registeres_scores = 0
+                    notregistered_scores = 0
+                    for student in student_list :
+                        for student_course in student["Courses information"] :
+                            if student_course["Course code"] == course_code :
+                                if student_course["Score"] != "Not registered" :
+                                    registeres_scores += 1
+                                    scores.append(int(student_course["Score"]))
+                                else :
+                                    notregistered_scores += 1
+                                break
+                    if scores :
+                        scores_average = sum(scores) / len(scores)
+                    else :
+                        scores_average = "No scores registered for this course" 
+                    # endregion
+
+                    # region show course report
+                    for course in courses :
+                        if course["Code"] == course_code :
+                            print(f"Course {course_code} : {course["Course name"]}")
+                            print(f"Code : {course["Code"]}")
+                            print(f"Course name : {course["Course name"]}")
+                            print(f"Teacher : {course["Teacher"]}")
+                            print(f"Offline capacity : {course["Offline capacity"]}")
+                            print(f"Offline students : {course["Offline students"]}")
+                            print(f"Online capacity : {course["Online capacity"]}")
+                            print(f"Online students : {course["Online students"]}")
+                            print(f"Total capacity : {course["Total capacity"]}")
+                            print(f"Total students : {course["Total students"]}")
+                            print(f"Not registered score : {notregistered_scores}")
+                            print(f"Registered score : {registeres_scores}")
+                            print(f"Scores average : {scores_average}")
+                            print("-" * 100)
+                            break
+                    # endregion
+
+                    # region show report again
+                    show_course_report_again = input("Do you want to see other courses report(yes - etc) ? ").lower()
+                    system("cls")
+                    if show_course_report_again != "yes" :
+                        break
+                    # endregion
+                
+                break
+                # endregion
+
+            # endregion
+
+        case "0" :
+            # region quit
+            show_text("Program closed successfully. Good luck..." , 5)
+            break
+            # endregion
+    
     # endregion
 
 # endregion 
